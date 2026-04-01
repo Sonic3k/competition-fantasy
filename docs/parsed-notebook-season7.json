@@ -1,0 +1,361 @@
+{
+  "source": "Notebook images IMG_0925-IMG_0946",
+  "parsed_by": "Claude Vision from uploaded images",
+  "status": "DRAFT - needs verification",
+
+  "universes": [
+    {
+      "name": "Othelose",
+      "description": "Fantasy Premier League - 20 teams, round-robin home & away"
+    },
+    {
+      "name": "Empires",
+      "description": "AOE2-inspired universe with civilizations, clubs, and international competitions"
+    }
+  ],
+
+  "empires_nations": [
+    { "abbr": "Bri", "name": "Britons" },
+    { "abbr": "Byz", "name": "Byzantines" },
+    { "abbr": "Cel", "name": "Celts" },
+    { "abbr": "Chi", "name": "Chinese" },
+    { "abbr": "Cho", "name": "Choson" },
+    { "abbr": "Fra", "name": "Franks" },
+    { "abbr": "Got", "name": "Goths" },
+    { "abbr": "Jap", "name": "Japanese" },
+    { "abbr": "Mon", "name": "Mongols" },
+    { "abbr": "Per", "name": "Persians" },
+    { "abbr": "Ran", "name": "Ran" },
+    { "abbr": "Sar", "name": "Saracens" },
+    { "abbr": "Sum", "name": "Sum" },
+    { "abbr": "Teu", "name": "Teutons" },
+    { "abbr": "Tur", "name": "Turks" },
+    { "abbr": "Vik", "name": "Vikings" }
+  ],
+
+  "othelose_teams": [
+    { "shortName": "Ace", "fullName": "Acer Robert", "seedNumber": 4, "primaryColor": "#FFD700", "secondaryColor": "#0066CC", "sponsor": "High Rover" },
+    { "shortName": "Bal", "fullName": "Balland Wolve", "seedNumber": 10, "primaryColor": "#FFD700", "secondaryColor": "#000000", "sponsor": "HSA" },
+    { "shortName": "Ben", "fullName": "Ben Derber", "seedNumber": 15, "primaryColor": "#333333", "secondaryColor": "#0066CC", "sponsor": "Thomson" },
+    { "shortName": "Can", "fullName": "Cantone", "seedNumber": 1, "primaryColor": "#87CEEB", "secondaryColor": "#FFFFFF", "sponsor": "STONE Going" },
+    { "shortName": "Dom", "fullName": "Domehampton", "seedNumber": 6, "primaryColor": "#0066CC", "secondaryColor": "#0066CC", "sponsor": "BYZ" },
+    { "shortName": "Elo", "fullName": "?? (Eldiadion?)", "seedNumber": null, "primaryColor": "#87CEEB", "secondaryColor": "#FFFFFF", "sponsor": "NOVEL", "_note": "Not in Season 7 squad - need full name" },
+    { "shortName": "Ful", "fullName": "Fulhaster", "seedNumber": 14, "primaryColor": "#FFFFFF", "secondaryColor": "#333333", "sponsor": "dabs comp" },
+    { "shortName": "Hri", "fullName": "Hrilling Best", "seedNumber": 12, "primaryColor": "#00CC00", "secondaryColor": "#00CC00", "sponsor": "MN KID" },
+    { "shortName": "Ilh", "fullName": "Ilham Rower", "seedNumber": 17, "primaryColor": "#FF69B4", "secondaryColor": "#FF69B4", "sponsor": "KBN" },
+    { "shortName": "Ite", "fullName": "Iteser Icer", "seedNumber": 5, "primaryColor": "#FFFFFF", "secondaryColor": "#000066", "sponsor": "ICECAP ZONE" },
+    { "shortName": "Mer", "fullName": "Mener Lying", "seedNumber": 2, "primaryColor": "#CC0000", "secondaryColor": "#CC0000", "sponsor": "??" },
+    { "shortName": "Miz", "fullName": "Mize Mole", "seedNumber": 9, "primaryColor": "#CC0000", "secondaryColor": "#0066CC", "sponsor": "MFU" },
+    { "shortName": "Noe", "fullName": "Notes Valzine", "seedNumber": 18, "primaryColor": "#CC0000", "secondaryColor": "#0066CC", "sponsor": "??" },
+    { "shortName": "Nru", "fullName": "Nrucaste", "seedNumber": 16, "primaryColor": "#000000", "secondaryColor": "#FFFFFF", "sponsor": "Asone" },
+    { "shortName": "Oce", "fullName": "?? (Occating?)", "seedNumber": null, "primaryColor": "#FFFFFF", "secondaryColor": "#FFFFFF", "sponsor": "WHITE", "_note": "Not in Season 7 squad" },
+    { "shortName": "Pre", "fullName": "Pretton", "seedNumber": 7, "primaryColor": "??", "secondaryColor": "??", "sponsor": "??", "_note": "New club in Season 7, no jersey drawing visible" },
+    { "shortName": "Pro", "fullName": "Processing Probal", "seedNumber": 19, "primaryColor": "#FFFFFF", "secondaryColor": "#FFFFFF", "sponsor": "Contest of Dorie" },
+    { "shortName": "Puz", "fullName": "?? (Puzzler?)", "seedNumber": null, "primaryColor": "#FF69B4", "secondaryColor": "#FF69B4", "sponsor": "ZERR", "_note": "Not in Season 7 squad" },
+    { "shortName": "Rab", "fullName": "Rab Pladineer", "seedNumber": 11, "primaryColor": "#0066CC", "secondaryColor": "#0066CC", "sponsor": "Empires Age" },
+    { "shortName": "Tat", "fullName": "Tatines David", "seedNumber": 3, "primaryColor": "#CC0000", "secondaryColor": "#FFFFFF", "sponsor": "DAVID STONE", "_note": "Red/white stripes" },
+    { "shortName": "Twn", "fullName": "Twine Oner", "seedNumber": 13, "primaryColor": "#FFFFFF", "secondaryColor": "#FFFFFF", "sponsor": "Best mark" },
+    { "shortName": "Vel", "fullName": "Velt Cotroom", "seedNumber": 8, "primaryColor": "??", "secondaryColor": "??", "sponsor": "??" },
+    { "shortName": "Wil", "fullName": "Willandos", "seedNumber": 20, "primaryColor": "#000000", "secondaryColor": "#FFFFFF", "sponsor": "DOS", "_note": "Black/white stripes" }
+  ],
+
+  "othelose_season7": {
+    "name": "7th Othelose",
+    "year": 2005,
+    "date": "1/6/2005",
+    "teams_count": 20,
+    "notes": "New clubs this season: Pretton, Nrucaste. Play-off: Occating Menchiote - Twine Oner, Eldiadion - Velt Cotroom",
+    "rounds": {
+      "L1": [
+        { "home": "Cantone", "away": "Mener Lying", "homeScore": 1, "awayScore": 2 },
+        { "home": "Tatines David", "away": "Acer Robert", "homeScore": 1, "awayScore": 2 },
+        { "home": "Iteser Icer", "away": "Domehampton", "homeScore": 0, "awayScore": 0 },
+        { "home": "Pretton", "away": "Velt Cotroom", "homeScore": 1, "awayScore": 1 },
+        { "home": "Mize Mole", "away": "Balland Wolve", "homeScore": 1, "awayScore": 1 },
+        { "home": "Rab Pladineer", "away": "Hrilling Best", "homeScore": 1, "awayScore": 0 },
+        { "home": "Twine Oner", "away": "Fulhaster", "homeScore": 0, "awayScore": 2 },
+        { "home": "Ben Derber", "away": "Nrucaste", "homeScore": 3, "awayScore": 0 },
+        { "home": "Ilham Rower", "away": "Notes Valzine", "homeScore": 1, "awayScore": 1 },
+        { "home": "Processing Probal", "away": "Willandos", "homeScore": 0, "awayScore": 0 }
+      ],
+      "L2": [
+        { "home": "Velt Cotroom", "away": "Iteser Icer", "homeScore": 2, "awayScore": 3 },
+        { "home": "Domehampton", "away": "Pretton", "homeScore": 1, "awayScore": 2 },
+        { "home": "Acer Robert", "away": "Cantone", "homeScore": 5, "awayScore": 0 },
+        { "home": "Mener Lying", "away": "Tatines David", "homeScore": 1, "awayScore": 0 },
+        { "home": "Nrucaste", "away": "Twine Oner", "homeScore": 4, "awayScore": 2 },
+        { "home": "Fulhaster", "away": "Ben Derber", "homeScore": 1, "awayScore": 0 },
+        { "home": "Willandos", "away": "Ilham Rower", "homeScore": 2, "awayScore": 2 },
+        { "home": "Notes Valzine", "away": "Processing Probal", "homeScore": 3, "awayScore": 1 },
+        { "home": "Hrilling Best", "away": "Mize Mole", "homeScore": 2, "awayScore": 0 },
+        { "home": "Balland Wolve", "away": "Rab Pladineer", "homeScore": 0, "awayScore": 1 }
+      ],
+      "L3": [
+        { "home": "Twine Oner", "away": "Balland Wolve", "homeScore": 0, "awayScore": 1 },
+        { "home": "Mize Mole", "away": "Fulhaster", "homeScore": 3, "awayScore": 2 },
+        { "home": "Rab Pladineer", "away": "Notes Valzine", "homeScore": 2, "awayScore": 0 },
+        { "home": "Ilham Rower", "away": "Hrilling Best", "homeScore": 0, "awayScore": 3 },
+        { "home": "Ben Derber", "away": "Willandos", "homeScore": 3, "awayScore": 1 },
+        { "home": "Iteser Icer", "away": "Mener Lying", "homeScore": 2, "awayScore": 1 },
+        { "home": "Pretton", "away": "Acer Robert", "homeScore": 1, "awayScore": 2 },
+        { "home": "Processing Probal", "away": "Nrucaste", "homeScore": 3, "awayScore": 1 },
+        { "home": "Cantone", "away": "Domehampton", "homeScore": 0, "awayScore": 0 },
+        { "home": "Tatines David", "away": "Velt Cotroom", "homeScore": 2, "awayScore": 0 }
+      ],
+      "L4": [
+        { "home": "Willandos", "away": "Rab Pladineer", "homeScore": 0, "awayScore": 1 },
+        { "home": "Acer Robert", "away": "Iteser Icer", "homeScore": 1, "awayScore": 3 },
+        { "home": "Mener Lying", "away": "Pretton", "homeScore": 2, "awayScore": 0 },
+        { "home": "Nrucaste", "away": "Mize Mole", "homeScore": 0, "awayScore": 0 },
+        { "home": "Velt Cotroom", "away": "Cantone", "homeScore": 3, "awayScore": 0 },
+        { "home": "Hrilling Best", "away": "Processing Probal", "homeScore": 1, "awayScore": 0 },
+        { "home": "Domehampton", "away": "Tatines David", "homeScore": 2, "awayScore": 0 },
+        { "home": "Balland Wolve", "away": "Ben Derber", "homeScore": 1, "awayScore": 0 },
+        { "home": "Notes Valzine", "away": "Twine Oner", "homeScore": 1, "awayScore": 0 },
+        { "home": "Fulhaster", "away": "Ilham Rower", "homeScore": 3, "awayScore": 2 }
+      ],
+      "L5": [
+        { "home": "Processing Probal", "away": "Cantone", "homeScore": 0, "awayScore": 2 },
+        { "home": "Notes Valzine", "away": "Balland Wolve", "homeScore": 3, "awayScore": 1 },
+        { "home": "Fulhaster", "away": "Velt Cotroom", "homeScore": 1, "awayScore": 1 },
+        { "home": "Rab Pladineer", "away": "Iteser Icer", "homeScore": 2, "awayScore": 0 },
+        { "home": "Willandos", "away": "Mener Lying", "homeScore": 0, "awayScore": 1 },
+        { "home": "Twine Oner", "away": "Pretton", "homeScore": 1, "awayScore": 1 },
+        { "home": "Ilham Rower", "away": "Mize Mole", "homeScore": 3, "awayScore": 0 },
+        { "home": "Ben Derber", "away": "Tatines David", "homeScore": 1, "awayScore": 0 },
+        { "home": "Hrilling Best", "away": "Domehampton", "homeScore": 4, "awayScore": 2 },
+        { "home": "Nrucaste", "away": "Acer Robert", "homeScore": 0, "awayScore": 2 }
+      ],
+      "L6": [
+        { "home": "Tatines David", "away": "Hrilling Best", "homeScore": 0, "awayScore": 0 },
+        { "home": "Twine Oner", "away": "Domehampton", "homeScore": 2, "awayScore": 0 },
+        { "home": "Ben Derber", "away": "Notes Valzine", "homeScore": 1, "awayScore": 0 },
+        { "home": "Pretton", "away": "Willandos", "homeScore": 2, "awayScore": 1 },
+        { "home": "Rab Pladineer", "away": "Acer Robert", "homeScore": 2, "awayScore": 2 },
+        { "home": "Cantone", "away": "Balland Wolve", "homeScore": 1, "awayScore": 2 },
+        { "home": "Iteser Icer", "away": "Fulhaster", "homeScore": 1, "awayScore": 0 },
+        { "home": "Ilham Rower", "away": "Nrucaste", "homeScore": 2, "awayScore": 0 },
+        { "home": "Processing Probal", "away": "Velt Cotroom", "homeScore": 3, "awayScore": 1 },
+        { "home": "Mize Mole", "away": "Mener Lying", "homeScore": 2, "awayScore": 3 }
+      ],
+      "L7": [
+        { "home": "?", "away": "?", "homeScore": null, "awayScore": null, "_note": "NOT VISIBLE - rounds L7, L8 not in uploaded images" }
+      ],
+      "L8": [
+        { "home": "?", "away": "?", "homeScore": null, "awayScore": null, "_note": "NOT VISIBLE - rounds L7, L8 not in uploaded images" }
+      ],
+      "L9": [
+        { "home": "Fulhaster", "away": "Rab Pladineer", "homeScore": 0, "awayScore": 0 },
+        { "home": "Balland Wolve", "away": "Iteser Icer", "homeScore": 3, "awayScore": 0 },
+        { "home": "Velt Cotroom", "away": "Ben Derber", "homeScore": 1, "awayScore": 0 },
+        { "home": "Willandos", "away": "Tatines David", "homeScore": 1, "awayScore": 3 },
+        { "home": "Nrucaste", "away": "Pretton", "homeScore": 2, "awayScore": 0 },
+        { "home": "Mener Lying", "away": "Ilham Rower", "homeScore": 2, "awayScore": 0 },
+        { "home": "Domehampton", "away": "Mize Mole", "homeScore": 0, "awayScore": 3 },
+        { "home": "Acer Robert", "away": "Processing Probal", "homeScore": 1, "awayScore": 2 },
+        { "home": "Hrilling Best", "away": "Twine Oner", "homeScore": 1, "awayScore": 0 },
+        { "home": "Notes Valzine", "away": "Cantone", "homeScore": 3, "awayScore": 1 }
+      ],
+      "L10": [
+        { "home": "Domehampton", "away": "Velt Cotroom", "homeScore": 2, "awayScore": 0 },
+        { "home": "Twine Oner", "away": "Ben Derber", "homeScore": 1, "awayScore": 0 },
+        { "home": "Processing Probal", "away": "Ilham Rower", "homeScore": 0, "awayScore": 2 },
+        { "home": "Tatines David", "away": "Cantone", "homeScore": 2, "awayScore": 2 },
+        { "home": "Hrilling Best", "away": "Balland Wolve", "homeScore": 0, "awayScore": 0 },
+        { "home": "Fulhaster", "away": "Nrucaste", "homeScore": 3, "awayScore": 2 },
+        { "home": "Iteser Icer", "away": "Pretton", "homeScore": 2, "awayScore": 0 },
+        { "home": "Willandos", "away": "Notes Valzine", "homeScore": 1, "awayScore": 1 },
+        { "home": "Rab Pladineer", "away": "Mize Mole", "homeScore": 0, "awayScore": 0 },
+        { "home": "Acer Robert", "away": "Mener Lying", "homeScore": 2, "awayScore": 2 }
+      ],
+      "L11": [
+        { "home": "Cantone", "away": "Iteser Icer", "homeScore": 3, "awayScore": 2 },
+        { "home": "Nrucaste", "away": "Willandos", "homeScore": 4, "awayScore": 3 },
+        { "home": "Pretton", "away": "Tatines David", "homeScore": 2, "awayScore": 0 },
+        { "home": "Mize Mole", "away": "Twine Oner", "homeScore": 3, "awayScore": 0 },
+        { "home": "Mener Lying", "away": "Domehampton", "homeScore": 1, "awayScore": 1 },
+        { "home": "Velt Cotroom", "away": "Acer Robert", "homeScore": 0, "awayScore": 4 },
+        { "home": "Ilham Rower", "away": "Rab Pladineer", "homeScore": 3, "awayScore": 1 },
+        { "home": "Balland Wolve", "away": "Fulhaster", "homeScore": 1, "awayScore": 0 },
+        { "home": "Notes Valzine", "away": "Hrilling Best", "homeScore": 1, "awayScore": 0 },
+        { "home": "Ben Derber", "away": "Processing Probal", "homeScore": 1, "awayScore": 1 }
+      ],
+      "L12": [
+        { "home": "Ben Derber", "away": "Mize Mole", "homeScore": 2, "awayScore": 0 },
+        { "home": "Tatines David", "away": "Iteser Icer", "homeScore": 2, "awayScore": 1 },
+        { "home": "Willandos", "away": "Hrilling Best", "homeScore": 0, "awayScore": 0 },
+        { "home": "Cantone", "away": "Pretton", "homeScore": 1, "awayScore": 2 },
+        { "home": "Processing Probal", "away": "Rab Pladineer", "homeScore": 1, "awayScore": 2 },
+        { "home": "Fulhaster", "away": "Notes Valzine", "homeScore": 0, "awayScore": 0 },
+        { "home": "Mener Lying", "away": "Velt Cotroom", "homeScore": 1, "awayScore": 0 },
+        { "home": "Acer Robert", "away": "Domehampton", "homeScore": 1, "awayScore": 0 },
+        { "home": "Twine Oner", "away": "Ilham Rower", "homeScore": 3, "awayScore": 1 },
+        { "home": "Nrucaste", "away": "Balland Wolve", "homeScore": 0, "awayScore": 2 }
+      ]
+    },
+    "final_standings_after_L12": [
+      { "pos": 1, "team": "Acer Robert", "goalsFor": 28, "goalsAgainst": 12, "points": 26 },
+      { "pos": 2, "team": "Mener Lying", "goalsFor": 18, "goalsAgainst": 11, "points": 26 },
+      { "pos": 3, "team": "Rab Pladineer", "goalsFor": 15, "goalsAgainst": 8, "points": 24 },
+      { "pos": 4, "team": "Hrilling Best", "goalsFor": 15, "goalsAgainst": 6, "points": 22 },
+      { "pos": 5, "team": "Balland Wolve", "goalsFor": 14, "goalsAgainst": 8, "points": 22 },
+      { "pos": 6, "team": "Notes Valzine", "goalsFor": 16, "goalsAgainst": 13, "points": 21 },
+      { "pos": 7, "team": "Iteser Icer", "goalsFor": 16, "goalsAgainst": 16, "points": 19 },
+      { "pos": 8, "team": "Ben Derber", "goalsFor": 12, "goalsAgainst": 8, "points": 17 },
+      { "pos": 9, "team": "Ilham Rower", "goalsFor": 18, "goalsAgainst": 18, "points": 17 },
+      { "pos": 10, "team": "Fulhaster", "goalsFor": 14, "goalsAgainst": 13, "points": 16 },
+      { "pos": 11, "team": "Tatines David", "goalsFor": 15, "goalsAgainst": 14, "points": 15 },
+      { "pos": 12, "team": "Mize Mole", "goalsFor": 16, "goalsAgainst": 17, "points": 15 },
+      { "pos": 13, "team": "Pretton", "goalsFor": 13, "goalsAgainst": 16, "points": 15 },
+      { "pos": 14, "team": "Domehampton", "goalsFor": 11, "goalsAgainst": 14, "points": 15 },
+      { "pos": 15, "team": "Twine Oner", "goalsFor": 11, "goalsAgainst": 16, "points": 13 },
+      { "pos": 16, "team": "Nrucaste", "goalsFor": 15, "goalsAgainst": 23, "points": 13 },
+      { "pos": 17, "team": "Processing Probal", "goalsFor": 13, "goalsAgainst": 17, "points": 12 },
+      { "pos": 18, "team": "Cantone", "goalsFor": 14, "goalsAgainst": 25, "points": 11 },
+      { "pos": 19, "team": "Velt Cotroom", "goalsFor": 10, "goalsAgainst": 22, "points": 8 },
+      { "pos": 20, "team": "Willandos", "goalsFor": 11, "goalsAgainst": 18, "points": 7 }
+    ],
+    "_note": "Rounds L7, L8 missing from uploaded images. Standings after L10 also available for cross-check."
+  },
+
+  "interempires_1st": {
+    "name": "Interempires 1st",
+    "type": "GROUP_KNOCKOUT",
+    "year": 2005,
+    "universe": "Empires",
+    "groups": {
+      "A": ["Scotsteven (Celts)", "Troyes City (Fra)", "COC Eyecap (Sar)", "Sky Hazhe (Chi)"],
+      "B": ["Ferdielish Derber (Got)", "Tik Ristan (Vik)", "Guyk Khan (Mon)", "Djuralin Duff (Sum)"],
+      "C": ["Levong Galipolli (Tur)", "Mener Lying (Ran)", "Dire Temple Asone (Teu)", "Wontoe Bluewings (Cho)"],
+      "D": ["Wonderharmful Crewe CT (Byz)", "Leather Minered (Bri)", "Mond Izumo (Jap)", "Khwarzarm City (Per)"]
+    },
+    "_note_groups": "Group stage results NOT in uploaded images - only knockout visible",
+    "quarter_finals": [
+      { "home": "Troyes City (Fra)", "away": "Tik Ristan (Vik)", "homeScore": 3, "awayScore": 0 },
+      { "home": "Guyk Khan (Mon)", "away": "Sky Hazhe (Chi)", "homeScore": 3, "awayScore": 1 },
+      { "home": "Levong Galipolli (Tur)", "away": "Khwarzarm City (Per)", "homeScore": 2, "awayScore": 0 },
+      { "home": "Leather Minered (Bri)", "away": "Mener Lying (Ran)", "homeScore": 0, "awayScore": 1 }
+    ],
+    "semi_finals": [
+      { "home": "Troyes City (Fra)", "away": "Levong Galipolli (Tur)", "homeScore": 1, "awayScore": 1, "penalties": "3-2" },
+      { "home": "Guyk Khan (Mon)", "away": "Mener Lying (Ran)", "homeScore": 1, "awayScore": 2 }
+    ],
+    "final": {
+      "home": "Troyes City (Fra)",
+      "away": "Mener Lying (Ran)",
+      "homeScore": 2,
+      "awayScore": 1
+    },
+    "champion": "Troyes City (Fra)"
+  },
+
+  "cup_e1_round1": {
+    "name": "7th Empires Champions League 1",
+    "type": "GROUP_KNOCKOUT",
+    "year": 2005,
+    "universe": "Empires",
+    "_note": "Only Round 1 group stage first matches visible",
+    "groups": {
+      "A": {
+        "matches": [
+          { "home": "Rider Woodwood (Cel)", "away": "War Elephant (Per)", "homeScore": 4, "awayScore": 1, "_clubName": "Fortune" },
+          { "home": "Huskarl (Got)", "away": "Seljuks (Tur)", "homeScore": 1, "awayScore": 0, "_clubName": "Gothic Bene" }
+        ]
+      },
+      "B": {
+        "matches": [
+          { "home": "Yoshiga Minamoto (Jap)", "away": "Roland (Fra)", "homeScore": 2, "awayScore": 1, "_clubName": "Wonder Gan" },
+          { "home": "Green Cycene (Cel)", "away": "Ajax Tampines (Sum)", "homeScore": 4, "awayScore": 0, "_clubName": "Green V-DOS" }
+        ]
+      },
+      "C": {
+        "matches": [
+          { "home": "Rudolph Swabian (Teu)", "away": "Persata (Mon)", "homeScore": 1, "awayScore": 1, "_clubName": "Eucentral FF" },
+          { "home": "Rover Shah (Per)", "away": "Charles Martel (Fra)", "homeScore": 1, "awayScore": 1, "_clubName": "Alimah" }
+        ]
+      },
+      "D": {
+        "matches": [
+          { "home": "Mameluke (Sar)", "away": "British City (Bri)", "homeScore": 1, "awayScore": 3, "_clubName": "Akkad Castle" },
+          { "home": "Bohemia (Teu)", "away": "Labohad United (Per)", "homeScore": 2, "awayScore": 0, "_clubName": "Centre Bishop" }
+        ]
+      },
+      "E": {
+        "matches": [
+          { "home": "Hsia United (Chi)", "away": "Belisarius United (Byz)", "homeScore": 2, "awayScore": 3, "_clubName": "Hsi Hsia" },
+          { "home": "King Sejong (Cho)", "away": "Infantry Berserk (Vik)", "homeScore": 0, "awayScore": 1, "_clubName": "Taejak Bene" }
+        ]
+      },
+      "F": {
+        "matches": [
+          { "home": "TFF Swabian (Teu)", "away": "Chu-Koo-Nu (Chi)", "homeScore": 1, "awayScore": 1, "_clubName": "Main Road" },
+          { "home": "Benlizihad United (Sar)", "away": "Acer Robert (Ran)", "homeScore": 3, "awayScore": 0, "_clubName": "Zihad Calpe" }
+        ]
+      },
+      "G": {
+        "matches": [
+          { "home": "Naiman (Mon)", "away": "Janissary (Tur)", "homeScore": 2, "awayScore": 0, "_clubName": "Berfoidye" },
+          { "home": "Knight Templar (Teu)", "away": "Classical Base (Cel)", "homeScore": 2, "awayScore": 1, "_clubName": "Templar FF" }
+        ]
+      },
+      "H": {
+        "matches": [
+          { "home": "Dragon Burgundy (Fra)", "away": "Cataphampton (Byz)", "homeScore": 0, "awayScore": 0, "_clubName": "Burgundy" },
+          { "home": "Hrilling Best (Ran)", "away": "Great Wall (Chi)", "homeScore": 3, "awayScore": 1, "_clubName": "Deff Sallow" }
+        ]
+      }
+    }
+  },
+
+  "e2_cup_7th_1st_leg": {
+    "name": "7th Empires Champions League 2",
+    "type": "KNOCKOUT",
+    "round": "Round 2 - 1st Leg",
+    "year": 2005,
+    "universe": "Empires",
+    "matches": [
+      { "home_club": "Cartub Port", "home_team": "Viking Navy (Vik)", "away_club": "British Park", "away_team": "(Bri)", "homeScore": 3, "awayScore": 2 },
+      { "home_club": "Sallows FF", "home_team": "Blastoise (Teu)", "away_club": "Bluetooth", "away_team": "(Vik)", "homeScore": 2, "awayScore": 1 },
+      { "home_club": "Kiheon", "home_team": "Heon I Park (Cho)", "away_club": "Mond Samurai", "away_team": "(Jap)", "homeScore": 3, "awayScore": 1 },
+      { "home_club": "Poplic Bene", "home_team": "Ballpop (Got)", "away_club": "Fuluke", "away_team": "(Sar)", "homeScore": 1, "awayScore": 2 },
+      { "home_club": "Chinon Bene", "home_team": "Chinon Santana (Fra)", "away_club": "Arc Main", "away_team": "(Fra)", "homeScore": 1, "awayScore": 1 },
+      { "home_club": "Siege Roomean", "home_team": "Bilte Derber (Got)", "away_club": "Notes Valzine", "away_team": "(Ran)", "homeScore": 0, "awayScore": 2 },
+      { "home_club": "Batu Nami", "home_team": "Batu Khan (Mon)", "away_club": "Greek United", "away_team": "(Byz)", "homeScore": 3, "awayScore": 0 },
+      { "home_club": "Bad Neighbour", "home_team": "Goding (Byz)", "away_club": "Bavaria", "away_team": "(Teu)", "homeScore": 0, "awayScore": 0 },
+      { "home_club": "Snowing", "home_team": "Iteser Icer (Ran)", "away_club": "Celt United", "away_team": "(Cel)", "homeScore": 0, "awayScore": 0 },
+      { "home_club": "FA B", "home_team": "Lerberk (Tur)", "away_club": "Robin Hood", "away_team": "(Bri)", "homeScore": 1, "awayScore": 0 },
+      { "home_club": "Warmarine", "home_team": "Longboat (Vik)", "away_club": "Kajinuo", "away_team": "(Jap)", "homeScore": 0, "awayScore": 2 },
+      { "home_club": "Wonder Gan", "home_team": "Kitabatake (Jap)", "away_club": "Ship Parcicion", "away_team": "(Vik)", "homeScore": 1, "awayScore": 1 },
+      { "home_club": "Central Sung", "home_team": "Molgie Sung (Chi)", "away_club": "General Siede", "away_team": "(Got)", "homeScore": 1, "awayScore": 2 },
+      { "home_club": "Saracen Centre", "home_team": "Saracen Navy (Sar)", "away_club": "Deshah", "away_team": "(Per)", "homeScore": 4, "awayScore": 0 },
+      { "home_club": "Greek Bene", "home_team": "Constantinople (Byz)", "away_club": "Leather Longbowman", "away_team": "(Bri)", "homeScore": 1, "awayScore": 1 }
+    ]
+  },
+
+  "jersey_designs": {
+    "_note": "Extracted from IMG_0925, IMG_0926, IMG_0927. Colors are approximate.",
+    "teams": [
+      { "team": "Ace / Acer Robert", "home": { "shirt": "blue", "shorts": "blue", "socks": "blue", "sponsor": "High Rover" }, "away": { "shirt": "yellow", "shorts": "blue", "socks": "yellow", "sponsor": "High Rover" }},
+      { "team": "Bal / Balland Wolve", "home": { "shirt": "blue with black sleeves", "shorts": "blue", "socks": "blue", "sponsor": "HSA" }, "away": { "shirt": "yellow", "shorts": "yellow", "socks": "yellow", "sponsor": "HSA" }},
+      { "team": "Ben / Ben Derber", "home": { "shirt": "dark/black with red Thomson text", "shorts": "dark", "socks": "dark", "sponsor": "Thomson" }, "away": { "shirt": "yellow with red Thomson text", "shorts": "blue", "socks": "yellow", "sponsor": "Thomson" }},
+      { "team": "Can / Cantone", "home": { "shirt": "light blue", "shorts": "white", "socks": "white", "sponsor": "STONE Going" }, "away": { "shirt": "light blue", "shorts": "dark", "socks": "white", "sponsor": "STONE Going" }},
+      { "team": "Dom / Domehampton", "home": { "shirt": "blue", "shorts": "blue", "socks": "blue", "sponsor": "BYZ" }, "away": null },
+      { "team": "Elo", "home": { "shirt": "light blue zigzag pattern", "shorts": "white", "socks": "white", "sponsor": "NOVEL" }, "away": null },
+      { "team": "Ful / Fulhaster", "home": { "shirt": "white/dark", "shorts": "dark", "socks": "white", "sponsor": "dabs comp" }, "away": null },
+      { "team": "Hri / Hrilling Best", "home": { "shirt": "green/lime", "shorts": "green", "socks": "green", "sponsor": "MN KID" }, "away": null },
+      { "team": "Ilh / Ilham Rower", "home": { "shirt": "pink", "shorts": "pink", "socks": "pink", "sponsor": "KBN" }, "away": null },
+      { "team": "Ite / Iteser Icer", "home": { "shirt": "white", "shorts": "white", "socks": "dark", "sponsor": "ICECAP ZONE" }, "away": null },
+      { "team": "Mer / Mener Lying", "home": { "shirt": "red", "shorts": "red", "socks": "red", "sponsor": "??" }, "away": null },
+      { "team": "Miz / Mize Mole", "home": { "shirt": "red with blue accents", "shorts": "red", "socks": "red", "sponsor": "MFU" }, "away": null },
+      { "team": "Noe / Notes Valzine", "home": { "shirt": "red with blue sleeves", "shorts": "white", "socks": "red", "sponsor": "??" }, "away": null },
+      { "team": "Nru / Nrucaste", "home": { "shirt": "black/white stripes", "shorts": "dark", "socks": "dark", "sponsor": "Asone" }, "away": null },
+      { "team": "Oce", "home": { "shirt": "white", "shorts": "white", "socks": "white", "sponsor": "WHITE" }, "away": null },
+      { "team": "Pro / Processing Probal", "home": { "shirt": "white/light", "shorts": "white", "socks": "white", "sponsor": "Contest of Dorie" }, "away": null },
+      { "team": "Puz", "home": { "shirt": "pink", "shorts": "pink", "socks": "pink", "sponsor": "ZERR" }, "away": null },
+      { "team": "Rab / Rab Pladineer", "home": { "shirt": "blue with grey stripe", "shorts": "blue", "socks": "blue", "sponsor": "Empires Age" }, "away": null },
+      { "team": "Tat / Tatines David", "home": { "shirt": "red/white stripes", "shorts": "red", "socks": "red", "sponsor": "DAVID STONE" }, "away": null },
+      { "team": "Twn / Twine Oner", "home": { "shirt": "white", "shorts": "white", "socks": "white", "sponsor": "Best mark" }, "away": null },
+      { "team": "Wls / Willandos", "home": { "shirt": "black/white stripes", "shorts": "dark", "socks": "dark", "sponsor": "DOS" }, "away": null }
+    ]
+  }
+}
