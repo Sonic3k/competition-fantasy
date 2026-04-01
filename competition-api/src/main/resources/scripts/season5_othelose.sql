@@ -9,6 +9,12 @@ BEGIN
   SELECT id INTO v_uni FROM universes WHERE name = 'Othelose' LIMIT 1;
   SELECT id INTO v_comp FROM competitions WHERE name = 'Othelose League' AND universe_id = v_uni LIMIT 1;
 
+  -- Skip if Season 5 already exists
+  IF EXISTS (SELECT 1 FROM seasons WHERE name = 'Season 5' AND competition_id = v_comp) THEN
+    RAISE NOTICE 'Season 5 already exists, skipping';
+    RETURN;
+  END IF;
+
   -- Get existing teams
   SELECT id INTO t_ace FROM teams WHERE name='Acer Robert' AND universe_id=v_uni LIMIT 1;
   SELECT id INTO t_ben FROM teams WHERE name='Ben Derber' AND universe_id=v_uni LIMIT 1;
