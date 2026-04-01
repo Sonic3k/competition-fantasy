@@ -42,9 +42,6 @@ public class ScriptController {
     @PostMapping("/{id}/execute")
     public ResponseEntity<ImportScriptDto> execute(@PathVariable UUID id) {
         return repo.findById(id).map(script -> {
-            if (script.getStatus() == ImportScript.ScriptStatus.EXECUTED) {
-                return ResponseEntity.badRequest().body(ImportScriptDto.from(script));
-            }
             try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()) {
                 conn.setAutoCommit(false);
                 stmt.execute(script.getSqlContent());
@@ -63,9 +60,6 @@ public class ScriptController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
         return repo.findById(id).map(script -> {
-            if (script.getStatus() == ImportScript.ScriptStatus.EXECUTED) {
-                return ResponseEntity.badRequest().<Void>build();
-            }
             repo.deleteById(id);
             return ResponseEntity.noContent().<Void>build();
         }).orElse(ResponseEntity.notFound().build());
