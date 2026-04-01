@@ -3,105 +3,57 @@ import api from '../api/client'
 
 export default function ScriptsManager() {
   const [scripts, setScripts] = useState([])
-  const [showForm, setShowForm] = useState(false)
-  const [form, setForm] = useState({ name: '', description: '', sqlContent: '' })
-  const [expanded, setExpanded] = useState(null)
-  const [executing, setExecuting] = useState(null)
+  const [running, setRunning] = useState(null)
 
   const load = () => api.get('/scripts').then(r => setScripts(r.data))
   useEffect(() => { load() }, [])
 
-  const create = async () => {
-    if (!form.name.trim() || !form.sqlContent.trim()) return alert('Name and SQL required')
+  const run = async (id) => {
+    if (!confirm('Run this script?')) return
+    setRunning(id)
     try {
-      await api.post('/scripts', form)
-      setForm({ name: '', description: '', sqlContent: '' })
-      setShowForm(false)
+      const r = await api.post(`/scripts/${id}/run`)
+      if (r.data.status === 'FAILED') alert('Failed: ' + r.data.error)
       load()
     } catch (err) { alert('Error: ' + err.message) }
+    setRunning(null)
   }
 
-  const execute = async (id) => {
-    if (!confirm('Execute this script? This cannot be undone.')) return
-    setExecuting(id)
-    try {
-      await api.post(`/scripts/${id}/execute`)
-      load()
-    } catch (err) { alert('Error: ' + err.message) }
-    setExecuting(null)
-  }
-
-  const remove = async (id) => {
-    if (!confirm('Delete this script?')) return
-    await api.delete(`/scripts/${id}`)
-    load()
-  }
-
-  const statusColor = { PENDING: '#f39c12', EXECUTED: '#2ecc71', FAILED: '#e74c3c' }
+  const statusColor = { EXECUTED: '#2ecc71', FAILED: '#e74c3c' }
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-        <h1 style={{ margin: 0 }}>Scripts Manager</h1>
-        <button onClick={() => setShowForm(!showForm)} style={primaryBtn}>
-          {showForm ? '✕ Cancel' : '+ New Script'}
-        </button>
-      </div>
+      <h1 style={{ margin: '0 0 8px' }}>Scripts</h1>
+      <p style={{ color: '#888', marginTop: 0, marginBottom: 24, fontSize: 14 }}>One-off data imports and migrations. Each script is defined in code.</p>
 
-      {showForm && (
-        <div style={formCard}>
-          <h3 style={{ margin: '0 0 16px', fontSize: 16 }}>Create Import Script</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <input placeholder="Script name *" value={form.name}
-              onChange={e => setForm({ ...form, name: e.target.value })} style={inputStyle} />
-            <input placeholder="Description (optional)" value={form.description}
-              onChange={e => setForm({ ...form, description: e.target.value })} style={inputStyle} />
-            <textarea placeholder="SQL content *" value={form.sqlContent}
-              onChange={e => setForm({ ...form, sqlContent: e.target.value })}
-              style={{ ...inputStyle, minHeight: 200, fontFamily: 'monospace', fontSize: 13 }} />
-            <button onClick={create} style={primaryBtn}>Save Script</button>
-          </div>
-        </div>
-      )}
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         {scripts.map(s => (
-          <div key={s.id} style={{ background: '#fff', borderRadius: 10, border: '1px solid #eee', overflow: 'hidden' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 18px', cursor: 'pointer' }}
-              onClick={() => setExpanded(expanded === s.id ? null : s.id)}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <span style={{ display: 'inline-block', width: 10, height: 10, borderRadius: '50%', background: statusColor[s.status] }} />
-                <strong>{s.name}</strong>
-                <span style={{ fontSize: 12, color: '#999' }}>{s.status}</span>
+          <div key={s.id} style={cardStyle}>
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+                <span style={{ fontSize: 20 }}>{s.icon}</span>
+                <strong style={{ fontSize: 15 }}>{s.name}</strong>
+                {s.lastStatus && (
+                  <span style={{ fontSize: 11, color: statusColor[s.lastStatus] || '#999', fontWeight: 600 }}>
+                    {s.lastStatus}
+                  </span>
+                )}
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <button onClick={(e) => { e.stopPropagation(); execute(s.id) }}
-                    disabled={executing === s.id}
-                    style={{ ...primaryBtn, fontSize: 12, padding: '6px 14px', background: s.status === 'EXECUTED' ? '#27ae60' : s.status === 'FAILED' ? '#e67e22' : '#e94560' }}>
-                    {executing === s.id ? 'Executing...' : s.status === 'EXECUTED' ? 'Re-execute' : s.status === 'FAILED' ? 'Retry' : 'Execute'}
-                </button>
-                <button onClick={(e) => { e.stopPropagation(); remove(s.id) }}
-                    style={{ background: 'none', border: 'none', color: '#ccc', cursor: 'pointer', fontSize: 16 }}>✕</button>
-                <span style={{ color: '#ccc' }}>{expanded === s.id ? '▾' : '▸'}</span>
-              </div>
+              <p style={{ margin: 0, color: '#888', fontSize: 13, lineHeight: 1.5 }}>{s.description}</p>
+              {s.lastExecutedAt && <p style={{ margin: '6px 0 0', color: '#aaa', fontSize: 11 }}>Last run: {new Date(s.lastExecutedAt).toLocaleString()}</p>}
+              {s.lastError && <p style={{ margin: '6px 0 0', color: '#e74c3c', fontSize: 12 }}>{s.lastError}</p>}
             </div>
-
-            {expanded === s.id && (
-              <div style={{ padding: '0 18px 18px', borderTop: '1px solid #f0f0f0' }}>
-                {s.description && <p style={{ color: '#666', fontSize: 13, margin: '12px 0 8px' }}>{s.description}</p>}
-                {s.errorMessage && <div style={{ background: '#fdf0f0', padding: '10px 14px', borderRadius: 6, color: '#c0392b', fontSize: 13, marginTop: 10 }}>{s.errorMessage}</div>}
-                {s.executedAt && <p style={{ color: '#999', fontSize: 12, margin: '8px 0' }}>Executed: {new Date(s.executedAt).toLocaleString()}</p>}
-                <pre style={{ background: '#f8f9fa', padding: 14, borderRadius: 6, fontSize: 12, overflow: 'auto', maxHeight: 400, margin: '10px 0 0' }}>{s.sqlContent}</pre>
-              </div>
-            )}
+            <button onClick={() => run(s.id)} disabled={running === s.id}
+              style={runBtn}>
+              {running === s.id ? '...' : '▶ Run'}
+            </button>
           </div>
         ))}
-        {scripts.length === 0 && <p style={{ color: '#999' }}>No scripts yet. Click "+ New Script" to create one.</p>}
+        {scripts.length === 0 && <p style={{ color: '#999' }}>No scripts defined.</p>}
       </div>
     </div>
   )
 }
 
-const inputStyle = { padding: '10px 14px', border: '1px solid #ddd', borderRadius: 8, fontSize: 14, width: '100%' }
-const primaryBtn = { padding: '10px 20px', background: '#e94560', color: '#fff', border: 'none', borderRadius: 8, cursor: 'pointer', fontWeight: 600, fontSize: 14 }
-const formCard = { background: '#fff', padding: 24, borderRadius: 12, boxShadow: '0 2px 12px rgba(0,0,0,0.08)', marginBottom: 24 }
+const cardStyle = { display: 'flex', alignItems: 'center', gap: 20, background: '#fff', padding: '18px 22px', borderRadius: 12, border: '1px solid #eee' }
+const runBtn = { padding: '10px 24px', background: '#1a1a2e', color: '#fff', border: 'none', borderRadius: 8, cursor: 'pointer', fontWeight: 600, fontSize: 14, whiteSpace: 'nowrap' }

@@ -12,26 +12,26 @@ import java.time.Instant;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ImportScript extends BaseEntity {
+public class ScriptExecution extends BaseEntity {
 
     @Column(nullable = false)
     private String name;
 
     private String description;
 
-    @Column(name = "sql_content", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "sql_content", columnDefinition = "TEXT")
     private String sqlContent;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private ScriptStatus status = ScriptStatus.PENDING;
+    private Status status = Status.PENDING;
 
     private Instant executedAt;
 
     @Column(columnDefinition = "TEXT")
     private String errorMessage;
 
-    public enum ScriptStatus {
+    public enum Status {
         PENDING, EXECUTED, FAILED
     }
 }

@@ -1,18 +1,17 @@
 package com.fantasy.competition.controller;
 
 import com.fantasy.competition.dto.ImportScriptDto;
-import com.fantasy.competition.entity.ImportScript;
+import com.fantasy.competition.entity.ScriptExecution;
 import com.fantasy.competition.repository.ImportScriptRepository;
+import com.fantasy.competition.script.ImportScript;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.Statement;
 import java.time.Instant;
 import java.util.List;
-import java.util.UUID;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/scripts")
@@ -20,48 +19,39 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ScriptController {
 
-    private final ImportScriptRepository repo;
-    private final DataSource dataSource;
+    private final List<ImportScript> scripts;
+    private final ImportScriptRepository execRepo;
 
     @GetMapping
     public List<ImportScriptDto> list() {
-        return repo.findAllByOrderByCreatedAtDesc().stream().map(ImportScriptDto::from).toList();
+        return scripts.stream().map(s -> {
+            var execs = execRepo.findByNameOrderByCreatedAtDesc(s.getId());
+            var last = execs.isEmpty() ? null : execs.get(0);
+            return ImportScriptDto.from(s, last);
+        }).toList();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ImportScriptDto> get(@PathVariable UUID id) {
-        return repo.findById(id).map(e -> ResponseEntity.ok(ImportScriptDto.from(e))).orElse(ResponseEntity.notFound().build());
-    }
+    @PostMapping("/{scriptId}/run")
+    public ResponseEntity<Map<String, Object>> run(@PathVariable String scriptId) {
+        var script = scripts.stream().filter(s -> s.getId().equals(scriptId)).findFirst();
+        if (script.isEmpty()) return ResponseEntity.notFound().build();
 
-    @PostMapping
-    public ImportScriptDto create(@RequestBody ImportScript script) {
-        script.setStatus(ImportScript.ScriptStatus.PENDING);
-        return ImportScriptDto.from(repo.save(script));
-    }
+        var exec = new ScriptExecution();
+        exec.setName(scriptId);
+        exec.setDescription(script.get().getName());
 
-    @PostMapping("/{id}/execute")
-    public ResponseEntity<ImportScriptDto> execute(@PathVariable UUID id) {
-        return repo.findById(id).map(script -> {
-            try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement()) {
-                conn.setAutoCommit(false);
-                stmt.execute(script.getSqlContent());
-                conn.commit();
-                script.setStatus(ImportScript.ScriptStatus.EXECUTED);
-                script.setExecutedAt(Instant.now());
-                script.setErrorMessage(null);
-            } catch (Exception e) {
-                script.setStatus(ImportScript.ScriptStatus.FAILED);
-                script.setErrorMessage(e.getMessage());
-            }
-            return ResponseEntity.ok(ImportScriptDto.from(repo.save(script)));
-        }).orElse(ResponseEntity.notFound().build());
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable UUID id) {
-        return repo.findById(id).map(script -> {
-            repo.deleteById(id);
-            return ResponseEntity.noContent().<Void>build();
-        }).orElse(ResponseEntity.notFound().build());
+        try {
+            script.get().execute();
+            exec.setStatus(ScriptExecution.Status.EXECUTED);
+            exec.setExecutedAt(Instant.now());
+            execRepo.save(exec);
+            return ResponseEntity.ok(Map.of("status", "EXECUTED", "message", "Success"));
+        } catch (Exception e) {
+            exec.setStatus(ScriptExecution.Status.FAILED);
+            exec.setExecutedAt(Instant.now());
+            exec.setErrorMessage(e.getMessage());
+            execRepo.save(exec);
+            return ResponseEntity.ok(Map.of("status", "FAILED", "error", e.getMessage()));
+        }
     }
 }
