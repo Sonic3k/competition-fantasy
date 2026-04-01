@@ -10,12 +10,15 @@ export default function Universes() {
   const load = () => api.get('/universes').then(r => { setUniverses(r.data); setLoading(false) })
   useEffect(() => { load() }, [])
 
-  const create = async (e) => {
-    e.preventDefault()
-    if (!form.name.trim()) return
-    await api.post('/universes', form)
-    setForm({ name: '', description: '' })
-    load()
+  const create = async () => {
+    if (!form.name.trim()) return alert('Enter a name')
+    try {
+      await api.post('/universes', form)
+      setForm({ name: '', description: '' })
+      load()
+    } catch (err) {
+      alert('Error: ' + (err.response?.data?.message || err.message))
+    }
   }
 
   const remove = async (id) => {
@@ -30,15 +33,15 @@ export default function Universes() {
     <div>
       <h1 style={{ marginTop: 0 }}>Universes</h1>
 
-      <form onSubmit={create} style={{ display: 'flex', gap: 10, marginBottom: 30 }}>
+      <div style={{ display: 'flex', gap: 10, marginBottom: 30 }}>
         <input placeholder="Universe name" value={form.name}
           onChange={e => setForm({ ...form, name: e.target.value })}
           style={inputStyle} />
         <input placeholder="Description" value={form.description}
           onChange={e => setForm({ ...form, description: e.target.value })}
           style={{ ...inputStyle, flex: 2 }} />
-        <button type="submit" style={btnStyle}>Create</button>
-      </form>
+        <button onClick={create} style={btnStyle}>Create</button>
+      </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
         {universes.map(u => (
