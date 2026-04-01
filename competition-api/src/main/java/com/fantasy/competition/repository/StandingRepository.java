@@ -6,5 +6,18 @@ import java.util.List;
 import java.util.UUID;
 
 public interface StandingRepository extends JpaRepository<Standing, UUID> {
+
     List<Standing> findBySeasonIdOrderByPointsDescGoalsForDesc(UUID seasonId);
+
+    List<Standing> findBySeasonIdAndTypeOrderByPointsDescGoalsForDesc(UUID seasonId, Standing.StandingType type);
+
+    List<Standing> findBySeasonIdAndTypeAndAfterRoundOrderByPointsDescGoalsForDesc(UUID seasonId, Standing.StandingType type, Integer afterRound);
+
+    List<Standing> findBySeasonIdAndAfterRoundIsNullOrderByPointsDescGoalsForDesc(UUID seasonId);
+
+    List<Standing> findBySeasonIdAndTypeAndAfterRoundIsNullOrderByPointsDescGoalsForDesc(UUID seasonId, Standing.StandingType type);
+
+    void deleteBySeasonIdAndTypeAndAfterRound(UUID seasonId, Standing.StandingType type, Integer afterRound);
+
+    void deleteBySeasonIdAndTypeAndAfterRoundIsNull(UUID seasonId, Standing.StandingType type);
 }

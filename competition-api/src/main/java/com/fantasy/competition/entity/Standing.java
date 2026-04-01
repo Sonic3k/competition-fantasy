@@ -8,23 +8,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "standings", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"season_id", "team_id"})
-})
+@Table(name = "standings")
 @Getter
 @Setter
 @NoArgsConstructor
 public class Standing extends BaseEntity {
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "season_id", nullable = false)
     private Season season;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "universe", "nation", "stadium", "jerseys"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id", nullable = false)
     private Team team;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private StandingType type = StandingType.RECORDED;
+
+    @Column(name = "after_round")
+    private Integer afterRound;
 
     private String groupName;
 
@@ -51,5 +54,9 @@ public class Standing extends BaseEntity {
 
     public int getGoalDifference() {
         return goalsFor - goalsAgainst;
+    }
+
+    public enum StandingType {
+        RECORDED, CALCULATED
     }
 }

@@ -6,17 +6,15 @@ export default function SeasonDetail() {
   const { id } = useParams()
   const [season, setSeason] = useState(null)
   const [rounds, setRounds] = useState([])
-  const [standings, setStandings] = useState([])
   const [allTeams, setAllTeams] = useState([])
   const [tab, setTab] = useState('matches')
 
   const load = async () => {
-    const [s, r, st] = await Promise.all([
+    const [s, r] = await Promise.all([
       api.get(`/seasons/${id}`),
       api.get(`/rounds?seasonId=${id}`),
-      api.get(`/standings?seasonId=${id}`),
     ])
-    setSeason(s.data); setRounds(r.data); setStandings(st.data)
+    setSeason(s.data); setRounds(r.data)
     if (s.data.universeId) {
       const t = await api.get(`/teams?universeId=${s.data.universeId}`)
       setAllTeams(t.data)
@@ -51,7 +49,7 @@ export default function SeasonDetail() {
       </div>
 
       {tab === 'matches' && <MatchesTab seasonId={id} rounds={rounds} seasonTeams={season.teams || []} reload={load} />}
-      {tab === 'standings' && <StandingsTab standings={standings} />}
+      {tab === 'standings' && <StandingsTab seasonId={id} rounds={rounds} />}
       {tab === 'teams' && <TeamsTab seasonTeams={season.teams || []} allTeams={allTeams} onAdd={addTeamsToSeason} />}
     </div>
   )
@@ -177,30 +175,89 @@ function MatchRow({ match, onUpdateScore }) {
   )
 }
 
-function StandingsTab({ standings }) {
+function StandingsTab({ seasonId, rounds }) {
+  const [recorded, setRecorded] = useState([])
+  const [calculated, setCalculated] = useState([])
+  const [afterRound, setAfterRound] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const loadRecorded = async () => {
+    const params = afterRound ? `&type=RECORDED&afterRound=${afterRound}` : '&type=RECORDED'
+    const r = await api.get(`/standings?seasonId=${seasonId}${params}`)
+    setRecorded(r.data)
+  }
+
+  const loadCalculated = async () => {
+    const params = afterRound ? `&type=CALCULATED&afterRound=${afterRound}` : '&type=CALCULATED'
+    const r = await api.get(`/standings?seasonId=${seasonId}${params}`)
+    setCalculated(r.data)
+  }
+
+  const calculate = async () => {
+    setLoading(true)
+    try {
+      const params = afterRound ? `?seasonId=${seasonId}&afterRound=${afterRound}` : `?seasonId=${seasonId}`
+      const r = await api.post(`/standings/calculate${params}`)
+      setCalculated(r.data)
+    } catch (err) { alert('Error: ' + err.message) }
+    setLoading(false)
+  }
+
+  useEffect(() => { loadRecorded(); loadCalculated() }, [seasonId, afterRound])
+
+  const calcMap = {}
+  calculated.forEach(c => { calcMap[c.team?.id] = c })
+
   return (
-    <table style={tableStyle}>
-      <thead>
-        <tr>{['#', 'Team', 'P', 'W', 'D', 'L', 'GF', 'GA', 'GD', 'Pts'].map(h => <th key={h} style={thStyle}>{h}</th>)}</tr>
-      </thead>
-      <tbody>
-        {standings.map((s, i) => (
-          <tr key={s.id}>
-            <td style={tdStyle}>{i + 1}</td>
-            <td style={{ ...tdStyle, fontWeight: 600 }}>{s.team?.name}</td>
-            <td style={tdStyle}>{s.played}</td>
-            <td style={tdStyle}>{s.won}</td>
-            <td style={tdStyle}>{s.drawn}</td>
-            <td style={tdStyle}>{s.lost}</td>
-            <td style={tdStyle}>{s.goalsFor}</td>
-            <td style={tdStyle}>{s.goalsAgainst}</td>
-            <td style={tdStyle}>{s.goalsFor - s.goalsAgainst}</td>
-            <td style={{ ...tdStyle, fontWeight: 700 }}>{s.points}</td>
+    <div>
+      <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 16 }}>
+        <select value={afterRound} onChange={e => setAfterRound(e.target.value)} style={inputStyle}>
+          <option value="">Final (all rounds)</option>
+          {rounds.map(r => <option key={r.id} value={r.roundNumber}>After Round {r.roundNumber} {r.name ? `(${r.name})` : ''}</option>)}
+        </select>
+        <button onClick={calculate} disabled={loading} style={btnStyle}>
+          {loading ? 'Calculating...' : 'Calculate from Matches'}
+        </button>
+      </div>
+
+      <table style={tableStyle}>
+        <thead>
+          <tr>
+            <th style={thStyle}>#</th><th style={thStyle}>Team</th>
+            <th style={thStyle}>P</th><th style={thStyle}>W</th><th style={thStyle}>D</th><th style={thStyle}>L</th>
+            <th style={thStyle}>GF</th><th style={thStyle}>GA</th><th style={thStyle}>GD</th><th style={thStyle}>Pts</th>
+            {calculated.length > 0 && <><th style={{ ...thStyle, background: '#e8f4e8' }}>cP</th><th style={{ ...thStyle, background: '#e8f4e8' }}>cW</th><th style={{ ...thStyle, background: '#e8f4e8' }}>cD</th><th style={{ ...thStyle, background: '#e8f4e8' }}>cL</th><th style={{ ...thStyle, background: '#e8f4e8' }}>cGF</th><th style={{ ...thStyle, background: '#e8f4e8' }}>cGA</th><th style={{ ...thStyle, background: '#e8f4e8' }}>cPts</th><th style={{ ...thStyle, background: '#e8f4e8' }}>OK</th></>}
           </tr>
-        ))}
-        {standings.length === 0 && <tr><td colSpan={10} style={{ ...tdStyle, color: '#999', textAlign: 'center' }}>No standings yet. Add teams and play matches!</td></tr>}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {recorded.map((s, i) => {
+            const c = calcMap[s.team?.id]
+            const match = c && c.points === s.points && c.goalsFor === s.goalsFor && c.goalsAgainst === s.goalsAgainst
+            return (
+              <tr key={s.id} style={!c ? {} : match ? {} : { background: '#fff3f3' }}>
+                <td style={tdStyle}>{i + 1}</td>
+                <td style={{ ...tdStyle, fontWeight: 600 }}>{s.team?.name}</td>
+                <td style={tdStyle}>{s.played}</td><td style={tdStyle}>{s.won}</td><td style={tdStyle}>{s.drawn}</td><td style={tdStyle}>{s.lost}</td>
+                <td style={tdStyle}>{s.goalsFor}</td><td style={tdStyle}>{s.goalsAgainst}</td><td style={tdStyle}>{s.goalDifference}</td>
+                <td style={{ ...tdStyle, fontWeight: 700 }}>{s.points}</td>
+                {c && <><td style={cTd}>{c.played}</td><td style={cTd}>{c.won}</td><td style={cTd}>{c.drawn}</td><td style={cTd}>{c.lost}</td><td style={cTd}>{c.goalsFor}</td><td style={cTd}>{c.goalsAgainst}</td><td style={{ ...cTd, fontWeight: 700 }}>{c.points}</td><td style={cTd}>{match ? '✓' : '✗'}</td></>}
+              </tr>
+            )
+          })}
+          {recorded.length === 0 && calculated.length > 0 && calculated.map((c, i) => (
+            <tr key={c.id}>
+              <td style={tdStyle}>{i + 1}</td>
+              <td style={{ ...tdStyle, fontWeight: 600 }}>{c.team?.name}</td>
+              <td style={tdStyle}>{c.played}</td><td style={tdStyle}>{c.won}</td><td style={tdStyle}>{c.drawn}</td><td style={tdStyle}>{c.lost}</td>
+              <td style={tdStyle}>{c.goalsFor}</td><td style={tdStyle}>{c.goalsAgainst}</td><td style={tdStyle}>{c.goalDifference}</td>
+              <td style={{ ...tdStyle, fontWeight: 700 }}>{c.points}</td>
+            </tr>
+          ))}
+          {recorded.length === 0 && calculated.length === 0 && <tr><td colSpan={10} style={{ ...tdStyle, color: '#999', textAlign: 'center' }}>No standings yet.</td></tr>}
+        </tbody>
+      </table>
+      {calculated.length > 0 && <p style={{ fontSize: 12, color: '#999', marginTop: 8 }}>Green columns (c*) = calculated from match data. Red rows = mismatch.</p>}
+    </div>
   )
 }
 
@@ -248,3 +305,4 @@ const btnStyle = { padding: '6px 16px', background: '#e94560', color: '#fff', bo
 const tableStyle = { width: '100%', borderCollapse: 'collapse', background: '#fff', borderRadius: 8, overflow: 'hidden' }
 const thStyle = { textAlign: 'left', padding: '10px 12px', background: '#f8f8f8', fontSize: 12, color: '#666', fontWeight: 600 }
 const tdStyle = { padding: '8px 12px', borderTop: '1px solid #f0f0f0', fontSize: 14 }
+const cTd = { padding: '8px 12px', borderTop: '1px solid #f0f0f0', fontSize: 14, background: '#f0f8f0' }
