@@ -5,6 +5,7 @@ import api from '../api/client'
 export default function Universes() {
   const [universes, setUniverses] = useState([])
   const [form, setForm] = useState({ name: '', description: '' })
+  const [showForm, setShowForm] = useState(false)
   const [loading, setLoading] = useState(true)
 
   const load = () => api.get('/universes').then(r => { setUniverses(r.data); setLoading(false) })
@@ -15,6 +16,7 @@ export default function Universes() {
     try {
       await api.post('/universes', form)
       setForm({ name: '', description: '' })
+      setShowForm(false)
       load()
     } catch (err) {
       alert('Error: ' + (err.response?.data?.message || err.message))
@@ -31,17 +33,27 @@ export default function Universes() {
 
   return (
     <div>
-      <h1 style={{ marginTop: 0 }}>Universes</h1>
-
-      <div style={{ display: 'flex', gap: 10, marginBottom: 30 }}>
-        <input placeholder="Universe name" value={form.name}
-          onChange={e => setForm({ ...form, name: e.target.value })}
-          style={inputStyle} />
-        <input placeholder="Description" value={form.description}
-          onChange={e => setForm({ ...form, description: e.target.value })}
-          style={{ ...inputStyle, flex: 2 }} />
-        <button onClick={create} style={btnStyle}>Create</button>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+        <h1 style={{ margin: 0 }}>Universes</h1>
+        <button onClick={() => setShowForm(!showForm)} style={primaryBtn}>
+          {showForm ? '✕ Cancel' : '+ New Universe'}
+        </button>
       </div>
+
+      {showForm && (
+        <div style={formCard}>
+          <h3 style={{ margin: '0 0 16px', fontSize: 16 }}>Create New Universe</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <input placeholder="Universe name *" value={form.name}
+              onChange={e => setForm({ ...form, name: e.target.value })}
+              style={inputStyle} />
+            <input placeholder="Description (optional)" value={form.description}
+              onChange={e => setForm({ ...form, description: e.target.value })}
+              style={inputStyle} />
+            <button onClick={create} style={primaryBtn}>Create Universe</button>
+          </div>
+        </div>
+      )}
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
         {universes.map(u => (
@@ -50,16 +62,19 @@ export default function Universes() {
               <h3 style={{ margin: '0 0 8px' }}>{u.name}</h3>
               <p style={{ margin: 0, color: '#666', fontSize: 14 }}>{u.description || 'No description'}</p>
             </Link>
-            <button onClick={() => remove(u.id)} style={deleteBtnStyle}>Delete</button>
+            <button onClick={() => remove(u.id)} style={deleteBtnStyle}>✕</button>
           </div>
         ))}
-        {universes.length === 0 && <p style={{ color: '#999' }}>No universes yet. Create one above!</p>}
+        {universes.length === 0 && !showForm && (
+          <p style={{ color: '#999' }}>No universes yet. Click "+ New Universe" to get started.</p>
+        )}
       </div>
     </div>
   )
 }
 
-const inputStyle = { padding: '8px 12px', border: '1px solid #ddd', borderRadius: 6, fontSize: 14, flex: 1 }
-const btnStyle = { padding: '8px 20px', background: '#e94560', color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer', fontWeight: 600 }
-const cardStyle = { background: '#fff', padding: 20, borderRadius: 10, boxShadow: '0 2px 8px rgba(0,0,0,0.08)', position: 'relative' }
-const deleteBtnStyle = { position: 'absolute', top: 10, right: 10, background: 'none', border: 'none', color: '#ccc', cursor: 'pointer', fontSize: 12 }
+const inputStyle = { padding: '10px 14px', border: '1px solid #ddd', borderRadius: 8, fontSize: 14, width: '100%' }
+const primaryBtn = { padding: '10px 20px', background: '#e94560', color: '#fff', border: 'none', borderRadius: 8, cursor: 'pointer', fontWeight: 600, fontSize: 14 }
+const formCard = { background: '#fff', padding: 24, borderRadius: 12, boxShadow: '0 2px 12px rgba(0,0,0,0.08)', marginBottom: 24, maxWidth: 480 }
+const cardStyle = { background: '#fff', padding: 20, borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.06)', position: 'relative', cursor: 'pointer', transition: 'box-shadow 0.2s' }
+const deleteBtnStyle = { position: 'absolute', top: 12, right: 12, background: 'none', border: 'none', color: '#ccc', cursor: 'pointer', fontSize: 16 }
