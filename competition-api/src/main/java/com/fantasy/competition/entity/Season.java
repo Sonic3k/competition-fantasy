@@ -26,7 +26,7 @@ public class Season extends BaseEntity {
     @Column(nullable = false)
     private SeasonStatus status = SeasonStatus.PLANNED;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "universe", "seasons"})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "seasons"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "competition_id", nullable = false)
     private Competition competition;
