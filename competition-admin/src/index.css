@@ -1,13 +1,37 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #root { height: 100%; width: 100%; font-family: system-ui, -apple-system, sans-serif; background: #f5f5f5; color: #333; }
+
+.app-layout { display: flex; min-height: 100vh; }
+
+/* Sidebar */
+.sidebar {
+  width: 220px; min-width: 220px; background: #1a1a2e; color: #fff; padding: 20px 0;
+  position: fixed; top: 0; left: -260px; height: 100vh; z-index: 1000; transition: left 0.2s;
+}
+.sidebar.open { left: 0; }
+.nav-link { display: block; padding: 10px 20px; color: #aaa; text-decoration: none; font-size: 14px; }
+.nav-link:hover, .nav-link.active { color: #fff; background: rgba(255,255,255,0.08); }
+
+/* Mobile header */
+.mobile-header {
+  position: fixed; top: 0; left: 0; right: 0; height: 50px; background: #1a1a2e;
+  display: flex; align-items: center; gap: 12px; padding: 0 16px; z-index: 999;
+}
+.hamburger { background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; }
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 999; }
+
+/* Main */
+.main-content { flex: 1; padding: 66px 16px 24px; background: #f5f5f5; min-width: 0; }
+
+/* Desktop */
+@media (min-width: 768px) {
+  .sidebar { left: 0; }
+  .mobile-header { display: none; }
+  .overlay { display: none; }
+  .main-content { margin-left: 220px; padding: 30px; }
 }
 
-html, body, #root {
-  height: 100%;
-  width: 100%;
-  font-family: system-ui, -apple-system, sans-serif;
-  background: #f5f5f5;
-  color: #333;
+/* Mobile tables */
+@media (max-width: 767px) {
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -16px; padding: 0 16px; }
 }
