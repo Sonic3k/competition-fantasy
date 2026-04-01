@@ -26,7 +26,7 @@ public class Season extends BaseEntity {
     @Column(nullable = false)
     private SeasonStatus status = SeasonStatus.PLANNED;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "universe", "seasons"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "competition_id", nullable = false)
     private Competition competition;
@@ -39,6 +39,7 @@ public class Season extends BaseEntity {
     @OneToMany(mappedBy = "season", cascade = CascadeType.ALL)
     private List<Standing> standings = new ArrayList<>();
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "universe", "nation", "stadium", "jerseys"})
     @ManyToMany
     @JoinTable(
         name = "season_teams",

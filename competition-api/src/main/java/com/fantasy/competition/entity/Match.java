@@ -14,17 +14,17 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Match extends BaseEntity {
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "season", "matches"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "round_id", nullable = false)
     private Round round;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "universe", "nation", "stadium", "jerseys"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "home_team_id", nullable = false)
     private Team homeTeam;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "universe", "nation", "stadium", "jerseys"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "away_team_id", nullable = false)
     private Team awayTeam;

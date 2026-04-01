@@ -16,12 +16,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Standing extends BaseEntity {
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "season_id", nullable = false)
     private Season season;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "universe", "nation", "stadium", "jerseys"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id", nullable = false)
     private Team team;
