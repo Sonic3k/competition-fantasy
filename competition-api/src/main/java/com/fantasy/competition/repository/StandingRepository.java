@@ -16,11 +16,11 @@ public interface StandingRepository extends JpaRepository<Standing, UUID> {
     List<Standing> findByStageGroupIdOrderByPointsDescGoalsForDesc(UUID stageGroupId);
     List<Standing> findByStageGroupIdAndTypeOrderByPointsDescGoalsForDesc(UUID stageGroupId, Standing.StandingType type);
 
-    @Modifying
+    @Modifying(flushAutomatically = true, clearAutomatically = true)
     @Query("DELETE FROM Standing s WHERE s.season.id = :seasonId AND s.type = :type AND s.afterRound = :afterRound")
     void deleteBySeasonIdAndTypeAndAfterRound(UUID seasonId, Standing.StandingType type, Integer afterRound);
 
-    @Modifying
+    @Modifying(flushAutomatically = true, clearAutomatically = true)
     @Query("DELETE FROM Standing s WHERE s.season.id = :seasonId AND s.type = :type AND s.afterRound IS NULL")
     void deleteBySeasonIdAndTypeAndAfterRoundIsNull(UUID seasonId, Standing.StandingType type);
 }
