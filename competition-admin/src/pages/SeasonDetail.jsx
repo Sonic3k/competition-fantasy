@@ -227,7 +227,7 @@ function StandingsTab({ seasonId, rounds }) {
         </button>
       </div>
 
-      <table style={tableStyle}>
+      <div style={{overflowX:"auto"}}><table style={tableStyle}>
         <thead>
           <tr>
             <th style={thStyle}>#</th><th style={thStyle}>Team</th>
@@ -262,7 +262,7 @@ function StandingsTab({ seasonId, rounds }) {
           ))}
           {recorded.length === 0 && calculated.length === 0 && <tr><td colSpan={10} style={{ ...tdStyle, color: '#999', textAlign: 'center' }}>No standings yet.</td></tr>}
         </tbody>
-      </table>
+      </table></div>
       {calculated.length > 0 && <p style={{ fontSize: 12, color: '#999', marginTop: 8 }}>Green columns (c*) = calculated from match data. Red rows = mismatch.</p>}
     </div>
   )

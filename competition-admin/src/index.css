@@ -34,4 +34,10 @@ html, body, #root { height: 100%; width: 100%; font-family: system-ui, -apple-sy
 /* Mobile tables */
 @media (max-width: 767px) {
   .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -16px; padding: 0 16px; }
+  h1 { font-size: 22px !important; }
+  /* Stack horizontal forms */
+  .form-row { flex-direction: column !important; }
+  .form-row > * { width: 100% !important; flex: none !important; }
+  /* Cards single column */
+  .card-grid { grid-template-columns: 1fr !important; }
 }

@@ -84,7 +84,7 @@ function TeamsTab({ universeId, teams, nations, reload }) {
         <button type="submit" style={btnStyle}>Add Team</button>
       </form>
 
-      <table style={tableStyle}>
+      <div style={{overflowX:"auto"}}><table style={tableStyle}>
         <thead>
           <tr>{['Name', 'Short', 'Type', 'Nation', 'Colors', ''].map(h => <th key={h} style={thStyle}>{h}</th>)}</tr>
         </thead>
@@ -103,7 +103,7 @@ function TeamsTab({ universeId, teams, nations, reload }) {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table></div>
     </div>
   )
 }
@@ -125,7 +125,7 @@ function NationsTab({ universeId, nations, reload }) {
         <input placeholder="Description" value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} style={{ ...inputStyle, flex: 2 }} />
         <button type="submit" style={btnStyle}>Add Nation</button>
       </form>
-      <table style={tableStyle}>
+      <div style={{overflowX:"auto"}}><table style={tableStyle}>
         <thead><tr>{['Name', 'Description', ''].map(h => <th key={h} style={thStyle}>{h}</th>)}</tr></thead>
         <tbody>
           {nations.map(n => (
@@ -136,7 +136,7 @@ function NationsTab({ universeId, nations, reload }) {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table></div>
     </div>
   )
 }
