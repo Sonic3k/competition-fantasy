@@ -35,7 +35,14 @@ export default function SeasonDetail() {
   return (
     <div>
       {univId && <Link to={`/universes/${univId}`} style={{ color: '#e94560', textDecoration: 'none', fontSize: 14 }}>&larr; Back to Universe</Link>}
-      <h1 style={{ marginBottom: 5 }}>{compName} — {season.name}</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h1 style={{ marginBottom: 5 }}>{compName} — {season.name}</h1>
+        <button onClick={async () => {
+          if (!confirm('Delete this season and ALL its matches, standings? Cannot undo.')) return
+          await api.delete(`/seasons/${id}`)
+          window.location.href = `/universes/${univId}`
+        }} style={{ background: '#e74c3c', color: '#fff', border: 'none', borderRadius: 6, padding: '6px 14px', cursor: 'pointer', fontSize: 12 }}>Delete Season</button>
+      </div>
       <p style={{ color: '#666', marginTop: 0 }}>Status: <strong>{season.status}</strong> | Teams: {season.teams?.length || 0}</p>
 
       <div style={{ display: 'flex', gap: 0, marginBottom: 20, borderBottom: '2px solid #eee' }}>
