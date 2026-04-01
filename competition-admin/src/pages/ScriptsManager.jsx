@@ -75,24 +75,13 @@ export default function ScriptsManager() {
                 <span style={{ fontSize: 12, color: '#999' }}>{s.status}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                {s.status === 'PENDING' && (
-                  <button onClick={(e) => { e.stopPropagation(); execute(s.id) }}
+                <button onClick={(e) => { e.stopPropagation(); execute(s.id) }}
                     disabled={executing === s.id}
-                    style={{ ...primaryBtn, fontSize: 12, padding: '6px 14px' }}>
-                    {executing === s.id ? 'Executing...' : 'Execute'}
-                  </button>
-                )}
-                {s.status === 'FAILED' && (
-                  <button onClick={(e) => { e.stopPropagation(); execute(s.id) }}
-                    disabled={executing === s.id}
-                    style={{ ...primaryBtn, fontSize: 12, padding: '6px 14px', background: '#e67e22' }}>
-                    Retry
-                  </button>
-                )}
-                {s.status !== 'EXECUTED' && (
-                  <button onClick={(e) => { e.stopPropagation(); remove(s.id) }}
+                    style={{ ...primaryBtn, fontSize: 12, padding: '6px 14px', background: s.status === 'EXECUTED' ? '#27ae60' : s.status === 'FAILED' ? '#e67e22' : '#e94560' }}>
+                    {executing === s.id ? 'Executing...' : s.status === 'EXECUTED' ? 'Re-execute' : s.status === 'FAILED' ? 'Retry' : 'Execute'}
+                </button>
+                <button onClick={(e) => { e.stopPropagation(); remove(s.id) }}
                     style={{ background: 'none', border: 'none', color: '#ccc', cursor: 'pointer', fontSize: 16 }}>✕</button>
-                )}
                 <span style={{ color: '#ccc' }}>{expanded === s.id ? '▾' : '▸'}</span>
               </div>
             </div>
