@@ -1,5 +1,6 @@
 package com.fantasy.competition.controller;
 
+import com.fantasy.competition.dto.TeamDto;
 import com.fantasy.competition.entity.Team;
 import com.fantasy.competition.repository.TeamRepository;
 import com.fantasy.competition.repository.UniverseRepository;
@@ -24,29 +25,29 @@ public class TeamController {
     private final StadiumRepository stadiumRepo;
 
     @GetMapping
-    public List<Team> list(@RequestParam UUID universeId) {
-        return repo.findByUniverseId(universeId);
+    public List<TeamDto> list(@RequestParam UUID universeId) {
+        return repo.findByUniverseId(universeId).stream().map(TeamDto::from).toList();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Team> get(@PathVariable UUID id) {
-        return repo.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<TeamDto> get(@PathVariable UUID id) {
+        return repo.findById(id).map(e -> ResponseEntity.ok(TeamDto.from(e))).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Team> create(@RequestBody Team team, @RequestParam UUID universeId,
+    public ResponseEntity<TeamDto> create(@RequestBody Team team, @RequestParam UUID universeId,
                                         @RequestParam(required = false) UUID nationId,
                                         @RequestParam(required = false) UUID stadiumId) {
         return universeRepo.findById(universeId).map(u -> {
             team.setUniverse(u);
             if (nationId != null) nationRepo.findById(nationId).ifPresent(team::setNation);
             if (stadiumId != null) stadiumRepo.findById(stadiumId).ifPresent(team::setStadium);
-            return ResponseEntity.ok(repo.save(team));
+            return ResponseEntity.ok(TeamDto.from(repo.save(team)));
         }).orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Team> update(@PathVariable UUID id, @RequestBody Team body) {
+    public ResponseEntity<TeamDto> update(@PathVariable UUID id, @RequestBody Team body) {
         return repo.findById(id).map(existing -> {
             existing.setName(body.getName());
             existing.setShortName(body.getShortName());
@@ -54,7 +55,7 @@ public class TeamController {
             existing.setPrimaryColor(body.getPrimaryColor());
             existing.setSecondaryColor(body.getSecondaryColor());
             existing.setLogoUrl(body.getLogoUrl());
-            return ResponseEntity.ok(repo.save(existing));
+            return ResponseEntity.ok(TeamDto.from(repo.save(existing)));
         }).orElse(ResponseEntity.notFound().build());
     }
 

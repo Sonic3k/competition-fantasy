@@ -1,5 +1,6 @@
 package com.fantasy.competition.controller;
 
+import com.fantasy.competition.dto.SeasonDto;
 import com.fantasy.competition.entity.Season;
 import com.fantasy.competition.repository.CompetitionRepository;
 import com.fantasy.competition.repository.SeasonRepository;
@@ -22,38 +23,38 @@ public class SeasonController {
     private final TeamRepository teamRepo;
 
     @GetMapping
-    public List<Season> list(@RequestParam UUID competitionId) {
-        return repo.findByCompetitionId(competitionId);
+    public List<SeasonDto> list(@RequestParam UUID competitionId) {
+        return repo.findByCompetitionId(competitionId).stream().map(SeasonDto::from).toList();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Season> get(@PathVariable UUID id) {
-        return repo.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<SeasonDto> get(@PathVariable UUID id) {
+        return repo.findById(id).map(e -> ResponseEntity.ok(SeasonDto.from(e))).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Season> create(@RequestBody Season season, @RequestParam UUID competitionId) {
+    public ResponseEntity<SeasonDto> create(@RequestBody Season season, @RequestParam UUID competitionId) {
         return competitionRepo.findById(competitionId).map(c -> {
             season.setCompetition(c);
-            return ResponseEntity.ok(repo.save(season));
+            return ResponseEntity.ok(SeasonDto.from(repo.save(season)));
         }).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("/{id}/teams")
-    public ResponseEntity<Season> addTeams(@PathVariable UUID id, @RequestBody List<UUID> teamIds) {
+    public ResponseEntity<SeasonDto> addTeams(@PathVariable UUID id, @RequestBody List<UUID> teamIds) {
         return repo.findById(id).map(season -> {
             teamIds.forEach(tid -> teamRepo.findById(tid).ifPresent(t -> season.getTeams().add(t)));
-            return ResponseEntity.ok(repo.save(season));
+            return ResponseEntity.ok(SeasonDto.from(repo.save(season)));
         }).orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Season> update(@PathVariable UUID id, @RequestBody Season body) {
+    public ResponseEntity<SeasonDto> update(@PathVariable UUID id, @RequestBody Season body) {
         return repo.findById(id).map(existing -> {
             existing.setName(body.getName());
             existing.setYear(body.getYear());
             existing.setStatus(body.getStatus());
-            return ResponseEntity.ok(repo.save(existing));
+            return ResponseEntity.ok(SeasonDto.from(repo.save(existing)));
         }).orElse(ResponseEntity.notFound().build());
     }
 

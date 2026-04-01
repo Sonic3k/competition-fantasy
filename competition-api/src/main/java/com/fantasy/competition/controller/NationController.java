@@ -1,7 +1,7 @@
 package com.fantasy.competition.controller;
 
+import com.fantasy.competition.dto.NationDto;
 import com.fantasy.competition.entity.Nation;
-import com.fantasy.competition.entity.Universe;
 import com.fantasy.competition.repository.NationRepository;
 import com.fantasy.competition.repository.UniverseRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,30 +21,30 @@ public class NationController {
     private final UniverseRepository universeRepo;
 
     @GetMapping
-    public List<Nation> listByUniverse(@RequestParam UUID universeId) {
-        return repo.findByUniverseId(universeId);
+    public List<NationDto> listByUniverse(@RequestParam UUID universeId) {
+        return repo.findByUniverseId(universeId).stream().map(NationDto::from).toList();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Nation> get(@PathVariable UUID id) {
-        return repo.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<NationDto> get(@PathVariable UUID id) {
+        return repo.findById(id).map(e -> ResponseEntity.ok(NationDto.from(e))).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Nation> create(@RequestBody Nation nation, @RequestParam UUID universeId) {
+    public ResponseEntity<NationDto> create(@RequestBody Nation nation, @RequestParam UUID universeId) {
         return universeRepo.findById(universeId).map(u -> {
             nation.setUniverse(u);
-            return ResponseEntity.ok(repo.save(nation));
+            return ResponseEntity.ok(NationDto.from(repo.save(nation)));
         }).orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Nation> update(@PathVariable UUID id, @RequestBody Nation body) {
+    public ResponseEntity<NationDto> update(@PathVariable UUID id, @RequestBody Nation body) {
         return repo.findById(id).map(existing -> {
             existing.setName(body.getName());
             existing.setFlagUrl(body.getFlagUrl());
             existing.setDescription(body.getDescription());
-            return ResponseEntity.ok(repo.save(existing));
+            return ResponseEntity.ok(NationDto.from(repo.save(existing)));
         }).orElse(ResponseEntity.notFound().build());
     }
 

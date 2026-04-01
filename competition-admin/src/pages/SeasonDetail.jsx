@@ -17,8 +17,8 @@ export default function SeasonDetail() {
       api.get(`/standings?seasonId=${id}`),
     ])
     setSeason(s.data); setRounds(r.data); setStandings(st.data)
-    if (s.data.competition?.universe?.id) {
-      const t = await api.get(`/teams?universeId=${s.data.competition.universe.id}`)
+    if (s.data.universeId) {
+      const t = await api.get(`/teams?universeId=${s.data.universeId}`)
       setAllTeams(t.data)
     }
   }
@@ -32,7 +32,7 @@ export default function SeasonDetail() {
   if (!season) return <p>Loading...</p>
 
   const compName = season.competition?.name || ''
-  const univId = season.competition?.universe?.id
+  const univId = season.universeId
 
   return (
     <div>

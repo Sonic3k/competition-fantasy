@@ -1,5 +1,6 @@
 package com.fantasy.competition.controller;
 
+import com.fantasy.competition.dto.RoundDto;
 import com.fantasy.competition.entity.Round;
 import com.fantasy.competition.repository.RoundRepository;
 import com.fantasy.competition.repository.SeasonRepository;
@@ -20,15 +21,15 @@ public class RoundController {
     private final SeasonRepository seasonRepo;
 
     @GetMapping
-    public List<Round> list(@RequestParam UUID seasonId) {
-        return repo.findBySeasonIdOrderByRoundNumber(seasonId);
+    public List<RoundDto> list(@RequestParam UUID seasonId) {
+        return repo.findBySeasonIdOrderByRoundNumber(seasonId).stream().map(RoundDto::from).toList();
     }
 
     @PostMapping
-    public ResponseEntity<Round> create(@RequestBody Round round, @RequestParam UUID seasonId) {
+    public ResponseEntity<RoundDto> create(@RequestBody Round round, @RequestParam UUID seasonId) {
         return seasonRepo.findById(seasonId).map(s -> {
             round.setSeason(s);
-            return ResponseEntity.ok(repo.save(round));
+            return ResponseEntity.ok(RoundDto.from(repo.save(round)));
         }).orElse(ResponseEntity.notFound().build());
     }
 

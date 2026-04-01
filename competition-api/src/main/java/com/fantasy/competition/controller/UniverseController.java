@@ -1,5 +1,6 @@
 package com.fantasy.competition.controller;
 
+import com.fantasy.competition.dto.UniverseDto;
 import com.fantasy.competition.entity.Universe;
 import com.fantasy.competition.repository.UniverseRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,27 +19,27 @@ public class UniverseController {
     private final UniverseRepository repo;
 
     @GetMapping
-    public List<Universe> list() {
-        return repo.findAll();
+    public List<UniverseDto> list() {
+        return repo.findAll().stream().map(UniverseDto::from).toList();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Universe> get(@PathVariable UUID id) {
-        return repo.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<UniverseDto> get(@PathVariable UUID id) {
+        return repo.findById(id).map(e -> ResponseEntity.ok(UniverseDto.from(e))).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Universe create(@RequestBody Universe universe) {
-        return repo.save(universe);
+    public UniverseDto create(@RequestBody Universe universe) {
+        return UniverseDto.from(repo.save(universe));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Universe> update(@PathVariable UUID id, @RequestBody Universe body) {
+    public ResponseEntity<UniverseDto> update(@PathVariable UUID id, @RequestBody Universe body) {
         return repo.findById(id).map(existing -> {
             existing.setName(body.getName());
             existing.setDescription(body.getDescription());
             existing.setLogoUrl(body.getLogoUrl());
-            return ResponseEntity.ok(repo.save(existing));
+            return ResponseEntity.ok(UniverseDto.from(repo.save(existing)));
         }).orElse(ResponseEntity.notFound().build());
     }
 
