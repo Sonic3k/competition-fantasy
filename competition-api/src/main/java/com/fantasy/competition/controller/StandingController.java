@@ -1,19 +1,14 @@
 package com.fantasy.competition.controller;
 
 import com.fantasy.competition.dto.StandingDto;
-import com.fantasy.competition.entity.Match;
-import com.fantasy.competition.entity.Standing;
-import com.fantasy.competition.entity.Team;
-import com.fantasy.competition.repository.MatchRepository;
-import com.fantasy.competition.repository.SeasonRepository;
-import com.fantasy.competition.repository.StandingRepository;
+import com.fantasy.competition.entity.*;
+import com.fantasy.competition.repository.*;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/standings")
@@ -24,25 +19,28 @@ public class StandingController {
     private final StandingRepository repo;
     private final MatchRepository matchRepo;
     private final SeasonRepository seasonRepo;
+    private final StageRepository stageRepo;
 
     @GetMapping
     public List<StandingDto> list(@RequestParam UUID seasonId,
                                   @RequestParam(required = false) String type,
-                                  @RequestParam(required = false) Integer afterRound) {
+                                  @RequestParam(required = false) Integer afterRound,
+                                  @RequestParam(required = false) UUID stageGroupId) {
         List<Standing> standings;
 
-        if (type != null && afterRound != null) {
-            standings = repo.findBySeasonIdAndTypeAndAfterRoundOrderByPointsDescGoalsForDesc(
-                seasonId, Standing.StandingType.valueOf(type), afterRound);
+        if (stageGroupId != null) {
+            if (type != null) {
+                standings = repo.findByStageGroupIdAndTypeOrderByPointsDescGoalsForDesc(stageGroupId, Standing.StandingType.valueOf(type));
+            } else {
+                standings = repo.findByStageGroupIdOrderByPointsDescGoalsForDesc(stageGroupId);
+            }
+        } else if (type != null && afterRound != null) {
+            standings = repo.findBySeasonIdAndTypeAndAfterRoundOrderByPointsDescGoalsForDesc(seasonId, Standing.StandingType.valueOf(type), afterRound);
         } else if (type != null) {
-            standings = repo.findBySeasonIdAndTypeAndAfterRoundIsNullOrderByPointsDescGoalsForDesc(
-                seasonId, Standing.StandingType.valueOf(type));
+            standings = repo.findBySeasonIdAndTypeAndAfterRoundIsNullOrderByPointsDescGoalsForDesc(seasonId, Standing.StandingType.valueOf(type));
         } else if (afterRound != null) {
-            // Return both RECORDED and CALCULATED for comparison
-            List<Standing> recorded = repo.findBySeasonIdAndTypeAndAfterRoundOrderByPointsDescGoalsForDesc(
-                seasonId, Standing.StandingType.RECORDED, afterRound);
-            List<Standing> calculated = repo.findBySeasonIdAndTypeAndAfterRoundOrderByPointsDescGoalsForDesc(
-                seasonId, Standing.StandingType.CALCULATED, afterRound);
+            List<Standing> recorded = repo.findBySeasonIdAndTypeAndAfterRoundOrderByPointsDescGoalsForDesc(seasonId, Standing.StandingType.RECORDED, afterRound);
+            List<Standing> calculated = repo.findBySeasonIdAndTypeAndAfterRoundOrderByPointsDescGoalsForDesc(seasonId, Standing.StandingType.CALCULATED, afterRound);
             standings = new ArrayList<>(recorded);
             standings.addAll(calculated);
         } else {
@@ -57,23 +55,28 @@ public class StandingController {
     public ResponseEntity<List<StandingDto>> calculate(@RequestParam UUID seasonId,
                                                         @RequestParam(required = false) Integer afterRound) {
         return seasonRepo.findById(seasonId).map(season -> {
-            // Get all completed matches, filter by round if needed
+            // Find the first GROUP stage (for league) or use all matches
+            List<Stage> stages = stageRepo.findBySeasonIdOrderByOrderNumber(seasonId);
+            StageGroup leagueGroup = null;
+            if (!stages.isEmpty() && stages.get(0).getType() == Stage.StageType.GROUP && !stages.get(0).getGroups().isEmpty()) {
+                leagueGroup = stages.get(0).getGroups().get(0);
+            }
+
             List<Match> matches = matchRepo.findByRoundSeasonId(seasonId).stream()
                 .filter(m -> m.getStatus() == Match.MatchStatus.COMPLETED && m.getHomeScore() != null)
                 .filter(m -> afterRound == null || m.getRound().getRoundNumber() <= afterRound)
                 .toList();
 
-            // Get all teams in season
             Set<Team> teams = new HashSet<>(season.getTeams());
 
-            // Delete existing CALCULATED standings for this checkpoint
+            // Delete existing CALCULATED
             if (afterRound != null) {
                 repo.deleteBySeasonIdAndTypeAndAfterRound(seasonId, Standing.StandingType.CALCULATED, afterRound);
             } else {
                 repo.deleteBySeasonIdAndTypeAndAfterRoundIsNull(seasonId, Standing.StandingType.CALCULATED);
             }
 
-            // Build standings map
+            final StageGroup fg = leagueGroup;
             Map<UUID, Standing> map = new HashMap<>();
             for (Team t : teams) {
                 Standing s = new Standing();
@@ -81,10 +84,10 @@ public class StandingController {
                 s.setTeam(t);
                 s.setType(Standing.StandingType.CALCULATED);
                 s.setAfterRound(afterRound);
+                s.setStageGroup(fg);
                 map.put(t.getId(), s);
             }
 
-            // Calculate from matches
             for (Match m : matches) {
                 Standing home = map.get(m.getHomeTeam().getId());
                 Standing away = map.get(m.getAwayTeam().getId());
