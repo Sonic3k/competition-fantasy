@@ -7,4 +7,6 @@ import java.util.UUID;
 
 public interface RoundRepository extends JpaRepository<Round, UUID> {
     List<Round> findBySeasonIdOrderByRoundNumber(UUID seasonId);
+    List<Round> findByStageIdOrderByRoundNumber(UUID stageId);
+    List<Round> findByStageGroupIdOrderByRoundNumber(UUID stageGroupId);
 }

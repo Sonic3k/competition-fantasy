@@ -1,7 +1,5 @@
 package com.fantasy.competition.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,9 +7,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "standings")
-@Getter
-@Setter
-@NoArgsConstructor
+@Getter @Setter @NoArgsConstructor
 public class Standing extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -22,6 +18,10 @@ public class Standing extends BaseEntity {
     @JoinColumn(name = "team_id", nullable = false)
     private Team team;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "stage_group_id")
+    private StageGroup stageGroup;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StandingType type = StandingType.RECORDED;
@@ -31,32 +31,14 @@ public class Standing extends BaseEntity {
 
     private String groupName;
 
-    @Column(nullable = false)
-    private int played = 0;
+    @Column(nullable = false) private int played = 0;
+    @Column(nullable = false) private int won = 0;
+    @Column(nullable = false) private int drawn = 0;
+    @Column(nullable = false) private int lost = 0;
+    @Column(nullable = false) private int goalsFor = 0;
+    @Column(nullable = false) private int goalsAgainst = 0;
+    @Column(nullable = false) private int points = 0;
 
-    @Column(nullable = false)
-    private int won = 0;
-
-    @Column(nullable = false)
-    private int drawn = 0;
-
-    @Column(nullable = false)
-    private int lost = 0;
-
-    @Column(nullable = false)
-    private int goalsFor = 0;
-
-    @Column(nullable = false)
-    private int goalsAgainst = 0;
-
-    @Column(nullable = false)
-    private int points = 0;
-
-    public int getGoalDifference() {
-        return goalsFor - goalsAgainst;
-    }
-
-    public enum StandingType {
-        RECORDED, CALCULATED
-    }
+    public int getGoalDifference() { return goalsFor - goalsAgainst; }
+    public enum StandingType { RECORDED, CALCULATED }
 }
