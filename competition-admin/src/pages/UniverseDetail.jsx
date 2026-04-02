@@ -108,34 +108,44 @@ function TeamsTab({ universeId, teams, nations, reload }) {
 }
 
 function NationsTab({ universeId, nations, reload }) {
-  const [form, setForm] = useState({ name: '', description: '' })
+  const [form, setForm] = useState({ name: '', code: '', description: '', primaryColor: '#003399', textColor: '#ffffff' })
 
   const create = async (e) => {
     e.preventDefault()
     await api.post(`/nations?universeId=${universeId}`, form)
-    setForm({ name: '', description: '' })
+    setForm({ name: '', code: '', description: '', primaryColor: '#003399', textColor: '#ffffff' })
     reload()
   }
 
   return (
     <div>
-      <form onSubmit={create} style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
+      <form onSubmit={create} style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' }}>
         <input placeholder="Nation name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} style={inputStyle} required />
-        <input placeholder="Description" value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} style={{ ...inputStyle, flex: 2 }} />
+        <input placeholder="ABC" value={form.code} onChange={e => setForm({ ...form, code: e.target.value.toUpperCase().slice(0, 3) })} style={{ ...inputStyle, width: 50, textAlign: 'center' }} maxLength={3} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <input type="color" value={form.primaryColor} onChange={e => setForm({ ...form, primaryColor: e.target.value })} title="BG" />
+          <input type="color" value={form.textColor} onChange={e => setForm({ ...form, textColor: e.target.value })} title="Text" />
+        </div>
         <button type="submit" style={btnStyle}>Add Nation</button>
       </form>
-      <div style={{overflowX:"auto"}}><table style={tableStyle}>
-        <thead><tr>{['Name', 'Description', ''].map(h => <th key={h} style={thStyle}>{h}</th>)}</tr></thead>
-        <tbody>
-          {nations.map(n => (
-            <tr key={n.id}>
-              <td style={tdStyle}>{n.name}</td>
-              <td style={tdStyle}>{n.description || '-'}</td>
-              <td style={tdStyle}><button onClick={async () => { await api.delete(`/nations/${n.id}`); reload() }} style={deleteBtnStyle}>×</button></td>
-            </tr>
-          ))}
-        </tbody>
-      </table></div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {nations.map(n => (
+          <div key={n.id} style={{ display: 'flex', alignItems: 'center', gap: 12, background: '#fff', padding: '10px 14px', borderRadius: 8, border: '1px solid #eee' }}>
+            <span style={{
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              width: 42, height: 28, borderRadius: 4, fontSize: 11, fontWeight: 800, letterSpacing: 0.5,
+              background: n.primaryColor || '#666', color: n.textColor || '#fff',
+              border: '1px solid rgba(0,0,0,0.08)', flexShrink: 0,
+            }}>{n.code || '???'}</span>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontWeight: 600, fontSize: 14 }}>{n.name}</div>
+              {n.description && <div style={{ fontSize: 11, color: '#999' }}>{n.description}</div>}
+            </div>
+            <button onClick={async () => { await api.delete(`/nations/${n.id}`); reload() }}
+              style={{ background: 'none', border: 'none', color: '#ddd', cursor: 'pointer', fontSize: 16 }}>×</button>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
