@@ -94,7 +94,7 @@ function TeamsTab({ universeId, teams, nations, reload }) {
               <td style={tdStyle}>{t.name}</td>
               <td style={tdStyle}>{t.shortName}</td>
               <td style={tdStyle}><span style={{ ...badgeStyle, background: t.type === 'CLUB' ? '#e0f0ff' : '#fff0e0' }}>{t.type}</span></td>
-              <td style={tdStyle}>{t.nationName || '-'}</td>
+              <td style={tdStyle}>{t.nation?.name || '-'}</td>
               <td style={tdStyle}>
                 <span style={{ display: 'inline-block', width: 20, height: 20, background: t.primaryColor, borderRadius: 4, marginRight: 4, border: '1px solid #ddd' }} />
                 <span style={{ display: 'inline-block', width: 20, height: 20, background: t.secondaryColor, borderRadius: 4, border: '1px solid #ddd' }} />

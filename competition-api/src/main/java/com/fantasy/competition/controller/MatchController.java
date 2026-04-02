@@ -4,7 +4,6 @@ import com.fantasy.competition.dto.MatchDto;
 import com.fantasy.competition.entity.Match;
 import com.fantasy.competition.repository.MatchRepository;
 import com.fantasy.competition.repository.RoundRepository;
-import com.fantasy.competition.repository.TeamRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +20,13 @@ public class MatchController {
 
     private final MatchRepository repo;
     private final RoundRepository roundRepo;
-    private final TeamRepository teamRepo;
 
     @GetMapping
     public List<MatchDto> list(@RequestParam(required = false) UUID roundId,
-                               @RequestParam(required = false) UUID seasonId) {
+                               @RequestParam(required = false) UUID seasonId,
+                               @RequestParam(required = false) UUID stageGroupId) {
         if (roundId != null) return repo.findByRoundId(roundId).stream().map(MatchDto::from).toList();
+        if (stageGroupId != null) return repo.findByStageGroupId(stageGroupId).stream().map(MatchDto::from).toList();
         if (seasonId != null) return repo.findByRoundSeasonId(seasonId).stream().map(MatchDto::from).toList();
         return List.of();
     }
