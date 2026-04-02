@@ -5,7 +5,7 @@
 -- =============================================
 
 -- Hrilling Best: green body, yellow trim
-UPDATE teams SET home_bg='#ffffff', home_text='#1D428A', away_bg='#1D428A', away_text='#ffffff' WHERE name='Hrilling Best';
+UPDATE teams SET home_bg='#008888', home_text='#ffffff', away_bg='#ffffff', away_text='#008888' WHERE name='Hrilling Best';
 -- Acer Robert: navy blue body
 UPDATE teams SET home_bg='#2244aa', home_text='#ffffff', away_bg='#ffffff', away_text='#2244aa' WHERE name='Acer Robert';
 -- Notes Valzine: red/pink body, blue shorts
