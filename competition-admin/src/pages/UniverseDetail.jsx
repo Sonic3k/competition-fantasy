@@ -48,7 +48,7 @@ export default function UniverseDetail() {
 }
 
 function TeamsTab({ universeId, teams, nations, reload }) {
-  const [form, setForm] = useState({ name: '', shortName: '', type: 'CLUB', primaryColor: '#003366', secondaryColor: '#ffffff', nationId: '' })
+  const [form, setForm] = useState({ name: '', shortName: '', type: 'CLUB', homeBg: '#003366', homeText: '#ffffff', awayBg: '#ffffff', awayText: '#003366', nationId: '' })
 
   const create = async (e) => {
     e.preventDefault()
@@ -68,7 +68,7 @@ function TeamsTab({ universeId, teams, nations, reload }) {
     <div>
       <form onSubmit={create} style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' }}>
         <input placeholder="Team name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} style={inputStyle} required />
-        <input placeholder="Short" value={form.shortName} onChange={e => setForm({ ...form, shortName: e.target.value })} style={{ ...inputStyle, width: 60 }} />
+        <input placeholder="ABC" value={form.shortName} onChange={e => setForm({ ...form, shortName: e.target.value.toUpperCase().slice(0, 3) })} style={{ ...inputStyle, width: 50, textAlign: 'center' }} maxLength={3} />
         <select value={form.type} onChange={e => setForm({ ...form, type: e.target.value })} style={inputStyle}>
           <option value="CLUB">Club</option>
           <option value="NATIONAL">National</option>
@@ -79,31 +79,30 @@ function TeamsTab({ universeId, teams, nations, reload }) {
             {nations.map(n => <option key={n.id} value={n.id}>{n.name}</option>)}
           </select>
         )}
-        <input type="color" value={form.primaryColor} onChange={e => setForm({ ...form, primaryColor: e.target.value })} title="Primary color" />
-        <input type="color" value={form.secondaryColor} onChange={e => setForm({ ...form, secondaryColor: e.target.value })} title="Secondary color" />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <span style={{ fontSize: 11, color: '#999' }}>H</span>
+          <input type="color" value={form.homeBg} onChange={e => setForm({ ...form, homeBg: e.target.value })} title="Home BG" />
+          <input type="color" value={form.homeText} onChange={e => setForm({ ...form, homeText: e.target.value })} title="Home Text" />
+          <span style={{ fontSize: 11, color: '#999' }}>A</span>
+          <input type="color" value={form.awayBg} onChange={e => setForm({ ...form, awayBg: e.target.value })} title="Away BG" />
+          <input type="color" value={form.awayText} onChange={e => setForm({ ...form, awayText: e.target.value })} title="Away Text" />
+        </div>
         <button type="submit" style={btnStyle}>Add Team</button>
       </form>
 
-      <div style={{overflowX:"auto"}}><table style={tableStyle}>
-        <thead>
-          <tr>{['Name', 'Short', 'Type', 'Nation', 'Colors', ''].map(h => <th key={h} style={thStyle}>{h}</th>)}</tr>
-        </thead>
-        <tbody>
-          {teams.map(t => (
-            <tr key={t.id}>
-              <td style={tdStyle}>{t.name}</td>
-              <td style={tdStyle}>{t.shortName}</td>
-              <td style={tdStyle}><span style={{ ...badgeStyle, background: t.type === 'CLUB' ? '#e0f0ff' : '#fff0e0' }}>{t.type}</span></td>
-              <td style={tdStyle}>{t.nation?.name || '-'}</td>
-              <td style={tdStyle}>
-                <span style={{ display: 'inline-block', width: 20, height: 20, background: t.primaryColor, borderRadius: 4, marginRight: 4, border: '1px solid #ddd' }} />
-                <span style={{ display: 'inline-block', width: 20, height: 20, background: t.secondaryColor, borderRadius: 4, border: '1px solid #ddd' }} />
-              </td>
-              <td style={tdStyle}><button onClick={() => remove(t.id)} style={deleteBtnStyle}>×</button></td>
-            </tr>
-          ))}
-        </tbody>
-      </table></div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+        {teams.map(t => (
+          <div key={t.id} style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#fff', padding: '8px 12px', borderRadius: 8, border: '1px solid #eee', position: 'relative' }}>
+            <TeamBadge team={t} />
+            <div>
+              <div style={{ fontWeight: 600, fontSize: 13 }}>{t.name}</div>
+              <div style={{ fontSize: 11, color: '#999' }}>{t.nation?.name || t.type}</div>
+            </div>
+            {t.awayBg && <TeamBadge team={t} away />}
+            <button onClick={() => remove(t.id)} style={{ position: 'absolute', top: 2, right: 6, background: 'none', border: 'none', color: '#ccc', cursor: 'pointer', fontSize: 14 }}>×</button>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
@@ -222,6 +221,20 @@ function CompetitionCard({ competition, reload }) {
         </div>
       )}
     </div>
+  )
+}
+
+function TeamBadge({ team, away }) {
+  const bg = away ? (team.awayBg || '#eee') : (team.homeBg || '#333')
+  const text = away ? (team.awayText || '#333') : (team.homeText || '#fff')
+  return (
+    <span style={{
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+      width: 36, height: 28, borderRadius: 4, fontSize: 11, fontWeight: 700, letterSpacing: 0.5,
+      background: bg, color: text, border: '1px solid rgba(0,0,0,0.1)', flexShrink: 0,
+    }}>
+      {team.shortName || '???'}
+    </span>
   )
 }
 
