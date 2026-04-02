@@ -121,7 +121,7 @@ function MatchesTab({ seasonId, stages, rounds, seasonTeams, reload }) {
       {stages.length > 1 && (
         <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
           {stages.map(s => (
-            <button key={s.id} onClick={() => { setSelectedStage(s.id); setExpandedKey(null); setMatchesByKey({}) }}
+            <button key={s.id} onClick={() => { setSelectedStage(s.id); setExpandedKey(null); setMatchesByKey({}); setViewMode('round') }}}
               style={{ ...chipBtn, background: (activeStage?.id === s.id) ? '#1a1a2e' : '#fff', color: (activeStage?.id === s.id) ? '#fff' : '#333' }}>
               {s.name} {s.type === 'KNOCKOUT' && s.legs > 1 ? `(${s.legs} legs)` : ''}
             </button>
@@ -136,7 +136,7 @@ function MatchesTab({ seasonId, stages, rounds, seasonTeams, reload }) {
         </div>
       )}
 
-      {viewMode === 'round' ? (
+      {(viewMode === 'round' || !hasGroups) ? (
         matchdays.map(md => (
           <div key={md.roundNumber} style={{ marginBottom: 8 }}>
             <div onClick={() => toggle(`md-${md.roundNumber}`, () => loadMatchday(`md-${md.roundNumber}`, md.roundIds))}
