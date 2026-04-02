@@ -90,16 +90,16 @@ function TeamsTab({ universeId, teams, nations, reload }) {
         <button type="submit" style={btnStyle}>Add Team</button>
       </form>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         {teams.map(t => (
-          <div key={t.id} style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#fff', padding: '8px 12px', borderRadius: 8, border: '1px solid #eee', position: 'relative' }}>
+          <div key={t.id} style={{ display: 'flex', alignItems: 'center', gap: 12, background: '#fff', padding: '10px 14px', borderRadius: 8, border: '1px solid #eee' }}>
             <TeamBadge team={t} />
-            <div>
-              <div style={{ fontWeight: 600, fontSize: 13 }}>{t.name}</div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontWeight: 600, fontSize: 14 }}>{t.name}</div>
               <div style={{ fontSize: 11, color: '#999' }}>{t.nation?.name || t.type}</div>
             </div>
-            {t.awayBg && <TeamBadge team={t} away />}
-            <button onClick={() => remove(t.id)} style={{ position: 'absolute', top: 2, right: 6, background: 'none', border: 'none', color: '#ccc', cursor: 'pointer', fontSize: 14 }}>×</button>
+            <TeamBadge team={t} away />
+            <button onClick={() => remove(t.id)} style={{ background: 'none', border: 'none', color: '#ddd', cursor: 'pointer', fontSize: 16 }}>×</button>
           </div>
         ))}
       </div>
@@ -225,13 +225,15 @@ function CompetitionCard({ competition, reload }) {
 }
 
 function TeamBadge({ team, away }) {
-  const bg = away ? (team.awayBg || '#eee') : (team.homeBg || '#333')
+  const bg = away ? (team.awayBg || '#f0f0f0') : (team.homeBg || '#333')
   const text = away ? (team.awayText || '#333') : (team.homeText || '#fff')
+  const size = away ? { width: 32, height: 22, fontSize: 9 } : { width: 38, height: 26, fontSize: 10 }
   return (
     <span style={{
       display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-      width: 36, height: 28, borderRadius: 4, fontSize: 11, fontWeight: 700, letterSpacing: 0.5,
-      background: bg, color: text, border: '1px solid rgba(0,0,0,0.1)', flexShrink: 0,
+      ...size, borderRadius: 4, fontWeight: 800, letterSpacing: 0.3,
+      background: bg, color: text, border: '1px solid rgba(0,0,0,0.08)', flexShrink: 0,
+      fontFamily: 'system-ui, sans-serif', textTransform: 'uppercase',
     }}>
       {team.shortName || '???'}
     </span>
