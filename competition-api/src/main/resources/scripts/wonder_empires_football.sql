@@ -196,7 +196,7 @@ BEGIN
     (v_season,t_arc,'RECORDED',ge,6,2,1,3,4,7,7),(v_season,t_man,'RECORDED',ge,6,0,2,4,1,9,2),
     (v_season,t_hus,'RECORDED',gf,6,3,2,1,9,4,11),(v_season,t_grc,'RECORDED',gf,6,2,2,2,8,7,8),
     (v_season,t_gru,'RECORDED',gf,6,0,2,4,4,5,8),(v_season,t_kaj,'RECORDED',gf,6,1,2,3,5,10,5),
-    (v_season,t_rol,'RECORDED',gg,6,3,4,2,1,13,9,13),(v_season,t_yos,'RECORDED',gg,6,2,2,2,10,10,8),
+    (v_season,t_rol,'RECORDED',gg,6,4,1,1,13,9,13),(v_season,t_yos,'RECORDED',gg,6,2,2,2,10,10,8),
     (v_season,t_jan,'RECORDED',gg,6,2,1,3,8,9,7),(v_season,t_shi,'RECORDED',gg,6,1,2,3,7,10,5),
     (v_season,t_pes,'RECORDED',gh,6,3,2,1,11,8,11),(v_season,t_rud,'RECORDED',gh,6,3,1,2,12,8,10),
     (v_season,t_rov,'RECORDED',gh,6,1,3,2,10,12,6),(v_season,t_ceu,'RECORDED',gh,6,1,2,3,6,11,5);
