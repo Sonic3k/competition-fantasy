@@ -5,29 +5,29 @@
 -- =============================================
 
 -- Hrilling Best: green body, yellow trim
-UPDATE teams SET home_bg='#00aa44', home_text='#ffff00', away_bg='#ffff00', away_text='#00aa44' WHERE name='Hrilling Best';
+UPDATE teams SET home_bg='#ffffff', home_text='#1D428A', away_bg='#1D428A', away_text='#ffffff' WHERE name='Hrilling Best';
 -- Acer Robert: navy blue body
 UPDATE teams SET home_bg='#2244aa', home_text='#ffffff', away_bg='#ffffff', away_text='#2244aa' WHERE name='Acer Robert';
 -- Notes Valzine: red/pink body, blue shorts
 UPDATE teams SET home_bg='#cc2255', home_text='#ffffff', away_bg='#ffffff', away_text='#cc2255' WHERE name='Notes Valzine';
 -- Iteser Icer: white body, blue shorts
-UPDATE teams SET home_bg='#ffffff', home_text='#003388', away_bg='#003388', away_text='#ffffff' WHERE name='Iteser Icer';
+UPDATE teams SET home_bg='#ffffff', home_text='#003366', away_bg='#003366', away_text='#ffffff' WHERE name='Iteser Icer';
 -- Ben Derber: blue body, dark shorts
-UPDATE teams SET home_bg='#0044cc', home_text='#ffffff', away_bg='#ffffff', away_text='#0044cc' WHERE name='Ben Derber';
+UPDATE teams SET home_bg='#ffffff', home_text='#132257', away_bg='#132257', away_text='#ffffff' WHERE name='Ben Derber';
 -- Fulhaster: black/dark jersey (X pattern)
-UPDATE teams SET home_bg='#222222', home_text='#ffffff', away_bg='#ffffff', away_text='#222222' WHERE name='Fulhaster';
+UPDATE teams SET home_bg='#ffffff', home_text='#000000', away_bg='#000000', away_text='#ffffff' WHERE name='Fulhaster';
 -- Balland Wolve: yellow body, green shorts
 UPDATE teams SET home_bg='#dddd00', home_text='#006622', away_bg='#006622', away_text='#dddd00' WHERE name='Balland Wolve';
 -- Mener Lying: red body, blue text
-UPDATE teams SET home_bg='#cc0000', home_text='#0000cc', away_bg='#ffffff', away_text='#cc0000' WHERE name='Mener Lying';
+UPDATE teams SET home_bg='#C8102E', home_text='#ffffff', away_bg='#ffffff', away_text='#C8102E' WHERE name='Mener Lying';
 -- Ilham Rower: purple body
-UPDATE teams SET home_bg='#6633aa', home_text='#ffffff', away_bg='#ffffff', away_text='#6633aa' WHERE name='Ilham Rower';
+UPDATE teams SET home_bg='#670E36', home_text='#95BFE5', away_bg='#95BFE5', away_text='#670E36' WHERE name='Ilham Rower';
 -- Rab Pladineer: blue body, red text
 UPDATE teams SET home_bg='#0055cc', home_text='#cc0000', away_bg='#cc0000', away_text='#ffffff' WHERE name='Rab Pladineer';
 -- Processing Probal: dark blue body
 UPDATE teams SET home_bg='#334488', home_text='#ffffff', away_bg='#ffffff', away_text='#334488' WHERE name='Processing Probal';
 -- Mize Mole: pink body, blue text
-UPDATE teams SET home_bg='#ff6699', home_text='#0044aa', away_bg='#ffffff', away_text='#ff6699' WHERE name='Mize Mole';
+UPDATE teams SET home_bg='#cc3366', home_text='#0066cc', away_bg='#ffffff', away_text='#cc3366' WHERE name='Mize Mole';
 -- Willandos: green body
 UPDATE teams SET home_bg='#008833', home_text='#ffffff', away_bg='#ffffff', away_text='#008833' WHERE name='Willandos';
 -- Domehampton: light blue body
@@ -39,7 +39,7 @@ UPDATE teams SET home_bg='#cc0066', home_text='#ffffff', away_bg='#ffffff', away
 -- Nrucaste: black & white stripes
 UPDATE teams SET home_bg='#111111', home_text='#ffffff', away_bg='#ffffff', away_text='#111111' WHERE name='Nrucaste';
 -- Twine Oner: teal/cyan body
-UPDATE teams SET home_bg='#008888', home_text='#ffffff', away_bg='#ffffff', away_text='#008888' WHERE name='Twine Oner';
+UPDATE teams SET home_bg='#ffffff', home_text='#1D428A', away_bg='#FFCD00', away_text='#1D428A' WHERE name='Twine Oner';
 -- Occating Menchiote: green/teal body
 UPDATE teams SET home_bg='#338855', home_text='#ffffff', away_bg='#ffffff', away_text='#338855' WHERE name='Occating Menchiote';
 -- Eldiadion: dark red body
