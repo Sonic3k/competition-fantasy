@@ -26,7 +26,7 @@ public class MatchController {
                                @RequestParam(required = false) UUID seasonId,
                                @RequestParam(required = false) UUID stageGroupId) {
         if (roundId != null) return repo.findByRoundId(roundId).stream().map(MatchDto::from).toList();
-        if (stageGroupId != null) return repo.findByStageGroupTeams(stageGroupId).stream().map(MatchDto::from).toList();
+        if (stageGroupId != null) return repo.findByStageGroupId(stageGroupId).stream().map(MatchDto::from).toList();
         if (seasonId != null) return repo.findByRoundSeasonId(seasonId).stream().map(MatchDto::from).toList();
         return List.of();
     }
