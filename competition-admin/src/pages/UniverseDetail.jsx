@@ -92,11 +92,22 @@ function TeamsTab({ universeId, teams, nations, reload }) {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         {teams.map(t => (
-          <div key={t.id} style={{ display: 'flex', alignItems: 'center', gap: 12, background: '#fff', padding: '10px 14px', borderRadius: 8, border: '1px solid #eee' }}>
+          <div key={t.id} style={{ display: 'flex', alignItems: 'center', gap: 10, background: '#fff', padding: '10px 14px', borderRadius: 8, border: '1px solid #eee' }}>
             <TeamBadge team={t} />
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontWeight: 600, fontSize: 14 }}>{t.name}</div>
-              <div style={{ fontSize: 11, color: '#999' }}>{t.nation?.name || t.type}</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 2 }}>
+                {t.nation ? (
+                  <span style={{
+                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                    padding: '1px 6px', borderRadius: 3, fontSize: 9, fontWeight: 700,
+                    background: t.nation.primaryColor || '#666', color: t.nation.textColor || '#fff',
+                    letterSpacing: 0.3,
+                  }}>{t.nation.code || t.nation.name}</span>
+                ) : (
+                  <span style={{ fontSize: 11, color: '#bbb' }}>{t.type}</span>
+                )}
+              </div>
             </div>
             <TeamBadge team={t} away />
             <button onClick={() => remove(t.id)} style={{ background: 'none', border: 'none', color: '#ddd', cursor: 'pointer', fontSize: 16 }}>×</button>
