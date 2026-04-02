@@ -65,42 +65,63 @@ export default function SeasonDetail() {
 
 function MatchesTab({ seasonId, stages, rounds, seasonTeams, reload }) {
   const [selectedStage, setSelectedStage] = useState(null)
-  const [viewMode, setViewMode] = useState('round') // 'round' or 'group'
+  const [viewMode, setViewMode] = useState('round')
   const [matchesByKey, setMatchesByKey] = useState({})
   const [expandedKey, setExpandedKey] = useState(null)
-  const [roundForm, setRoundForm] = useState({ roundNumber: '', name: '' })
 
   const activeStage = stages.find(s => s.id === selectedStage) || stages[0]
   const hasGroups = activeStage?.groups?.length > 1
-
   const stageRounds = rounds.filter(r => r.stageId === activeStage?.id)
   const groups = activeStage?.groups || []
+
+  // Group rounds by roundNumber for "By Round" view
+  const matchdays = []
+  const seen = new Set()
+  for (const r of stageRounds) {
+    if (!seen.has(r.roundNumber)) {
+      seen.add(r.roundNumber)
+      matchdays.push({
+        roundNumber: r.roundNumber,
+        name: r.name,
+        roundIds: stageRounds.filter(x => x.roundNumber === r.roundNumber).map(x => x.id)
+      })
+    }
+  }
 
   const loadMatches = async (key, params) => {
     const r = await api.get(`/matches?${params}`)
     setMatchesByKey(prev => ({ ...prev, [key]: r.data }))
   }
 
-  const toggle = (key, params) => {
-    if (expandedKey === key) { setExpandedKey(null); return }
-    setExpandedKey(key)
-    if (!matchesByKey[key]) loadMatches(key, params)
+  const loadMatchday = async (key, roundIds) => {
+    const all = await Promise.all(roundIds.map(rid => api.get(`/matches?roundId=${rid}`)))
+    const matches = all.flatMap(r => r.data)
+    setMatchesByKey(prev => ({ ...prev, [key]: matches }))
   }
 
-  const createRound = async (e) => {
-    e.preventDefault()
-    await api.post(`/rounds?seasonId=${seasonId}`, { ...roundForm, roundNumber: parseInt(roundForm.roundNumber) })
-    setRoundForm({ roundNumber: '', name: '' })
-    reload()
+  const toggle = (key, loader) => {
+    if (expandedKey === key) { setExpandedKey(null); return }
+    setExpandedKey(key)
+    if (!matchesByKey[key]) loader()
+  }
+
+  // Group matches by stageGroupName for display
+  const groupedMatches = (matches) => {
+    const map = {}
+    for (const m of matches) {
+      const g = m.stageGroupName || 'Matches'
+      if (!map[g]) map[g] = []
+      map[g].push(m)
+    }
+    return Object.entries(map)
   }
 
   return (
     <div>
-      {/* Stage selector */}
       {stages.length > 1 && (
         <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
           {stages.map(s => (
-            <button key={s.id} onClick={() => { setSelectedStage(s.id); setExpandedKey(null) }}
+            <button key={s.id} onClick={() => { setSelectedStage(s.id); setExpandedKey(null); setMatchesByKey({}) }}
               style={{ ...chipBtn, background: (activeStage?.id === s.id) ? '#1a1a2e' : '#fff', color: (activeStage?.id === s.id) ? '#fff' : '#333' }}>
               {s.name} {s.type === 'KNOCKOUT' && s.legs > 1 ? `(${s.legs} legs)` : ''}
             </button>
@@ -108,31 +129,37 @@ function MatchesTab({ seasonId, stages, rounds, seasonTeams, reload }) {
         </div>
       )}
 
-      {/* View mode toggle */}
       {hasGroups && (
         <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
-          <button onClick={() => setViewMode('round')} style={{ ...chipBtn, background: viewMode === 'round' ? '#e94560' : '#fff', color: viewMode === 'round' ? '#fff' : '#333' }}>By Round</button>
-          <button onClick={() => setViewMode('group')} style={{ ...chipBtn, background: viewMode === 'group' ? '#e94560' : '#fff', color: viewMode === 'group' ? '#fff' : '#333' }}>By Group</button>
+          <button onClick={() => { setViewMode('round'); setExpandedKey(null) }} style={{ ...chipBtn, background: viewMode === 'round' ? '#e94560' : '#fff', color: viewMode === 'round' ? '#fff' : '#333' }}>By Round</button>
+          <button onClick={() => { setViewMode('group'); setExpandedKey(null) }} style={{ ...chipBtn, background: viewMode === 'group' ? '#e94560' : '#fff', color: viewMode === 'group' ? '#fff' : '#333' }}>By Group</button>
         </div>
       )}
 
       {viewMode === 'round' ? (
-        /* View by Round */
-        stageRounds.map(r => (
-          <div key={r.id} style={{ marginBottom: 8 }}>
-            <div onClick={() => toggle(`r-${r.id}`, `roundId=${r.id}`)}
-              style={{ ...expandHeader, background: expandedKey === `r-${r.id}` ? '#f0f0f0' : '#fff' }}>
-              <span><strong>Round {r.roundNumber}</strong> {r.name && `— ${r.name}`} {r.stageGroupName && <span style={groupBadge}>{r.stageGroupName}</span>}</span>
-              <span>{expandedKey === `r-${r.id}` ? '▾' : '▸'}</span>
+        matchdays.map(md => (
+          <div key={md.roundNumber} style={{ marginBottom: 8 }}>
+            <div onClick={() => toggle(`md-${md.roundNumber}`, () => loadMatchday(`md-${md.roundNumber}`, md.roundIds))}
+              style={{ ...expandHeader, background: expandedKey === `md-${md.roundNumber}` ? '#f0f0f0' : '#fff' }}>
+              <span><strong>{md.name || `Round ${md.roundNumber}`}</strong> {hasGroups && <span style={{ color: '#999', fontSize: 12 }}>({md.roundIds.length} groups)</span>}</span>
+              <span>{expandedKey === `md-${md.roundNumber}` ? '▾' : '▸'}</span>
             </div>
-            {expandedKey === `r-${r.id}` && <MatchList matches={matchesByKey[`r-${r.id}`] || []} showGroup={hasGroups} />}
+            {expandedKey === `md-${md.roundNumber}` && (
+              <div style={{ background: '#fafafa', borderRadius: '0 0 6px 6px', padding: '4px 0' }}>
+                {groupedMatches(matchesByKey[`md-${md.roundNumber}`] || []).map(([gName, matches]) => (
+                  <div key={gName}>
+                    {hasGroups && <div style={{ padding: '8px 14px 4px', fontSize: 12, fontWeight: 700, color: '#666', borderTop: '1px solid #eee' }}>{gName}</div>}
+                    <MatchList matches={matches} />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         ))
       ) : (
-        /* View by Group */
         groups.map(g => (
           <div key={g.id} style={{ marginBottom: 8 }}>
-            <div onClick={() => toggle(`g-${g.id}`, `stageGroupId=${g.id}`)}
+            <div onClick={() => toggle(`g-${g.id}`, () => loadMatches(`g-${g.id}`, `stageGroupId=${g.id}`))}
               style={{ ...expandHeader, background: expandedKey === `g-${g.id}` ? '#f0f0f0' : '#fff' }}>
               <span><strong>{g.name}</strong> <span style={{ color: '#999', fontSize: 12 }}>({g.teams?.length} teams)</span></span>
               <span>{expandedKey === `g-${g.id}` ? '▾' : '▸'}</span>
@@ -142,7 +169,7 @@ function MatchesTab({ seasonId, stages, rounds, seasonTeams, reload }) {
         ))
       )}
 
-      {stageRounds.length === 0 && <p style={{ color: '#999' }}>No rounds in this stage.</p>}
+      {matchdays.length === 0 && stageRounds.length === 0 && <p style={{ color: '#999' }}>No rounds in this stage.</p>}
     </div>
   )
 }
