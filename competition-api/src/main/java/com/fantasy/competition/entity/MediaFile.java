@@ -34,7 +34,7 @@ public class MediaFile extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String promptUsed;
 
-    @Column(columnDefinition = "jsonb")
+    @Column(columnDefinition = "TEXT")
     private String metadata;
 
     @ManyToMany
