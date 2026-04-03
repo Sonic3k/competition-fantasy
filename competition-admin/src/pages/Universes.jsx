@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import api from '../api/client'
+import ImageUpload from '../components/ImageUpload'
 
 export default function Universes() {
   const [universes, setUniverses] = useState([])
@@ -58,10 +59,13 @@ export default function Universes() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
         {universes.map(u => (
           <div key={u.id} style={cardStyle}>
-            <Link to={`/universes/${u.id}`} style={{ textDecoration: 'none', color: '#1a1a2e' }}>
-              <h3 style={{ margin: '0 0 8px' }}>{u.name}</h3>
-              <p style={{ margin: 0, color: '#666', fontSize: 14 }}>{u.description || 'No description'}</p>
-            </Link>
+            <div style={{ display: 'flex', gap: 14, alignItems: 'center' }}>
+              <ImageUpload endpoint={`/upload/universe/${u.id}`} currentUrl={u.avatarUrl} onUploaded={() => load()} size={56} />
+              <Link to={`/universes/${u.id}`} style={{ textDecoration: 'none', color: '#1a1a2e', flex: 1 }}>
+                <h3 style={{ margin: '0 0 4px' }}>{u.name}</h3>
+                <p style={{ margin: 0, color: '#666', fontSize: 13 }}>{u.description || 'No description'}</p>
+              </Link>
+            </div>
             <button onClick={() => remove(u.id)} style={deleteBtnStyle}>✕</button>
           </div>
         ))}

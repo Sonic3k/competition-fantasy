@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import api from '../api/client'
+import ImageUpload from '../components/ImageUpload'
 
 export default function UniverseDetail() {
   const { id } = useParams()
@@ -93,6 +94,7 @@ function TeamsTab({ universeId, teams, nations, reload }) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         {teams.map(t => (
           <div key={t.id} style={{ display: 'flex', alignItems: 'center', gap: 10, background: '#fff', padding: '10px 14px', borderRadius: 8, border: '1px solid #eee' }}>
+            <ImageUpload endpoint={`/upload/team/${t.id}`} currentUrl={t.logoUrl} onUploaded={reload} size={36} shape="square" />
             <TeamBadge team={t} />
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontWeight: 600, fontSize: 14 }}>{t.name}</div>
@@ -142,6 +144,7 @@ function NationsTab({ universeId, nations, reload }) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         {nations.map(n => (
           <div key={n.id} style={{ display: 'flex', alignItems: 'center', gap: 12, background: '#fff', padding: '10px 14px', borderRadius: 8, border: '1px solid #eee' }}>
+            <ImageUpload endpoint={`/upload/nation/${n.id}`} currentUrl={n.flagUrl} onUploaded={reload} size={36} shape="square" />
             <span style={{
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
               width: 42, height: 28, borderRadius: 4, fontSize: 11, fontWeight: 800, letterSpacing: 0.5,
