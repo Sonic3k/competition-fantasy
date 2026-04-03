@@ -26,6 +26,8 @@ public class Match extends BaseEntity {
     private Integer awayScore;
     private Integer leg;
 
+    private java.time.Instant matchDate;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private MatchStatus status = MatchStatus.SCHEDULED;

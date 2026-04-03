@@ -6,7 +6,7 @@ import java.util.UUID;
 public record MatchDto(UUID id, TeamDto homeTeam, TeamDto awayTeam,
                        Integer homeScore, Integer awayScore, Integer leg, String status,
                        String notes, UUID roundId, Integer roundNumber, String roundName,
-                       UUID stageGroupId, String stageGroupName,
+                       UUID stageGroupId, String stageGroupName, java.time.Instant matchDate,
                        String seasonName, String competitionName, UUID seasonId) {
     public static MatchDto from(Match e) {
         var round = e.getRound();
@@ -21,7 +21,7 @@ public record MatchDto(UUID id, TeamDto homeTeam, TeamDto awayTeam,
             round != null ? round.getRoundNumber() : null,
             round != null ? round.getName() : null,
             round != null && round.getStageGroup() != null ? round.getStageGroup().getId() : null,
-            round != null && round.getStageGroup() != null ? round.getStageGroup().getName() : null,
+            round != null && round.getStageGroup() != null ? round.getStageGroup().getName() : null, e.getMatchDate(),
             season != null ? season.getName() : null,
             comp != null ? comp.getName() : null,
             season != null ? season.getId() : null);
