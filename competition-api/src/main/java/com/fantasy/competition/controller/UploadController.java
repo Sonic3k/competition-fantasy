@@ -68,6 +68,36 @@ public class UploadController {
         }).orElse(ResponseEntity.notFound().build());
     }
 
+    @PostMapping("/nation/{id}/logo")
+    public ResponseEntity<?> uploadNationLogo(@PathVariable UUID id, @RequestParam("file") MultipartFile file) {
+        return nationRepo.findById(id).map(n -> {
+            try {
+                MediaFile mf = uploadAndSave(file, "competition-fantasy/nations/" + id + "/logo", MediaFile.SourceType.UPLOAD);
+                n.setLogoUrl(mf.getCdnUrl());
+                n.setLogoMedia(mf);
+                nationRepo.save(n);
+                return ResponseEntity.ok(MediaFileDto.from(mf));
+            } catch (Exception e) {
+                return ResponseEntity.internalServerError().body(e.getMessage());
+            }
+        }).orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/nation/{id}/banner")
+    public ResponseEntity<?> uploadNationBanner(@PathVariable UUID id, @RequestParam("file") MultipartFile file) {
+        return nationRepo.findById(id).map(n -> {
+            try {
+                MediaFile mf = uploadAndSave(file, "competition-fantasy/nations/" + id + "/banner", MediaFile.SourceType.UPLOAD);
+                n.setBannerUrl(mf.getCdnUrl());
+                n.setBannerMedia(mf);
+                nationRepo.save(n);
+                return ResponseEntity.ok(MediaFileDto.from(mf));
+            } catch (Exception e) {
+                return ResponseEntity.internalServerError().body(e.getMessage());
+            }
+        }).orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping("/team/{id}/banner")
     public ResponseEntity<?> uploadTeamBanner(@PathVariable UUID id, @RequestParam("file") MultipartFile file) {
         return teamRepo.findById(id).map(t -> {

@@ -156,7 +156,7 @@ function NationsTab({ universeId, nations, reload }) {
               border: '1px solid rgba(0,0,0,0.08)', flexShrink: 0,
             }}>{n.code || '???'}</span>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontWeight: 600, fontSize: 14 }}>{n.name}</div>
+              <div style={{ fontWeight: 600, fontSize: 14 }}><Link to={`/nations/${n.id}`} style={{ color: '#1a1a2e', textDecoration: 'none' }}>{n.name}</Link></div>
               {n.description && <div style={{ fontSize: 11, color: '#999' }}>{n.description}</div>}
             </div>
             <span style={{
@@ -165,10 +165,6 @@ function NationsTab({ universeId, nations, reload }) {
               background: n.awayColor || '#f0f0f0', color: n.awayTextColor || '#333',
               border: '1px solid rgba(0,0,0,0.08)', flexShrink: 0,
             }}>{n.code || '???'}</span>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontWeight: 600, fontSize: 14 }}>{n.name}</div>
-              {n.description && <div style={{ fontSize: 11, color: '#999' }}>{n.description}</div>}
-            </div>
             <button onClick={async () => { await api.delete(`/nations/${n.id}`); reload() }}
               style={{ background: 'none', border: 'none', color: '#ddd', cursor: 'pointer', fontSize: 16 }}>×</button>
           </div>

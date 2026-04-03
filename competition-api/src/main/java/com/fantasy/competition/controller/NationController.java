@@ -1,8 +1,10 @@
 package com.fantasy.competition.controller;
 
 import com.fantasy.competition.dto.NationDto;
+import com.fantasy.competition.dto.TeamDto;
 import com.fantasy.competition.entity.Nation;
 import com.fantasy.competition.repository.NationRepository;
+import com.fantasy.competition.repository.TeamRepository;
 import com.fantasy.competition.repository.UniverseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,7 @@ public class NationController {
 
     private final NationRepository repo;
     private final UniverseRepository universeRepo;
+    private final TeamRepository teamRepo;
 
     @GetMapping
     public List<NationDto> listByUniverse(@RequestParam UUID universeId) {
@@ -28,6 +31,11 @@ public class NationController {
     @GetMapping("/{id}")
     public ResponseEntity<NationDto> get(@PathVariable UUID id) {
         return repo.findById(id).map(e -> ResponseEntity.ok(NationDto.from(e))).orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{id}/teams")
+    public List<TeamDto> getTeams(@PathVariable UUID id) {
+        return teamRepo.findByNationId(id).stream().map(TeamDto::from).toList();
     }
 
     @PostMapping
@@ -41,14 +49,14 @@ public class NationController {
     @PutMapping("/{id}")
     public ResponseEntity<NationDto> update(@PathVariable UUID id, @RequestBody Nation body) {
         return repo.findById(id).map(existing -> {
-            existing.setName(body.getName());
-            existing.setFlagUrl(body.getFlagUrl());
-            existing.setDescription(body.getDescription());
-            existing.setCode(body.getCode());
-            existing.setPrimaryColor(body.getPrimaryColor());
-            existing.setTextColor(body.getTextColor());
-            existing.setAwayColor(body.getAwayColor());
-            existing.setAwayTextColor(body.getAwayTextColor());
+            if (body.getName() != null) existing.setName(body.getName());
+            if (body.getCode() != null) existing.setCode(body.getCode());
+            if (body.getDescription() != null) existing.setDescription(body.getDescription());
+            if (body.getFlagUrl() != null) existing.setFlagUrl(body.getFlagUrl());
+            if (body.getPrimaryColor() != null) existing.setPrimaryColor(body.getPrimaryColor());
+            if (body.getTextColor() != null) existing.setTextColor(body.getTextColor());
+            if (body.getAwayColor() != null) existing.setAwayColor(body.getAwayColor());
+            if (body.getAwayTextColor() != null) existing.setAwayTextColor(body.getAwayTextColor());
             return ResponseEntity.ok(NationDto.from(repo.save(existing)));
         }).orElse(ResponseEntity.notFound().build());
     }

@@ -17,20 +17,30 @@ public class Nation extends BaseEntity {
 
     private String code;
     private String flagUrl;
+    @Column(columnDefinition = "TEXT")
     private String description;
     private String primaryColor;
     private String textColor;
-
     private String awayColor;
     private String awayTextColor;
+    private String logoUrl;
+    private String bannerUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "universe_id", nullable = false)
+    private Universe universe;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "flag_media_id")
     private MediaFile flagMedia;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "universe_id", nullable = false)
-    private Universe universe;
+    @JoinColumn(name = "logo_media_id")
+    private MediaFile logoMedia;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "banner_media_id")
+    private MediaFile bannerMedia;
 
     @OneToMany(mappedBy = "nation", cascade = CascadeType.ALL)
     private List<Team> teams = new ArrayList<>();
