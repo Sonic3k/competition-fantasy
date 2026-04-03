@@ -76,33 +76,28 @@ export default function TeamDetail() {
       {/* Recent Matches */}
       <Section title={`Recent Matches (${matches.length})`}>
         {matches.length === 0 ? <p style={{ color: '#999', fontSize: 13 }}>No matches found.</p> : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {Object.entries(groupMatchesByComp(matches)).map(([compKey, compMatches]) => (
-              <div key={compKey}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: '#666', marginBottom: 6, padding: '4px 0', borderBottom: '1px solid #eee' }}>{compKey}</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                  {compMatches.map(m => (
-                    <div key={m.id} style={{
-                      display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px',
-                      background: '#fff', borderRadius: 8, border: '1px solid #eee', fontSize: 13
-                    }}>
-                      {m.roundName && <span style={{ color: '#999', fontSize: 11, minWidth: 40 }}>{m.roundName}</span>}
-                      <span style={{ flex: 1, textAlign: 'right', fontWeight: m.homeTeam?.id === id ? 700 : 400 }}>
-                        {m.homeTeam?.name}
-                      </span>
-                      <span style={{
-                        fontWeight: 700, minWidth: 44, textAlign: 'center', padding: '2px 8px', borderRadius: 4,
-                        background: getResultColor(m, id), color: '#fff', fontSize: 12
-                      }}>
-                        {m.homeScore} - {m.awayScore}
-                      </span>
-                      <span style={{ flex: 1, fontWeight: m.awayTeam?.id === id ? 700 : 400 }}>
-                        {m.awayTeam?.name}
-                      </span>
-                      {m.leg && <span style={{ fontSize: 10, color: '#999' }}>L{m.leg}</span>}
-                    </div>
-                  ))}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            {matches.map(m => (
+              <div key={m.id} style={{
+                display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px',
+                background: '#fff', borderRadius: 8, border: '1px solid #eee', fontSize: 13
+              }}>
+                <div style={{ minWidth: 60, fontSize: 10, color: '#999' }}>
+                  {m.matchDate ? new Date(m.matchDate).toLocaleDateString() : m.roundName || ''}
                 </div>
+                <span style={{ flex: 1, textAlign: 'right', fontWeight: m.homeTeam?.id === id ? 700 : 400 }}>
+                  {m.homeTeam?.name}
+                </span>
+                <span style={{
+                  fontWeight: 700, minWidth: 44, textAlign: 'center', padding: '2px 8px', borderRadius: 4,
+                  background: getResultColor(m, id), color: '#fff', fontSize: 12
+                }}>
+                  {m.homeScore} - {m.awayScore}
+                </span>
+                <span style={{ flex: 1, fontWeight: m.awayTeam?.id === id ? 700 : 400 }}>
+                  {m.awayTeam?.name}
+                </span>
+                {m.competitionName && <span style={{ fontSize: 9, color: '#aaa', maxWidth: 80, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{m.competitionName}</span>}
               </div>
             ))}
           </div>
@@ -120,15 +115,6 @@ function getResultColor(match, teamId) {
   return '#e74c3c'
 }
 
-function groupMatchesByComp(matches) {
-  const groups = {}
-  for (const m of matches) {
-    const key = `${m.competitionName || 'Unknown'} — ${m.seasonName || ''}`
-    if (!groups[key]) groups[key] = []
-    groups[key].push(m)
-  }
-  return groups
-}
 
 function Section({ title, children }) {
   return (
