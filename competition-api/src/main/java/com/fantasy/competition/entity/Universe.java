@@ -18,6 +18,10 @@ public class Universe extends BaseEntity {
     private String description;
     private String avatarUrl;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "avatar_media_id")
+    private MediaFile avatarMedia;
+
     @OneToMany(mappedBy = "universe", cascade = CascadeType.ALL)
     private List<Competition> competitions = new ArrayList<>();
 

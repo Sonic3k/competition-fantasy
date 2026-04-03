@@ -4,6 +4,7 @@ import Universes from './pages/Universes'
 import UniverseDetail from './pages/UniverseDetail'
 import SeasonDetail from './pages/SeasonDetail'
 import ScriptsManager from './pages/ScriptsManager'
+import MediaLibrary from './pages/MediaLibrary'
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -21,7 +22,7 @@ export default function App() {
 
       <nav className={`sidebar ${menuOpen ? 'open' : ''}`}>
         <div style={{ padding: '0 20px', fontSize: 18, fontWeight: 700, marginBottom: 20, color: '#e94560' }}>Fantasy Admin</div>
-        {[['/', 'Universes'], ['/scripts', 'Scripts']].map(([to, label]) => (
+        {[['/', 'Universes'], ['/media', 'Media'], ['/scripts', 'Scripts']].map(([to, label]) => (
           <Link key={to} to={to} onClick={close}
             className={`nav-link ${location.pathname === to ? 'active' : ''}`}>
             {label}
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/" element={<Universes />} />
           <Route path="/universes/:id" element={<UniverseDetail />} />
           <Route path="/seasons/:id" element={<SeasonDetail />} />
+          <Route path="/media" element={<MediaLibrary />} />
           <Route path="/scripts" element={<ScriptsManager />} />
         </Routes>
       </main>

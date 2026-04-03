@@ -22,6 +22,10 @@ public class Nation extends BaseEntity {
     private String textColor;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "flag_media_id")
+    private MediaFile flagMedia;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "universe_id", nullable = false)
     private Universe universe;
 

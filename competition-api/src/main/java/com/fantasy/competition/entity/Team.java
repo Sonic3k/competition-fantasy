@@ -1,5 +1,6 @@
 package com.fantasy.competition.entity;
 
+import com.fantasy.competition.entity.MediaFile;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,10 @@ public class Team extends BaseEntity {
     private String awayBg;
     private String awayText;
     private String logoUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "logo_media_id")
+    private MediaFile logoMedia;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "universe_id", nullable = false)
