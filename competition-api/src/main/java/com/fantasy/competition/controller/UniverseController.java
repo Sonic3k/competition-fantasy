@@ -38,7 +38,7 @@ public class UniverseController {
         return repo.findById(id).map(existing -> {
             existing.setName(body.getName());
             existing.setDescription(body.getDescription());
-            existing.setLogoUrl(body.getLogoUrl());
+            existing.setAvatarUrl(body.getAvatarUrl());
             return ResponseEntity.ok(UniverseDto.from(repo.save(existing)));
         }).orElse(ResponseEntity.notFound().build());
     }

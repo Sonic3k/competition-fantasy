@@ -31,7 +31,7 @@ public class StorageService {
             .endpointOverride(URI.create("https://" + endpoint))
             .region(Region.US_EAST_1)
             .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(keyId, appKey)))
-            .forcePathStyleAccessEnabled(true)
+            .forcePathStyle(true)
             .build();
     }
 
