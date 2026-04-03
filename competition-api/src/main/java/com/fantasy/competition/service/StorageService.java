@@ -37,18 +37,20 @@ public class StorageService {
 
     public String upload(String path, MultipartFile file) throws Exception {
         if (s3 == null) throw new IllegalStateException("Storage not configured");
-
         String contentType = file.getContentType() != null ? file.getContentType() : "application/octet-stream";
-
         s3.putObject(
-            PutObjectRequest.builder()
-                .bucket(bucket)
-                .key(path)
-                .contentType(contentType)
-                .build(),
+            PutObjectRequest.builder().bucket(bucket).key(path).contentType(contentType).build(),
             RequestBody.fromBytes(file.getBytes())
         );
+        return cdnBase.endsWith("/") ? cdnBase + path : cdnBase + "/" + path;
+    }
 
+    public String uploadBytes(String path, byte[] data, String contentType) throws Exception {
+        if (s3 == null) throw new IllegalStateException("Storage not configured");
+        s3.putObject(
+            PutObjectRequest.builder().bucket(bucket).key(path).contentType(contentType).build(),
+            RequestBody.fromBytes(data)
+        );
         return cdnBase.endsWith("/") ? cdnBase + path : cdnBase + "/" + path;
     }
 }
