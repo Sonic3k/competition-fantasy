@@ -8,7 +8,7 @@ public class GenerateMatchDatesScript extends SqlImportScript {
     public GenerateMatchDatesScript(DataSource ds) { super(ds); }
     @Override public String getId() { return "generate-match-dates"; }
     @Override public String getName() { return "Generate Match Dates"; }
-    @Override public String getDescription() { return "Assigns realistic match dates. Same year seasons staggered: 1st=Jan-Jun, 2nd=Jul-Dec. Only fills NULL dates."; }
+    @Override public String getDescription() { return "S4=2003 full year, S5=Jan-Jun 2004, S6=Jul-Dec 2004, Wonder Empires=2004."; }
     @Override public String getIcon() { return "📅"; }
     @Override protected String getSql() {
         return """
@@ -18,6 +18,8 @@ public class GenerateMatchDatesScript extends SqlImportScript {
               v_start DATE; v_days_span INT; v_total_rounds INT;
               v_round_date DATE; v_match_date TIMESTAMP; v_match_idx INT;
             BEGIN
+              UPDATE matches SET match_date = NULL;
+
               FOR s IN
                 SELECT se.id, se.year, se.name,
                   ROW_NUMBER() OVER (PARTITION BY se.competition_id, se.year ORDER BY se.name) as yr_rank,
@@ -28,14 +30,14 @@ public class GenerateMatchDatesScript extends SqlImportScript {
                 IF v_total_rounds = 0 THEN CONTINUE; END IF;
 
                 IF s.yr_count = 1 THEN
-                  v_start := (s.year || '-08-16')::DATE;
-                  v_days_span := 270;
+                  v_start := (s.year || '-01-11')::DATE;
+                  v_days_span := 340;
                 ELSIF s.yr_rank = 1 THEN
-                  v_start := (s.year || '-01-10')::DATE;
-                  v_days_span := 150;
+                  v_start := (s.year || '-01-11')::DATE;
+                  v_days_span := 160;
                 ELSE
-                  v_start := (s.year || '-07-20')::DATE;
-                  v_days_span := 150;
+                  v_start := (s.year || '-07-12')::DATE;
+                  v_days_span := 160;
                 END IF;
 
                 FOR r IN SELECT DISTINCT round_number FROM rounds WHERE season_id = s.id ORDER BY round_number LOOP
@@ -45,7 +47,7 @@ public class GenerateMatchDatesScript extends SqlImportScript {
                     WHERE rd.season_id = s.id AND rd.round_number = r.round_number ORDER BY ma.id
                   LOOP
                     v_match_date := v_round_date + (v_match_idx * INTERVAL '2 hours') + INTERVAL '15 hours';
-                    UPDATE matches SET match_date = v_match_date WHERE id = m.id AND match_date IS NULL;
+                    UPDATE matches SET match_date = v_match_date WHERE id = m.id;
                     v_match_idx := v_match_idx + 1;
                   END LOOP;
                 END LOOP;
