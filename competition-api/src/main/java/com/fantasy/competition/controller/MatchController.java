@@ -24,9 +24,12 @@ public class MatchController {
     @GetMapping
     public List<MatchDto> list(@RequestParam(required = false) UUID roundId,
                                @RequestParam(required = false) UUID seasonId,
-                               @RequestParam(required = false) UUID stageGroupId) {
+                               @RequestParam(required = false) UUID stageGroupId,
+                               @RequestParam(required = false) UUID teamId,
+                               @RequestParam(required = false, defaultValue = "100") int limit) {
         if (roundId != null) return repo.findByRoundId(roundId).stream().map(MatchDto::from).toList();
         if (stageGroupId != null) return repo.findByStageGroupId(stageGroupId).stream().map(MatchDto::from).toList();
+        if (teamId != null) return repo.findRecentByTeamId(teamId).stream().limit(limit).map(MatchDto::from).toList();
         if (seasonId != null) return repo.findByRoundSeasonId(seasonId).stream().map(MatchDto::from).toList();
         return List.of();
     }

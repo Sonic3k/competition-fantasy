@@ -30,6 +30,14 @@ public class Team extends BaseEntity {
     private String awayText;
     private String logoUrl;
 
+    @Column(columnDefinition = "TEXT")
+    private String description;
+    private String bannerUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "banner_media_id")
+    private MediaFile bannerMedia;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "logo_media_id")
     private MediaFile logoMedia;

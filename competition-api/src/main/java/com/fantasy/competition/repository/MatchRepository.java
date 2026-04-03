@@ -13,4 +13,7 @@ public interface MatchRepository extends JpaRepository<Match, UUID> {
 
     @Query("SELECT m FROM Match m WHERE m.round.stageGroup.id = :stageGroupId ORDER BY m.round.roundNumber")
     List<Match> findByStageGroupId(UUID stageGroupId);
+
+    @Query("SELECT m FROM Match m WHERE (m.homeTeam.id = :teamId OR m.awayTeam.id = :teamId) AND m.status = 'COMPLETED' ORDER BY m.round.season.year DESC, m.round.roundNumber DESC")
+    List<Match> findRecentByTeamId(UUID teamId);
 }

@@ -97,7 +97,7 @@ function TeamsTab({ universeId, teams, nations, reload }) {
             <ImageUpload endpoint={`/upload/team/${t.id}`} currentUrl={t.logoUrl} onUploaded={reload} size={36} shape="square" />
             <TeamBadge team={t} />
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontWeight: 600, fontSize: 14 }}>{t.name}</div>
+              <div style={{ fontWeight: 600, fontSize: 14 }}><Link to={`/teams/${t.id}`} style={{ color: '#1a1a2e', textDecoration: 'none' }}>{t.name}</Link></div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 2 }}>
                 {t.nation ? (
                   <span style={{

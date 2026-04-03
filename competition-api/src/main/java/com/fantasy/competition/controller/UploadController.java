@@ -68,6 +68,21 @@ public class UploadController {
         }).orElse(ResponseEntity.notFound().build());
     }
 
+    @PostMapping("/team/{id}/banner")
+    public ResponseEntity<?> uploadTeamBanner(@PathVariable UUID id, @RequestParam("file") MultipartFile file) {
+        return teamRepo.findById(id).map(t -> {
+            try {
+                MediaFile mf = uploadAndSave(file, "competition-fantasy/teams/" + id + "/banner", MediaFile.SourceType.UPLOAD);
+                t.setBannerUrl(mf.getCdnUrl());
+                t.setBannerMedia(mf);
+                teamRepo.save(t);
+                return ResponseEntity.ok(MediaFileDto.from(mf));
+            } catch (Exception e) {
+                return ResponseEntity.internalServerError().body(e.getMessage());
+            }
+        }).orElse(ResponseEntity.notFound().build());
+    }
+
     private MediaFile uploadAndSave(MultipartFile file, String basePath, MediaFile.SourceType sourceType) throws Exception {
         String filename = file.getOriginalFilename() != null ? file.getOriginalFilename() : "file";
         String ext = filename.contains(".") ? filename.substring(filename.lastIndexOf('.') + 1).toLowerCase() : "png";

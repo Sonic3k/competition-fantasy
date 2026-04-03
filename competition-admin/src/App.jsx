@@ -3,6 +3,7 @@ import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import Universes from './pages/Universes'
 import UniverseDetail from './pages/UniverseDetail'
 import SeasonDetail from './pages/SeasonDetail'
+import TeamDetail from './pages/TeamDetail'
 import ScriptsManager from './pages/ScriptsManager'
 import MediaLibrary from './pages/MediaLibrary'
 import AIStudio from './pages/AIStudio'
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="/" element={<Universes />} />
           <Route path="/universes/:id" element={<UniverseDetail />} />
           <Route path="/seasons/:id" element={<SeasonDetail />} />
+          <Route path="/teams/:id" element={<TeamDetail />} />
           <Route path="/media" element={<MediaLibrary />} />
           <Route path="/ai" element={<AIStudio />} />
           <Route path="/scripts" element={<ScriptsManager />} />
