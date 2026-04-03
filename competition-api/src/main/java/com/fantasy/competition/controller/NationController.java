@@ -44,6 +44,11 @@ public class NationController {
             existing.setName(body.getName());
             existing.setFlagUrl(body.getFlagUrl());
             existing.setDescription(body.getDescription());
+            existing.setCode(body.getCode());
+            existing.setPrimaryColor(body.getPrimaryColor());
+            existing.setTextColor(body.getTextColor());
+            existing.setAwayColor(body.getAwayColor());
+            existing.setAwayTextColor(body.getAwayTextColor());
             return ResponseEntity.ok(NationDto.from(repo.save(existing)));
         }).orElse(ResponseEntity.notFound().build());
     }

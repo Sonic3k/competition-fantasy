@@ -121,12 +121,12 @@ function TeamsTab({ universeId, teams, nations, reload }) {
 }
 
 function NationsTab({ universeId, nations, reload }) {
-  const [form, setForm] = useState({ name: '', code: '', description: '', primaryColor: '#003399', textColor: '#ffffff' })
+  const [form, setForm] = useState({ name: '', code: '', description: '', primaryColor: '#003399', textColor: '#ffffff', awayColor: '#ffffff', awayTextColor: '#003399' })
 
   const create = async (e) => {
     e.preventDefault()
     await api.post(`/nations?universeId=${universeId}`, form)
-    setForm({ name: '', code: '', description: '', primaryColor: '#003399', textColor: '#ffffff' })
+    setForm({ name: '', code: '', description: '', primaryColor: '#003399', textColor: '#ffffff', awayColor: '#ffffff', awayTextColor: '#003399' })
     reload()
   }
 
@@ -136,8 +136,12 @@ function NationsTab({ universeId, nations, reload }) {
         <input placeholder="Nation name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} style={inputStyle} required />
         <input placeholder="ABC" value={form.code} onChange={e => setForm({ ...form, code: e.target.value.toUpperCase().slice(0, 3) })} style={{ ...inputStyle, width: 50, textAlign: 'center' }} maxLength={3} />
         <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <input type="color" value={form.primaryColor} onChange={e => setForm({ ...form, primaryColor: e.target.value })} title="BG" />
-          <input type="color" value={form.textColor} onChange={e => setForm({ ...form, textColor: e.target.value })} title="Text" />
+          <span style={{ fontSize: 11, color: '#999' }}>H</span>
+          <input type="color" value={form.primaryColor} onChange={e => setForm({ ...form, primaryColor: e.target.value })} title="Home BG" />
+          <input type="color" value={form.textColor} onChange={e => setForm({ ...form, textColor: e.target.value })} title="Home Text" />
+          <span style={{ fontSize: 11, color: '#999' }}>A</span>
+          <input type="color" value={form.awayColor} onChange={e => setForm({ ...form, awayColor: e.target.value })} title="Away BG" />
+          <input type="color" value={form.awayTextColor} onChange={e => setForm({ ...form, awayTextColor: e.target.value })} title="Away Text" />
         </div>
         <button type="submit" style={btnStyle}>Add Nation</button>
       </form>
@@ -149,6 +153,16 @@ function NationsTab({ universeId, nations, reload }) {
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
               width: 42, height: 28, borderRadius: 4, fontSize: 11, fontWeight: 800, letterSpacing: 0.5,
               background: n.primaryColor || '#666', color: n.textColor || '#fff',
+              border: '1px solid rgba(0,0,0,0.08)', flexShrink: 0,
+            }}>{n.code || '???'}</span>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontWeight: 600, fontSize: 14 }}>{n.name}</div>
+              {n.description && <div style={{ fontSize: 11, color: '#999' }}>{n.description}</div>}
+            </div>
+            <span style={{
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              width: 36, height: 22, borderRadius: 4, fontSize: 9, fontWeight: 800, letterSpacing: 0.3,
+              background: n.awayColor || '#f0f0f0', color: n.awayTextColor || '#333',
               border: '1px solid rgba(0,0,0,0.08)', flexShrink: 0,
             }}>{n.code || '???'}</span>
             <div style={{ flex: 1, minWidth: 0 }}>
