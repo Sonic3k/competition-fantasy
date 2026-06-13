@@ -43,6 +43,11 @@ public class Match extends BaseEntity {
     @Column(name = "tie_id")
     private java.util.UUID tieId;
 
+    // Optional match venue (neutral-venue tournaments). Independent of team home stadiums.
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "stadium_id")
+    private Stadium stadium;
+
     private java.time.Instant matchDate;
 
     @Enumerated(EnumType.STRING)

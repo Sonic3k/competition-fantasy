@@ -74,14 +74,16 @@ public class TournamentGeneratorService {
 
         int stageOrder = 1;
         int koRoundNo = 1;
-        List<SlotSpec> koFeed = null;          // qualifier specs from the last group phase
+        List<StageGroup> koGroups = null;      // groups of the last group phase (feed the first KO round)
+        Phase koGroupPhase = null;
         List<Match> prevCanonical = null;      // canonical match per pairing of the previous KO round
         boolean firstKoConsumed = false;
 
         for (Phase phase : fmt.phases) {
             if ("GROUP".equalsIgnoreCase(phase.type)) {
                 List<StageGroup> groups = buildGroupPhase(season, phase, stageOrder++, drawTeams);
-                koFeed = qualifierSpecs(groups, phase);   // last group phase wins as the KO feed
+                koGroups = groups;             // last group phase feeds the first knockout round
+                koGroupPhase = phase;
             } else if ("KNOCKOUT".equalsIgnoreCase(phase.type)) {
                 Stage stage = newStage(season, phase.name, Stage.StageType.KNOCKOUT, stageOrder++, nz(phase.legs, 1));
                 Round round = newRound(season, stage, null, koRoundNo++, phase.name);
@@ -89,11 +91,7 @@ public class TournamentGeneratorService {
                 // Determine this round's matchups.
                 List<SlotSpec[]> matchups = new ArrayList<>();
                 if (!firstKoConsumed) {
-                    List<SlotSpec> entrants = (koFeed != null) ? koFeed : new ArrayList<>();
-                    int size = entrants.size();
-                    for (int i = 0; i < size / 2; i++) {
-                        matchups.add(new SlotSpec[]{entrants.get(i), entrants.get(size - 1 - i)});
-                    }
+                    matchups = buildFirstRoundMatchups(koGroups, koGroupPhase);
                     firstKoConsumed = true;
                 } else {
                     List<Match> prev = (prevCanonical != null) ? prevCanonical : new ArrayList<>();
@@ -182,30 +180,73 @@ public class TournamentGeneratorService {
         }
     }
 
-    /** Top-N positions of each group + best thirds, as KO feed specs. */
-    private List<SlotSpec> qualifierSpecs(List<StageGroup> groups, Phase phase) {
-        int advance = nz(phase.advancePerGroup, 0);
-        int bestThirds = nz(phase.bestThirds, 0);
-        List<SlotSpec> feed = new ArrayList<>();
-        // winners first, then runners-up, then 3rd, ... (spreads seeds across the bracket)
-        for (int pos = 1; pos <= advance; pos++) {
-            for (int g = 0; g < groups.size(); g++) {
-                SlotSpec s = new SlotSpec();
-                s.kind = MatchSlot.SourceKind.GROUP_POSITION;
-                s.group = groups.get(g);
-                s.position = pos;
-                s.label = positionName(pos) + " " + groups.get(g).getName();
-                feed.add(s);
+    /**
+     * First knockout round matchups. For the common "top 2, no best thirds"
+     * format this is the standard bracket: 1A-2B, 1C-2D, 1E-2F, 1G-2H, then
+     * 1B-2A, 1D-2C, 1F-2E, 1H-2G — ordered so the bracket tree matches the
+     * real World Cup / Euro layout (QF1 = (1A-2B) vs (1C-2D), winners of A and
+     * B in opposite halves, etc.).
+     */
+    private List<SlotSpec[]> buildFirstRoundMatchups(List<StageGroup> groups, Phase phase) {
+        List<SlotSpec[]> matchups = new ArrayList<>();
+        if (groups == null || groups.isEmpty()) return matchups;
+        int n = groups.size();
+        int advance = nz(phase != null ? phase.advancePerGroup : null, 2);
+        int thirds = nz(phase != null ? phase.bestThirds : null, 0);
+
+        if (thirds == 0 && advance == 2 && n % 2 == 0) {
+            for (int k = 0; k + 1 < n; k += 2)
+                matchups.add(new SlotSpec[]{ pos(groups.get(k), 1), pos(groups.get(k + 1), 2) });
+            for (int k = 0; k + 1 < n; k += 2)
+                matchups.add(new SlotSpec[]{ pos(groups.get(k + 1), 1), pos(groups.get(k), 2) });
+            return matchups;
+        }
+
+        // General case incl. best thirds. The exact third-placed -> winner
+        // assignment officially uses the UEFA/FIFA combination table; here the
+        // first `thirds` group winners face the best thirds, the remaining
+        // winners face runners-up (offset to avoid same group), and leftover
+        // runners-up meet each other. Counts are exact; pairings are a sane
+        // default, not the official combination table.
+        List<SlotSpec> winners = new ArrayList<>();
+        List<SlotSpec> runners = new ArrayList<>();
+        for (int i = 0; i < n; i++) winners.add(pos(groups.get(i), 1));
+        for (int i = 0; i < n; i++) runners.add(pos(groups.get(i), 2));
+
+        boolean[] runnerUsed = new boolean[n];
+        int half = Math.max(1, n / 2);
+        for (int i = 0; i < n; i++) {
+            if (i < thirds) {
+                matchups.add(new SlotSpec[]{ winners.get(i), third(i + 1) });
+            } else {
+                int r = (i + half) % n, guard = 0;
+                while (runnerUsed[r] && guard < n) { r = (r + 1) % n; guard++; }
+                runnerUsed[r] = true;
+                matchups.add(new SlotSpec[]{ winners.get(i), runners.get(r) });
             }
         }
-        for (int k = 1; k <= bestThirds; k++) {
-            SlotSpec s = new SlotSpec();
-            s.kind = MatchSlot.SourceKind.BEST_THIRD;
-            s.bestThirdRank = k;
-            s.label = "Best 3rd #" + k;
-            feed.add(s);
-        }
-        return feed;
+        List<SlotSpec> leftover = new ArrayList<>();
+        for (int i = 0; i < n; i++) if (!runnerUsed[i]) leftover.add(runners.get(i));
+        for (int i = 0; i + 1 < leftover.size(); i += 2)
+            matchups.add(new SlotSpec[]{ leftover.get(i), leftover.get(i + 1) });
+        return matchups;
+    }
+
+    private SlotSpec pos(StageGroup g, int position) {
+        SlotSpec s = new SlotSpec();
+        s.kind = MatchSlot.SourceKind.GROUP_POSITION;
+        s.group = g;
+        s.position = position;
+        s.label = positionName(position) + " " + g.getName();
+        return s;
+    }
+
+    private SlotSpec third(int rank) {
+        SlotSpec s = new SlotSpec();
+        s.kind = MatchSlot.SourceKind.BEST_THIRD;
+        s.bestThirdRank = rank;
+        s.label = "Best 3rd #" + rank;
+        return s;
     }
 
     // ---- knockout tie creation ----

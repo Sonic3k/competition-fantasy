@@ -4,6 +4,7 @@ import com.fantasy.competition.dto.MatchDto;
 import com.fantasy.competition.entity.Match;
 import com.fantasy.competition.repository.MatchRepository;
 import com.fantasy.competition.repository.RoundRepository;
+import com.fantasy.competition.repository.StadiumRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ public class MatchController {
 
     private final MatchRepository repo;
     private final RoundRepository roundRepo;
+    private final StadiumRepository stadiumRepo;
 
     @GetMapping
     public List<MatchDto> list(@RequestParam(required = false) UUID roundId,
@@ -64,6 +66,21 @@ public class MatchController {
                 match.setDecidedBy(Match.DecidedBy.valueOf(decidedBy.toUpperCase()));
             }
             match.setStatus(Match.MatchStatus.COMPLETED);
+            return ResponseEntity.ok(MatchDto.from(repo.save(match)));
+        }).orElse(ResponseEntity.notFound().build());
+    }
+
+    /** Set/clear a match venue without touching its score or status. */
+    @PutMapping("/{id}/venue")
+    @Transactional
+    public ResponseEntity<MatchDto> setVenue(@PathVariable UUID id,
+                                             @RequestParam(required = false) UUID stadiumId) {
+        return repo.findById(id).map(match -> {
+            if (stadiumId == null) {
+                match.setStadium(null);
+            } else {
+                stadiumRepo.findById(stadiumId).ifPresent(match::setStadium);
+            }
             return ResponseEntity.ok(MatchDto.from(repo.save(match)));
         }).orElse(ResponseEntity.notFound().build());
     }

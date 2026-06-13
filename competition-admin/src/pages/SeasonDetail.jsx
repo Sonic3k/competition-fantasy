@@ -8,6 +8,7 @@ export default function SeasonDetail() {
   const [stages, setStages] = useState([])
   const [rounds, setRounds] = useState([])
   const [allTeams, setAllTeams] = useState([])
+  const [stadiums, setStadiums] = useState([])
   const [tab, setTab] = useState('matches')
 
   const load = async () => {
@@ -20,6 +21,8 @@ export default function SeasonDetail() {
     if (s.data.universeId) {
       const t = await api.get(`/teams?universeId=${s.data.universeId}`)
       setAllTeams(t.data)
+      const sd = await api.get(`/stadiums?universeId=${s.data.universeId}`).catch(() => ({ data: [] }))
+      setStadiums(sd.data)
     }
   }
   useEffect(() => { load() }, [id])
@@ -67,14 +70,14 @@ export default function SeasonDetail() {
         ))}
       </div>
 
-      {tab === 'matches' && <MatchesTab seasonId={id} stages={stages} rounds={rounds} seasonTeams={season.teams || []} reload={load} />}
+      {tab === 'matches' && <MatchesTab seasonId={id} stages={stages} rounds={rounds} seasonTeams={season.teams || []} stadiums={stadiums} reload={load} />}
       {tab === 'standings' && <StandingsTab seasonId={id} stages={stages} rounds={rounds} />}
       {tab === 'teams' && <TeamsTab seasonTeams={season.teams || []} allTeams={allTeams} onAdd={addTeamsToSeason} />}
     </div>
   )
 }
 
-function MatchesTab({ seasonId, stages, rounds, seasonTeams, reload }) {
+function MatchesTab({ seasonId, stages, rounds, seasonTeams, stadiums, reload }) {
   const [selectedStage, setSelectedStage] = useState(null)
   const [viewMode, setViewMode] = useState('round')
   const [matchesByKey, setMatchesByKey] = useState({})
@@ -161,7 +164,7 @@ function MatchesTab({ seasonId, stages, rounds, seasonTeams, reload }) {
                 {groupedMatches(matchesByKey[`md-${md.roundNumber}`] || []).map(([gName, matches]) => (
                   <div key={gName}>
                     {hasGroups && <div style={{ padding: '8px 14px 4px', fontSize: 12, fontWeight: 700, color: '#666', borderTop: '1px solid #eee' }}>{gName}</div>}
-                    <MatchList matches={matches} isKnockout={isKnockout} onSaved={() => loadMatchday(`md-${md.roundNumber}`, md.roundIds)} />
+                    <MatchList matches={matches} isKnockout={isKnockout} stadiums={stadiums} onSaved={() => loadMatchday(`md-${md.roundNumber}`, md.roundIds)} />
                   </div>
                 ))}
               </div>
@@ -176,7 +179,7 @@ function MatchesTab({ seasonId, stages, rounds, seasonTeams, reload }) {
               <span><strong>{g.name}</strong> <span style={{ color: '#999', fontSize: 12 }}>({g.teams?.length} teams)</span></span>
               <span>{expandedKey === `g-${g.id}` ? '▾' : '▸'}</span>
             </div>
-            {expandedKey === `g-${g.id}` && <MatchList matches={matchesByKey[`g-${g.id}`] || []} showRound isKnockout={isKnockout} onSaved={() => loadMatches(`g-${g.id}`, `stageGroupId=${g.id}`)} />}
+            {expandedKey === `g-${g.id}` && <MatchList matches={matchesByKey[`g-${g.id}`] || []} showRound isKnockout={isKnockout} stadiums={stadiums} onSaved={() => loadMatches(`g-${g.id}`, `stageGroupId=${g.id}`)} />}
           </div>
         ))
       )}
@@ -186,25 +189,34 @@ function MatchesTab({ seasonId, stages, rounds, seasonTeams, reload }) {
   )
 }
 
-function MatchList({ matches, showGroup, showRound, isKnockout, onSaved }) {
+function MatchList({ matches, showGroup, showRound, isKnockout, stadiums, onSaved }) {
   if (!matches.length) return <p style={{ padding: '12px 14px', color: '#999', fontSize: 13 }}>No matches</p>
   return (
     <div style={{ padding: '8px 14px', background: '#fafafa', borderRadius: '0 0 6px 6px' }}>
       {matches.map(m => (
-        <MatchRow key={m.id} m={m} showGroup={showGroup} showRound={showRound} isKnockout={isKnockout} onSaved={onSaved} />
+        <MatchRow key={m.id} m={m} showGroup={showGroup} showRound={showRound} isKnockout={isKnockout} stadiums={stadiums} onSaved={onSaved} />
       ))}
     </div>
   )
 }
 
-function MatchRow({ m, showGroup, showRound, isKnockout, onSaved }) {
+function MatchRow({ m, showGroup, showRound, isKnockout, stadiums = [], onSaved }) {
   const [edit, setEdit] = useState(false)
   const [hs, setHs] = useState(m.homeScore ?? '')
   const [as, setAs] = useState(m.awayScore ?? '')
   const [hp, setHp] = useState(m.homePenalties ?? '')
   const [ap, setAp] = useState(m.awayPenalties ?? '')
   const [dec, setDec] = useState(m.decidedBy && m.decidedBy !== 'AGGREGATE' ? m.decidedBy : 'REGULAR')
+  const [sta, setSta] = useState(m.stadiumId || '')
   const [busy, setBusy] = useState(false)
+
+  const setVenue = async (id) => {
+    setSta(id)
+    try {
+      await api.put(`/matches/${m.id}/venue${id ? `?stadiumId=${id}` : ''}`)
+      onSaved && onSaved()
+    } catch (e) { alert('Error: ' + (e.response?.data?.message || e.message)) }
+  }
 
   const canEdit = m.homeTeam && m.awayTeam // teams must be known to enter a score
   const homeName = m.homeTeam?.name || 'TBD'
@@ -254,6 +266,12 @@ function MatchRow({ m, showGroup, showRound, isKnockout, onSaved }) {
               )}
             </>
           )}
+          {stadiums.length > 0 && (
+            <select value={sta} onChange={e => setVenue(e.target.value)} style={decSelect} title="Venue / sân">
+              <option value="">— sân —</option>
+              {stadiums.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
+            </select>
+          )}
           <button onClick={save} disabled={busy} style={miniBtn}>✓</button>
           <button onClick={() => setEdit(false)} style={miniBtnGhost}>✕</button>
         </span>
@@ -277,6 +295,7 @@ function MatchRow({ m, showGroup, showRound, isKnockout, onSaved }) {
           {methodLabel[m.decidedBy] || m.decidedBy.toLowerCase()}
         </span>}
       {m.winnerTeamId && <span style={{ fontSize: 11, color: '#27ae60' }} title="Winner resolved">✓</span>}
+      {m.stadiumName && <span style={{ fontSize: 10, color: '#888' }} title="Venue">🏟 {m.stadiumName}</span>}
       {showGroup && m.stageGroupName && <span style={groupBadge}>{m.stageGroupName}</span>}
     </div>
   )
