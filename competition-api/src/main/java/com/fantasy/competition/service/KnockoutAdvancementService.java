@@ -165,8 +165,12 @@ public class KnockoutAdvancementService {
         if (m.getHomeTeam() == null || m.getAwayTeam() == null) return null;
         if (m.getHomeScore() == null || m.getAwayScore() == null) return null;
         int h = m.getHomeScore(), a = m.getAwayScore();
-        if (h > a) { m.setDecidedBy(Match.DecidedBy.REGULAR); return new Team[]{m.getHomeTeam(), m.getAwayTeam()}; }
-        if (a > h) { m.setDecidedBy(Match.DecidedBy.REGULAR); return new Team[]{m.getAwayTeam(), m.getHomeTeam()}; }
+        if (h != a) {
+            // Decisive score — keep a manually-set method (e.g. EXTRA_TIME); default to REGULAR.
+            if (m.getDecidedBy() == null) m.setDecidedBy(Match.DecidedBy.REGULAR);
+            return h > a ? new Team[]{m.getHomeTeam(), m.getAwayTeam()}
+                         : new Team[]{m.getAwayTeam(), m.getHomeTeam()};
+        }
         Integer hp = m.getHomePenalties(), ap = m.getAwayPenalties();
         if (hp != null && ap != null && !hp.equals(ap)) {
             m.setDecidedBy(Match.DecidedBy.PENALTIES);

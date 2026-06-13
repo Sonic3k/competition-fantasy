@@ -203,6 +203,7 @@ function MatchRow({ m, showGroup, showRound, isKnockout, onSaved }) {
   const [as, setAs] = useState(m.awayScore ?? '')
   const [hp, setHp] = useState(m.homePenalties ?? '')
   const [ap, setAp] = useState(m.awayPenalties ?? '')
+  const [dec, setDec] = useState(m.decidedBy && m.decidedBy !== 'AGGREGATE' ? m.decidedBy : 'REGULAR')
   const [busy, setBusy] = useState(false)
 
   const canEdit = m.homeTeam && m.awayTeam // teams must be known to enter a score
@@ -214,7 +215,10 @@ function MatchRow({ m, showGroup, showRound, isKnockout, onSaved }) {
     setBusy(true)
     try {
       let url = `/matches/${m.id}/score?homeScore=${hs}&awayScore=${as}`
-      if (isKnockout && hp !== '' && ap !== '') url += `&homePenalties=${hp}&awayPenalties=${ap}`
+      if (isKnockout) {
+        url += `&decidedBy=${dec}`
+        if (dec === 'PENALTIES' && hp !== '' && ap !== '') url += `&homePenalties=${hp}&awayPenalties=${ap}`
+      }
       await api.put(url)
       setEdit(false)
       onSaved && onSaved()
@@ -237,9 +241,17 @@ function MatchRow({ m, showGroup, showRound, isKnockout, onSaved }) {
           <input value={as} onChange={e => setAs(e.target.value)} style={scoreInput} inputMode="numeric" />
           {isKnockout && (
             <>
-              <span style={{ fontSize: 10, color: '#999' }}>pen</span>
-              <input value={hp} onChange={e => setHp(e.target.value)} style={penInput} placeholder="-" inputMode="numeric" />
-              <input value={ap} onChange={e => setAp(e.target.value)} style={penInput} placeholder="-" inputMode="numeric" />
+              <select value={dec} onChange={e => setDec(e.target.value)} style={decSelect} title="How the tie was decided">
+                <option value="REGULAR">90'</option>
+                <option value="EXTRA_TIME">a.e.t.</option>
+                <option value="PENALTIES">pens</option>
+              </select>
+              {dec === 'PENALTIES' && (
+                <>
+                  <input value={hp} onChange={e => setHp(e.target.value)} style={penInput} placeholder="-" inputMode="numeric" />
+                  <input value={ap} onChange={e => setAp(e.target.value)} style={penInput} placeholder="-" inputMode="numeric" />
+                </>
+              )}
             </>
           )}
           <button onClick={save} disabled={busy} style={miniBtn}>✓</button>
@@ -260,7 +272,11 @@ function MatchRow({ m, showGroup, showRound, isKnockout, onSaved }) {
         {m.awayTeam?.nation && <span style={{ color: '#999', fontSize: 11 }}> ({m.awayTeam.nation.name})</span>}
       </span>
       {m.leg && <span style={{ fontSize: 11, color: '#999' }}>Leg {m.leg}</span>}
-      {m.winnerTeamId && <span style={{ fontSize: 10, color: '#27ae60' }} title="Winner resolved">✓{m.decidedBy && m.decidedBy !== 'REGULAR' ? ' ' + m.decidedBy.toLowerCase().replace('_', ' ') : ''}</span>}
+      {m.decidedBy && m.decidedBy !== 'REGULAR' &&
+        <span style={{ fontSize: 10, color: '#e67e22', fontWeight: 600 }} title="How the tie was decided">
+          {methodLabel[m.decidedBy] || m.decidedBy.toLowerCase()}
+        </span>}
+      {m.winnerTeamId && <span style={{ fontSize: 11, color: '#27ae60' }} title="Winner resolved">✓</span>}
       {showGroup && m.stageGroupName && <span style={groupBadge}>{m.stageGroupName}</span>}
     </div>
   )
@@ -477,6 +493,8 @@ const expandHeader = { padding: '10px 14px', borderRadius: 6, cursor: 'pointer',
 const groupBadge = { display: 'inline-block', padding: '2px 8px', borderRadius: 4, fontSize: 10, fontWeight: 600, background: '#e8e8e8', color: '#666', marginLeft: 6 }
 const scoreInput = { width: 34, padding: '3px 4px', border: '1px solid #ddd', borderRadius: 4, fontSize: 13, textAlign: 'center' }
 const penInput = { width: 26, padding: '3px 2px', border: '1px solid #f0c0c0', borderRadius: 4, fontSize: 11, textAlign: 'center' }
+const decSelect = { padding: '2px 4px', border: '1px solid #ddd', borderRadius: 4, fontSize: 11 }
+const methodLabel = { EXTRA_TIME: 'a.e.t.', PENALTIES: 'pens', AGGREGATE: 'agg', WALKOVER: 'w/o' }
 const miniBtn = { padding: '2px 8px', background: '#27ae60', color: '#fff', border: 'none', borderRadius: 4, cursor: 'pointer', fontSize: 12 }
 const miniBtnGhost = { padding: '2px 8px', background: '#eee', color: '#666', border: 'none', borderRadius: 4, cursor: 'pointer', fontSize: 12 }
 const tableStyle = { width: '100%', borderCollapse: 'collapse', background: '#fff', borderRadius: 8 }
