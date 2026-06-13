@@ -51,10 +51,18 @@ public class MatchController {
     @Transactional
     public ResponseEntity<MatchDto> updateScore(@PathVariable UUID id,
                                                 @RequestParam int homeScore,
-                                                @RequestParam int awayScore) {
+                                                @RequestParam int awayScore,
+                                                @RequestParam(required = false) Integer homePenalties,
+                                                @RequestParam(required = false) Integer awayPenalties,
+                                                @RequestParam(required = false) String decidedBy) {
         return repo.findById(id).map(match -> {
             match.setHomeScore(homeScore);
             match.setAwayScore(awayScore);
+            match.setHomePenalties(homePenalties);
+            match.setAwayPenalties(awayPenalties);
+            if (decidedBy != null && !decidedBy.isBlank()) {
+                match.setDecidedBy(Match.DecidedBy.valueOf(decidedBy.toUpperCase()));
+            }
             match.setStatus(Match.MatchStatus.COMPLETED);
             return ResponseEntity.ok(MatchDto.from(repo.save(match)));
         }).orElse(ResponseEntity.notFound().build());
