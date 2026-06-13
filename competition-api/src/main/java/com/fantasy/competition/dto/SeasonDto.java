@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public record SeasonDto(UUID id, String name, Integer year, String status,
                         CompetitionDto competition, UUID universeId, List<TeamDto> teams,
-                        List<StageDto> stages) {
+                        List<StageDto> stages, String formatPresetKey, String formatConfig) {
     public static SeasonDto from(Season e) {
         UUID uniId = null;
         if (e.getCompetition() != null && e.getCompetition().getUniverse() != null) {
@@ -17,6 +17,7 @@ public record SeasonDto(UUID id, String name, Integer year, String status,
             e.getCompetition() != null ? CompetitionDto.from(e.getCompetition()) : null,
             uniId,
             e.getTeams() != null ? e.getTeams().stream().map(TeamDto::from).toList() : List.of(),
-            List.of()); // stages loaded separately via /api/stages
+            List.of(), // stages loaded separately via /api/stages
+            e.getFormatPresetKey(), e.getFormatConfig());
     }
 }

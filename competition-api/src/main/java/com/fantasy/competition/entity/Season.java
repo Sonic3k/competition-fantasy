@@ -22,6 +22,13 @@ public class Season extends BaseEntity {
     @Column(nullable = false)
     private SeasonStatus status = SeasonStatus.PLANNED;
 
+    // Tournament format: preset key (e.g. WORLD_CUP_2026) and optional resolved JSON override.
+    @Column(name = "format_preset_key")
+    private String formatPresetKey;
+
+    @Column(name = "format_config", columnDefinition = "TEXT")
+    private String formatConfig;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "competition_id", nullable = false)
     private Competition competition;

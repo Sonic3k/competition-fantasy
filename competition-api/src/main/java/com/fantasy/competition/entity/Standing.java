@@ -31,6 +31,10 @@ public class Standing extends BaseEntity {
 
     private String groupName;
 
+    // Final computed position within the group (set by StandingService).
+    @Column(name = "group_rank")
+    private Integer rank;
+
     @Column(nullable = false) private int played = 0;
     @Column(nullable = false) private int won = 0;
     @Column(nullable = false) private int drawn = 0;
