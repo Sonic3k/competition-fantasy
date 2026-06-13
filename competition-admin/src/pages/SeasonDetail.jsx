@@ -32,6 +32,7 @@ export default function SeasonDetail() {
   if (!season) return <p>Loading...</p>
   const compName = season.competition?.name || ''
   const univId = season.universeId
+  const hasKnockout = stages.some(s => s.type === 'KNOCKOUT')
 
   return (
     <div>
@@ -44,7 +45,17 @@ export default function SeasonDetail() {
           window.location.href = `/universes/${univId}`
         }} style={dangerBtn}>Delete Season</button>
       </div>
-      <p style={{ color: '#666', marginTop: 0 }}>Status: <strong>{season.status}</strong> | Teams: {season.teams?.length || 0} | Stages: {stages.length}</p>
+      <p style={{ color: '#666', marginTop: 0 }}>
+        Status: <strong>{season.status}</strong> | Teams: {season.teams?.length || 0} | Stages: {stages.length}
+        {season.formatPresetKey && <> | Format: <strong>{season.formatPresetKey}</strong></>}
+      </p>
+
+      {stages.length === 0 && <GeneratePanel seasonId={id} seasonTeams={season.teams || []} onDone={load} />}
+      {hasKnockout && (
+        <div style={{ marginBottom: 16 }}>
+          <AdvanceButton seasonId={id} status={season.status} onDone={load} />
+        </div>
+      )}
 
       <div style={{ display: 'flex', gap: 0, marginBottom: 20, borderBottom: '2px solid #eee' }}>
         {['matches', 'standings', 'teams'].map(t => (
@@ -71,6 +82,7 @@ function MatchesTab({ seasonId, stages, rounds, seasonTeams, reload }) {
 
   const activeStage = stages.find(s => s.id === selectedStage) || stages[0]
   const hasGroups = activeStage?.groups?.length > 1
+  const isKnockout = activeStage?.type === 'KNOCKOUT'
   const stageRounds = rounds.filter(r => r.stageId === activeStage?.id)
   const groups = activeStage?.groups || []
 
@@ -149,7 +161,7 @@ function MatchesTab({ seasonId, stages, rounds, seasonTeams, reload }) {
                 {groupedMatches(matchesByKey[`md-${md.roundNumber}`] || []).map(([gName, matches]) => (
                   <div key={gName}>
                     {hasGroups && <div style={{ padding: '8px 14px 4px', fontSize: 12, fontWeight: 700, color: '#666', borderTop: '1px solid #eee' }}>{gName}</div>}
-                    <MatchList matches={matches} />
+                    <MatchList matches={matches} isKnockout={isKnockout} onSaved={() => loadMatchday(`md-${md.roundNumber}`, md.roundIds)} />
                   </div>
                 ))}
               </div>
@@ -164,7 +176,7 @@ function MatchesTab({ seasonId, stages, rounds, seasonTeams, reload }) {
               <span><strong>{g.name}</strong> <span style={{ color: '#999', fontSize: 12 }}>({g.teams?.length} teams)</span></span>
               <span>{expandedKey === `g-${g.id}` ? '▾' : '▸'}</span>
             </div>
-            {expandedKey === `g-${g.id}` && <MatchList matches={matchesByKey[`g-${g.id}`] || []} showRound />}
+            {expandedKey === `g-${g.id}` && <MatchList matches={matchesByKey[`g-${g.id}`] || []} showRound isKnockout={isKnockout} onSaved={() => loadMatches(`g-${g.id}`, `stageGroupId=${g.id}`)} />}
           </div>
         ))
       )}
@@ -174,29 +186,151 @@ function MatchesTab({ seasonId, stages, rounds, seasonTeams, reload }) {
   )
 }
 
-function MatchList({ matches, showGroup, showRound }) {
+function MatchList({ matches, showGroup, showRound, isKnockout, onSaved }) {
   if (!matches.length) return <p style={{ padding: '12px 14px', color: '#999', fontSize: 13 }}>No matches</p>
   return (
     <div style={{ padding: '8px 14px', background: '#fafafa', borderRadius: '0 0 6px 6px' }}>
       {matches.map(m => (
-        <div key={m.id} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 0', borderBottom: '1px solid #eee', fontSize: 14 }}>
-          {showRound && <span style={{ color: '#999', fontSize: 11, minWidth: 30 }}>R{m.roundNumber}</span>}
-          <span style={{ flex: 1, textAlign: 'right', fontWeight: 500 }}>
-            {m.homeTeam?.name}
-            {m.homeTeam?.nation && <span style={{ color: '#999', fontSize: 11 }}> ({m.homeTeam.nation.name})</span>}
-          </span>
-          <span style={{ fontWeight: 700, minWidth: 40, textAlign: 'center', color: m.status === 'COMPLETED' ? '#333' : '#ccc' }}>
-            {m.homeScore ?? '?'} - {m.awayScore ?? '?'}
-          </span>
-          <span style={{ flex: 1, fontWeight: 500 }}>
-            {m.awayTeam?.name}
-            {m.awayTeam?.nation && <span style={{ color: '#999', fontSize: 11 }}> ({m.awayTeam.nation.name})</span>}
-          </span>
-          {m.leg && <span style={{ fontSize: 11, color: '#999' }}>Leg {m.leg}</span>}
-          {showGroup && m.stageGroupName && <span style={groupBadge}>{m.stageGroupName}</span>}
-        </div>
+        <MatchRow key={m.id} m={m} showGroup={showGroup} showRound={showRound} isKnockout={isKnockout} onSaved={onSaved} />
       ))}
     </div>
+  )
+}
+
+function MatchRow({ m, showGroup, showRound, isKnockout, onSaved }) {
+  const [edit, setEdit] = useState(false)
+  const [hs, setHs] = useState(m.homeScore ?? '')
+  const [as, setAs] = useState(m.awayScore ?? '')
+  const [hp, setHp] = useState(m.homePenalties ?? '')
+  const [ap, setAp] = useState(m.awayPenalties ?? '')
+  const [busy, setBusy] = useState(false)
+
+  const canEdit = m.homeTeam && m.awayTeam // teams must be known to enter a score
+  const homeName = m.homeTeam?.name || 'TBD'
+  const awayName = m.awayTeam?.name || 'TBD'
+
+  const save = async () => {
+    if (hs === '' || as === '') { alert('Enter both scores'); return }
+    setBusy(true)
+    try {
+      let url = `/matches/${m.id}/score?homeScore=${hs}&awayScore=${as}`
+      if (isKnockout && hp !== '' && ap !== '') url += `&homePenalties=${hp}&awayPenalties=${ap}`
+      await api.put(url)
+      setEdit(false)
+      onSaved && onSaved()
+    } catch (e) { alert('Error: ' + (e.response?.data?.message || e.message)) }
+    setBusy(false)
+  }
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 0', borderBottom: '1px solid #eee', fontSize: 14 }}>
+      {showRound && <span style={{ color: '#999', fontSize: 11, minWidth: 30 }}>R{m.roundNumber}</span>}
+      <span style={{ flex: 1, textAlign: 'right', fontWeight: 500, color: m.homeTeam ? '#333' : '#bbb' }}>
+        {homeName}
+        {m.homeTeam?.nation && <span style={{ color: '#999', fontSize: 11 }}> ({m.homeTeam.nation.name})</span>}
+      </span>
+
+      {edit ? (
+        <span style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
+          <input value={hs} onChange={e => setHs(e.target.value)} style={scoreInput} inputMode="numeric" />
+          <span>-</span>
+          <input value={as} onChange={e => setAs(e.target.value)} style={scoreInput} inputMode="numeric" />
+          {isKnockout && (
+            <>
+              <span style={{ fontSize: 10, color: '#999' }}>pen</span>
+              <input value={hp} onChange={e => setHp(e.target.value)} style={penInput} placeholder="-" inputMode="numeric" />
+              <input value={ap} onChange={e => setAp(e.target.value)} style={penInput} placeholder="-" inputMode="numeric" />
+            </>
+          )}
+          <button onClick={save} disabled={busy} style={miniBtn}>✓</button>
+          <button onClick={() => setEdit(false)} style={miniBtnGhost}>✕</button>
+        </span>
+      ) : (
+        <span onClick={() => canEdit && setEdit(true)}
+          title={canEdit ? 'Click to edit score' : 'Teams not decided yet'}
+          style={{ fontWeight: 700, minWidth: 54, textAlign: 'center', cursor: canEdit ? 'pointer' : 'default', color: m.status === 'COMPLETED' ? '#333' : '#ccc' }}>
+          {m.homeScore ?? '?'} - {m.awayScore ?? '?'}
+          {isKnockout && m.homePenalties != null && m.awayPenalties != null &&
+            <span style={{ fontSize: 10, color: '#e94560' }}> ({m.homePenalties}-{m.awayPenalties}p)</span>}
+        </span>
+      )}
+
+      <span style={{ flex: 1, fontWeight: 500, color: m.awayTeam ? '#333' : '#bbb' }}>
+        {awayName}
+        {m.awayTeam?.nation && <span style={{ color: '#999', fontSize: 11 }}> ({m.awayTeam.nation.name})</span>}
+      </span>
+      {m.leg && <span style={{ fontSize: 11, color: '#999' }}>Leg {m.leg}</span>}
+      {m.winnerTeamId && <span style={{ fontSize: 10, color: '#27ae60' }} title="Winner resolved">✓{m.decidedBy && m.decidedBy !== 'REGULAR' ? ' ' + m.decidedBy.toLowerCase().replace('_', ' ') : ''}</span>}
+      {showGroup && m.stageGroupName && <span style={groupBadge}>{m.stageGroupName}</span>}
+    </div>
+  )
+}
+
+function GeneratePanel({ seasonId, seasonTeams, onDone }) {
+  const [formats, setFormats] = useState([])
+  const [preset, setPreset] = useState('')
+  const [busy, setBusy] = useState(false)
+
+  useEffect(() => { api.get('/formats').then(r => setFormats(r.data)).catch(() => {}) }, [])
+
+  const sel = formats.find(f => f.presetKey === preset)
+  const generate = async () => {
+    if (!preset) return
+    setBusy(true)
+    try {
+      const teamIds = (seasonTeams || []).map(t => t.id)
+      await api.post(`/seasons/${seasonId}/generate?presetKey=${preset}`, teamIds)
+      onDone()
+    } catch (e) { alert('Error: ' + (e.response?.data?.error || e.message)) }
+    setBusy(false)
+  }
+
+  return (
+    <div style={{ background: '#fff8f8', border: '1px solid #f0d0d0', borderRadius: 8, padding: 14, marginBottom: 16 }}>
+      <strong>Set up tournament structure</strong>
+      <p style={{ color: '#888', fontSize: 13, margin: '4px 0 10px' }}>
+        No stages yet. Pick a format to generate groups, fixtures and the knockout bracket.
+        {' '}{seasonTeams?.length || 0} team(s) will be drawn into the groups (in order).
+      </p>
+      <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+        <select value={preset} onChange={e => setPreset(e.target.value)} style={inputStyle}>
+          <option value="">Choose format…</option>
+          {formats.map(f => <option key={f.presetKey} value={f.presetKey}>{f.displayName || f.presetKey}</option>)}
+        </select>
+        <button onClick={generate} disabled={!preset || busy} style={btnStyle}>{busy ? 'Generating…' : 'Generate'}</button>
+      </div>
+      {sel && (
+        <p style={{ color: '#999', fontSize: 12, marginBottom: 0, marginTop: 8 }}>
+          {sel.phases?.map(p => p.type === 'GROUP'
+            ? `${p.numGroups}×${p.teamsPerGroup || '?'} groups`
+            : p.name).join(' → ')}
+          {sel.thirdPlacePlayoff ? ' + 3rd place' : ''}
+        </p>
+      )}
+    </div>
+  )
+}
+
+function AdvanceButton({ seasonId, status, onDone }) {
+  const [busy, setBusy] = useState(false)
+  const disabled = status === 'COMPLETED' || busy
+
+  const advance = async () => {
+    setBusy(true)
+    try {
+      const r = await api.post(`/seasons/${seasonId}/advance`)
+      alert(r.data?.message || 'Advanced.')
+      onDone()
+    } catch (e) { alert('Error: ' + (e.response?.data?.message || e.message)) }
+    setBusy(false)
+  }
+
+  return (
+    <button onClick={advance} disabled={disabled}
+      title={status === 'COMPLETED' ? 'Season is completed — advance disabled' : 'Recompute standings, fill knockout slots, propagate winners'}
+      style={{ ...btnStyle, background: disabled ? '#bbb' : '#1a1a2e' }}>
+      {busy ? 'Advancing…' : '⟳ Advance knockout'}
+    </button>
   )
 }
 
@@ -281,7 +415,7 @@ function StandingsTab({ seasonId, stages, rounds }) {
             })}
             {recorded.length === 0 && calculated.length > 0 && calculated.map((c, i) => (
               <tr key={c.id}>
-                <td style={tdStyle}>{i + 1}</td>
+                <td style={tdStyle}>{c.rank ?? i + 1}</td>
                 <td style={{ ...tdStyle, fontWeight: 600 }}>{c.team?.name}</td>
                 <td style={tdStyle}>{c.played}</td><td style={tdStyle}>{c.won}</td><td style={tdStyle}>{c.drawn}</td><td style={tdStyle}>{c.lost}</td>
                 <td style={tdStyle}>{c.goalsFor}</td><td style={tdStyle}>{c.goalsAgainst}</td><td style={tdStyle}>{c.goalDifference}</td>
@@ -341,6 +475,10 @@ const dangerBtn = { background: '#e74c3c', color: '#fff', border: 'none', border
 const chipBtn = { padding: '8px 14px', border: '1px solid #eee', borderRadius: 20, cursor: 'pointer', fontSize: 13, fontWeight: 500 }
 const expandHeader = { padding: '10px 14px', borderRadius: 6, cursor: 'pointer', display: 'flex', justifyContent: 'space-between', border: '1px solid #eee', marginBottom: 2 }
 const groupBadge = { display: 'inline-block', padding: '2px 8px', borderRadius: 4, fontSize: 10, fontWeight: 600, background: '#e8e8e8', color: '#666', marginLeft: 6 }
+const scoreInput = { width: 34, padding: '3px 4px', border: '1px solid #ddd', borderRadius: 4, fontSize: 13, textAlign: 'center' }
+const penInput = { width: 26, padding: '3px 2px', border: '1px solid #f0c0c0', borderRadius: 4, fontSize: 11, textAlign: 'center' }
+const miniBtn = { padding: '2px 8px', background: '#27ae60', color: '#fff', border: 'none', borderRadius: 4, cursor: 'pointer', fontSize: 12 }
+const miniBtnGhost = { padding: '2px 8px', background: '#eee', color: '#666', border: 'none', borderRadius: 4, cursor: 'pointer', fontSize: 12 }
 const tableStyle = { width: '100%', borderCollapse: 'collapse', background: '#fff', borderRadius: 8 }
 const thStyle = { textAlign: 'left', padding: '8px 10px', background: '#f8f8f8', fontSize: 12, color: '#666', fontWeight: 600 }
 const cTh = { ...thStyle, background: '#e8f4e8' }
