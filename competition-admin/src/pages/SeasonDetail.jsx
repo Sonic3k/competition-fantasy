@@ -243,7 +243,7 @@ function MatchRow({ m, showGroup, showRound, isKnockout, stadiums = [], onSaved 
       {showRound && <span style={{ color: '#999', fontSize: 11, minWidth: 30 }}>R{m.roundNumber}</span>}
       <span style={{ flex: 1, textAlign: 'right', fontWeight: 500, color: m.homeTeam ? '#333' : '#bbb' }}>
         {homeName}
-        {m.homeTeam?.nation && <span style={{ color: '#999', fontSize: 11 }}> ({m.homeTeam.nation.name})</span>}
+        {m.homeTeam?.type === 'CLUB' && m.homeTeam?.nation && <span style={{ color: '#999', fontSize: 11 }}> ({m.homeTeam.nation.name})</span>}
       </span>
 
       {edit ? (
@@ -287,7 +287,7 @@ function MatchRow({ m, showGroup, showRound, isKnockout, stadiums = [], onSaved 
 
       <span style={{ flex: 1, fontWeight: 500, color: m.awayTeam ? '#333' : '#bbb' }}>
         {awayName}
-        {m.awayTeam?.nation && <span style={{ color: '#999', fontSize: 11 }}> ({m.awayTeam.nation.name})</span>}
+        {m.awayTeam?.type === 'CLUB' && m.awayTeam?.nation && <span style={{ color: '#999', fontSize: 11 }}> ({m.awayTeam.nation.name})</span>}
       </span>
       {m.leg && <span style={{ fontSize: 11, color: '#999' }}>Leg {m.leg}</span>}
       {m.decidedBy && m.decidedBy !== 'REGULAR' &&
@@ -479,7 +479,7 @@ function TeamsTab({ seasonTeams, allTeams, onAdd }) {
           <span key={t.id} style={{ padding: '6px 12px', background: '#fff', borderRadius: 6, border: '1px solid #eee', fontSize: 13 }}>
             <span style={{ display: 'inline-block', width: 10, height: 10, borderRadius: '50%', background: t.primaryColor || '#ccc', marginRight: 6 }} />
             {t.name}
-            {t.nation && <span style={{ color: '#999', fontSize: 11 }}> ({t.nation.name})</span>}
+            {t.type === 'CLUB' && t.nation && <span style={{ color: '#999', fontSize: 11 }}> ({t.nation.name})</span>}
           </span>
         ))}
       </div>
