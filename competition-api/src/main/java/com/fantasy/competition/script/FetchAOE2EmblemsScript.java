@@ -74,6 +74,9 @@ public class FetchAOE2EmblemsScript implements ImportScript {
         put("Georgians", "Georgians_emblem_AoE2.png");
         put("Jurchens", "Jurchens_emblem_AoE2.png");
         put("Khitans", "Khitans_emblem_AoE2.png");
+        put("Mapuche", "Mapuche_emblem_AoE2.png");
+        put("Muisca", "Muisca_emblem_AoE2.png");
+        put("Tupi", "Tupi_emblem_AoE2.png");
     }};
 
     public FetchAOE2EmblemsScript(NationRepository nationRepo, MediaFileRepository mediaRepo, StorageService storage) {
@@ -84,7 +87,7 @@ public class FetchAOE2EmblemsScript implements ImportScript {
 
     @Override public String getId() { return "fetch-aoe2-emblems"; }
     @Override public String getName() { return "Fetch AOE2 Civilization Emblems"; }
-    @Override public String getDescription() { return "Downloads 47 civilization emblems from AOE2 Wiki → uploads to B2 → links as nation flags."; }
+    @Override public String getDescription() { return "Downloads 50 civilization emblems from AOE2 Wiki → uploads to B2 → links as nation flags."; }
     @Override public String getIcon() { return "🏛️"; }
 
     @Override
