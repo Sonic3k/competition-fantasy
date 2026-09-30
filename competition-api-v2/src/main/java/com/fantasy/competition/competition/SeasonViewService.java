@@ -83,7 +83,11 @@ public class SeasonViewService {
         Universe universe = universes.findById(competition.getUniverseId()).orElseThrow(() -> new NotFoundException("Universe", competition.getUniverseId()));
 
         Set<Long> teamIds = new LinkedHashSet<>();
-        for (SeasonTeam st : seasonTeams.findBySeasonIdOrderBySeedAscIdAsc(seasonId)) teamIds.add(st.getTeamId());
+        List<SeasonView.SeasonTeamView> seasonTeamViews = new ArrayList<>();
+        for (SeasonTeam st : seasonTeams.findBySeasonIdOrderBySeedAscIdAsc(seasonId)) {
+            teamIds.add(st.getTeamId());
+            seasonTeamViews.add(new SeasonView.SeasonTeamView(st.getTeamId(), st.getSeed(), st.getPot()));
+        }
 
         List<Stage> stageList = stages.findBySeasonIdOrderByOrdinalAsc(seasonId);
         List<Long> stageIds = stageList.stream().map(Stage::getId).toList();
@@ -168,7 +172,7 @@ public class SeasonViewService {
                 new SeasonView.CompetitionRef(competition.getId(), competition.getKey(), competition.getName(), competition.getSport(),
                         competition.getTeamLevel().name(), competition.getTier()),
                 new SeasonView.UniverseRef(universe.getId(), universe.getKey(), universe.getName(), universe.getType().name(), universe.isUsesNations()),
-                season.getFormat(), teamRefs, stageViews, honourViews);
+                season.getFormat(), teamRefs, seasonTeamViews, stageViews, honourViews);
     }
 
     /** Team references with that year's profile, nation and current logo/flag; reused by other read services. */

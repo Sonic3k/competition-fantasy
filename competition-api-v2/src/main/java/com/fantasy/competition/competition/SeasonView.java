@@ -13,6 +13,7 @@ public record SeasonView(
         UniverseRef universe,
         @JsonRawValue String format,
         Map<Long, TeamRef> teams,
+        List<SeasonTeamView> seasonTeams,
         List<StageView> stages,
         List<HonourView> honours
 ) {
@@ -22,6 +23,8 @@ public record SeasonView(
     public record CompetitionRef(long id, String key, String name, String sport, String teamLevel, Integer tier) {}
 
     public record UniverseRef(long id, String key, String name, String type, boolean usesNations) {}
+
+    public record SeasonTeamView(long teamId, Integer seed, Integer pot) {}
 
     public record TeamRef(long id, String key, String name, String shortName, String code, String type,
                           Long nationId, String nationCode, String nationName,

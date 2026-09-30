@@ -136,8 +136,9 @@ public class CompetitionService {
 
     private CompetitionDto dto(Competition c, String logoUrl) {
         int count = seasons.findByCompetitionIdOrderByYearDescNameDesc(c.getId()).size();
-        return new CompetitionDto(c.getId(), c.getUniverseId(), c.getKey(), c.getName(), c.getSport(), c.getTeamLevel().name(),
-                c.getTier(), c.getDescription(), count, logoUrl);
+        Universe u = universes.findById(c.getUniverseId()).orElse(null);
+        return new CompetitionDto(c.getId(), c.getUniverseId(), u == null ? null : u.getKey(), u == null ? null : u.getName(), c.getKey(),
+                c.getName(), c.getSport(), c.getTeamLevel().name(), c.getTier(), c.getDescription(), count, logoUrl);
     }
 
     public Competition competition(Long id) {

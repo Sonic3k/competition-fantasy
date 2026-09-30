@@ -11,8 +11,8 @@ import java.util.List;
 public final class CompetitionDtos {
     private CompetitionDtos() {}
 
-    public record CompetitionDto(Long id, Long universeId, String key, String name, String sport, String teamLevel, Integer tier,
-                                 String description, int seasonCount, String logoUrl) {}
+    public record CompetitionDto(Long id, Long universeId, String universeKey, String universeName, String key, String name, String sport,
+                                 String teamLevel, Integer tier, String description, int seasonCount, String logoUrl) {}
 
     public record CompetitionRequest(@NotBlank String key, @NotBlank String name, String sport, TeamType teamLevel, Integer tier, String description) {}
 

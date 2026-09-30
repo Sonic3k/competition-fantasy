@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-condensed: "IBM Plex Sans Condensed", "IBM Plex Sans", ui-sans-serif, sans-serif;
+
+  /* squared-paper palette */
+  --color-paper: #f3f5f8;
+  --color-sheet: #ffffff;
+  --color-rule: #d5dbe3;
+  --color-rule-soft: #e8ecf1;
+  --color-ink: #1b2a41;
+  --color-ink-2: #4a5a70;
+  --color-ink-3: #7f8ca0;
+  --color-biro: #2456d6;
+  --color-biro-soft: #e6ecfb;
+  --color-marker: #f3d66b;
+  --color-marker-soft: #fbf1c7;
+  --color-qualify: #3b8f5e;
+  --color-playoff: #d08a1a;
+  --color-relegation: #c2453b;
+  --color-relegation-soft: #fbe9e7;
+  --color-qualify-soft: #e5f3ea;
+  --color-playoff-soft: #fdf1dc;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum" 1, "cv11" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-paper);
+  background-image:
+    linear-gradient(to right, rgba(27, 42, 65, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(27, 42, 65, 0.045) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-biro);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* tabular data */
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* a ruled table: hairlines between rows like notebook lines */
+.ruled tbody tr + tr td { border-top: 1px solid var(--color-rule-soft); }
+.ruled th { border-bottom: 1px solid var(--color-rule); }
+
+/* sheet: the white page on the squared background */
+.sheet {
+  background: var(--color-sheet);
+  border: 1px solid var(--color-rule);
+  box-shadow: 0 1px 0 rgba(27, 42, 65, 0.06);
+}
+
+dialog::backdrop { background: rgba(27, 42, 65, 0.45); }
