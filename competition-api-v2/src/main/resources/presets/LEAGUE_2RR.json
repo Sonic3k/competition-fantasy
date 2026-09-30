@@ -1,0 +1,14 @@
+{
+  "key": "LEAGUE_2RR",
+  "name": "League, double round-robin",
+  "family": "SINGLE_LEAGUE",
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "REG", "name": "League", "type": "ROUND_ROBIN",
+      "groups": 1, "meetings": 2, "venue": "HOME_AWAY",
+      "tiebreakers": ["GD", "GF", "H2H"],
+      "zones": [ { "positions": [1], "kind": "CHAMPION", "label": "Champion" } ]
+    }
+  ]
+}

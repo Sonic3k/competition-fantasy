@@ -1,0 +1,15 @@
+{
+  "key": "RELEGATION_PLAYOFF_2LEG",
+  "name": "Promotion/relegation play-off between tiers, two legs",
+  "family": "PROMOTION_RELEGATION_PLAYOFF",
+  "teams": 2,
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "PO", "name": "Play-off", "type": "KNOCKOUT",
+      "legs": 2, "decider": ["AGGREGATE", "AWAY_GOALS", "EXTRA_TIME", "PENALTIES"],
+      "rounds": [ { "key": "PO", "name": "Play-off", "legs": 2 } ],
+      "entry": { "from": "SEASON_TEAMS", "count": 2 }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "KNOCKOUT_2LEG",
+  "name": "Knockout, two-legged ties (European Cup 1955–1991)",
+  "family": "KNOCKOUT_TWO_LEGS",
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "KO", "name": "Knockout", "type": "KNOCKOUT",
+      "legs": 2, "decider": ["AGGREGATE", "AWAY_GOALS", "EXTRA_TIME", "PENALTIES"],
+      "rounds": [
+        { "key": "R32", "name": "First round", "legs": 2 },
+        { "key": "R16", "name": "Second round", "legs": 2 },
+        { "key": "QF", "name": "Quarter-finals", "legs": 2 },
+        { "key": "SF", "name": "Semi-finals", "legs": 2 },
+        { "key": "F", "name": "Final", "legs": 1 }
+      ],
+      "entry": { "from": "SEASON_TEAMS" }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "key": "SUPER_CUP",
+  "name": "Single match (super cup, one-off final)",
+  "family": "SINGLE_MATCH",
+  "teams": 2,
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "F", "name": "Final", "type": "SINGLE_MATCH",
+      "legs": 1, "decider": ["EXTRA_TIME", "PENALTIES"],
+      "rounds": [ { "key": "F", "name": "Final" } ],
+      "entry": { "from": "SEASON_TEAMS", "count": 2 }
+    }
+  ]
+}

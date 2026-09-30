@@ -1,0 +1,32 @@
+{
+  "key": "UCL_2024_LEAGUE_PHASE",
+  "name": "Champions League, league phase then knockout play-offs (2024–)",
+  "family": "LEAGUE_PHASE_KNOCKOUT",
+  "teams": 36,
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "LP", "name": "League phase", "type": "LEAGUE_PHASE",
+      "matchesPerTeam": 8, "pots": 4,
+      "tiebreakers": ["GD", "GF", "AWAY_GOALS", "WINS", "FAIR_PLAY", "RANKING"],
+      "zones": [
+        { "positions": [1, 2, 3, 4, 5, 6, 7, 8], "kind": "QUALIFY", "label": "Round of 16" },
+        { "positions": [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24], "kind": "PLAYOFF", "label": "Knockout play-offs" },
+        { "positions": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36], "kind": "OTHER", "label": "Eliminated" }
+      ],
+      "entry": { "from": "SEASON_TEAMS", "constraints": ["SAME_NATION"] }
+    },
+    {
+      "key": "KO", "name": "Knockout phase", "type": "KNOCKOUT",
+      "legs": 2, "decider": ["AGGREGATE", "EXTRA_TIME", "PENALTIES"],
+      "rounds": [
+        { "key": "KPO", "name": "Knockout play-offs", "legs": 2 },
+        { "key": "R16", "name": "Round of 16", "legs": 2 },
+        { "key": "QF", "name": "Quarter-finals", "legs": 2 },
+        { "key": "SF", "name": "Semi-finals", "legs": 2 },
+        { "key": "F", "name": "Final", "legs": 1 }
+      ],
+      "entry": { "from": "LP", "positions": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24], "bracket": "UEFA_LEAGUE_PHASE_36" }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "key": "LEAGUE_SPLIT_TOP_BOTTOM",
+  "name": "League with mid-season split (Scottish Premiership)",
+  "family": "LEAGUE_SPLIT",
+  "teams": 12,
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "REG", "name": "Regular season", "type": "ROUND_ROBIN",
+      "groups": 1, "meetings": 3, "venue": "HOME_AWAY",
+      "tiebreakers": ["GD", "GF", "H2H"],
+      "zones": [ { "positions": [1, 2, 3, 4, 5, 6], "kind": "QUALIFY", "label": "Top six" }, { "positions": [7, 8, 9, 10, 11, 12], "kind": "OTHER", "label": "Bottom six" } ]
+    },
+    {
+      "key": "TOP", "name": "Top six", "type": "ROUND_ROBIN",
+      "groups": 1, "teamsPerGroup": 6, "meetings": 1, "venue": "HOME_AWAY",
+      "tiebreakers": ["GD", "GF", "H2H"],
+      "zones": [ { "positions": [1], "kind": "CHAMPION", "label": "Champion" } ],
+      "entry": { "from": "REG", "positions": [1, 2, 3, 4, 5, 6] },
+      "carryOver": { "from": "REG", "points": "FULL" }
+    },
+    {
+      "key": "BOTTOM", "name": "Bottom six", "type": "ROUND_ROBIN",
+      "groups": 1, "teamsPerGroup": 6, "meetings": 1, "venue": "HOME_AWAY",
+      "tiebreakers": ["GD", "GF", "H2H"],
+      "zones": [ { "positions": [6], "kind": "RELEGATION", "label": "Relegated" }, { "positions": [5], "kind": "RELEGATION_PLAYOFF", "label": "Relegation play-off" } ],
+      "entry": { "from": "REG", "positions": [7, 8, 9, 10, 11, 12] },
+      "carryOver": { "from": "REG", "points": "FULL" }
+    }
+  ]
+}

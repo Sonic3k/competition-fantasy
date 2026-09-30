@@ -1,0 +1,21 @@
+{
+  "key": "FA_CUP",
+  "name": "Knockout, single match with replays (FA Cup)",
+  "family": "KNOCKOUT_REPLAYS",
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "KO", "name": "Knockout", "type": "KNOCKOUT",
+      "legs": 1, "replays": 1, "decider": ["REPLAY", "EXTRA_TIME", "PENALTIES"],
+      "rounds": [
+        { "key": "R3", "name": "Third round" },
+        { "key": "R4", "name": "Fourth round" },
+        { "key": "R5", "name": "Fifth round" },
+        { "key": "QF", "name": "Quarter-finals" },
+        { "key": "SF", "name": "Semi-finals" },
+        { "key": "F", "name": "Final" }
+      ],
+      "entry": { "from": "SEASON_TEAMS" }
+    }
+  ]
+}

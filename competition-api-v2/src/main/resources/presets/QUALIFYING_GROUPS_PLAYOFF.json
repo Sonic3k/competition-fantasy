@@ -1,0 +1,20 @@
+{
+  "key": "QUALIFYING_GROUPS_PLAYOFF",
+  "name": "Qualifying groups with play-offs (World Cup / Euro qualifiers)",
+  "family": "QUALIFIERS",
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "QG", "name": "Qualifying groups", "type": "ROUND_ROBIN",
+      "groups": 10, "meetings": 2, "venue": "HOME_AWAY",
+      "tiebreakers": ["GD", "GF", "H2H", "AWAY_GOALS", "FAIR_PLAY", "LOTS"],
+      "zones": [ { "positions": [1], "kind": "QUALIFY", "label": "Qualified" }, { "positions": [2], "kind": "PLAYOFF", "label": "Play-offs" } ]
+    },
+    {
+      "key": "PO", "name": "Play-offs", "type": "KNOCKOUT",
+      "legs": 1, "decider": ["EXTRA_TIME", "PENALTIES"],
+      "rounds": [ { "key": "SF", "name": "Play-off semi-finals" }, { "key": "F", "name": "Play-off finals" } ],
+      "entry": { "from": "QG", "positions": [2] }
+    }
+  ]
+}

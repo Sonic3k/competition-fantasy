@@ -1,0 +1,22 @@
+{
+  "key": "WORLD_CUP_1950_FINAL_GROUP",
+  "name": "World Cup 1950, final group decides the title",
+  "family": "GROUPS_FINAL_GROUP",
+  "teams": 16,
+  "points": { "win": 2, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "GS", "name": "Group stage", "type": "ROUND_ROBIN",
+      "groups": 4, "meetings": 1, "venue": "NEUTRAL",
+      "tiebreakers": ["GOAL_AVERAGE", "LOTS"],
+      "zones": [ { "positions": [1], "kind": "QUALIFY", "label": "Final group" } ]
+    },
+    {
+      "key": "FG", "name": "Final group", "type": "ROUND_ROBIN",
+      "groups": 1, "teamsPerGroup": 4, "meetings": 1, "venue": "NEUTRAL",
+      "tiebreakers": ["GOAL_AVERAGE", "LOTS"],
+      "zones": [ { "positions": [1], "kind": "CHAMPION", "label": "World champion" } ],
+      "entry": { "from": "GS", "positions": [1] }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "key": "UCL_1999_2003",
+  "name": "Champions League, two group stages (1999–2003)",
+  "family": "TWO_GROUP_STAGES",
+  "teams": 32,
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "GS1", "name": "First group stage", "type": "ROUND_ROBIN",
+      "groups": 8, "teamsPerGroup": 4, "meetings": 2, "venue": "HOME_AWAY",
+      "tiebreakers": ["H2H", "H2H_AWAY_GOALS", "GD", "GF", "AWAY_GOALS", "RANKING"],
+      "zones": [ { "positions": [1, 2], "kind": "QUALIFY", "label": "Second group stage" }, { "positions": [3], "kind": "OTHER", "label": "UEFA Cup third round" } ],
+      "entry": { "from": "SEASON_TEAMS", "constraints": ["SAME_NATION"] }
+    },
+    {
+      "key": "GS2", "name": "Second group stage", "type": "ROUND_ROBIN",
+      "groups": 4, "teamsPerGroup": 4, "meetings": 2, "venue": "HOME_AWAY",
+      "tiebreakers": ["H2H", "H2H_AWAY_GOALS", "GD", "GF", "AWAY_GOALS", "RANKING"],
+      "zones": [ { "positions": [1, 2], "kind": "QUALIFY", "label": "Quarter-finals" } ],
+      "entry": { "from": "GS1", "positions": [1, 2], "constraints": ["SAME_GROUP", "SAME_NATION"] }
+    },
+    {
+      "key": "KO", "name": "Knockout stage", "type": "KNOCKOUT",
+      "legs": 2, "decider": ["AGGREGATE", "AWAY_GOALS", "EXTRA_TIME", "PENALTIES"],
+      "rounds": [ { "key": "QF", "name": "Quarter-finals", "legs": 2 }, { "key": "SF", "name": "Semi-finals", "legs": 2 }, { "key": "F", "name": "Final", "legs": 1 } ],
+      "entry": { "from": "GS2", "positions": [1, 2], "bracket": "UEFA_GROUPS_4_TO_QF" }
+    }
+  ]
+}

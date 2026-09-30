@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: competition-api-v2
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:competition_v2}}
+    username: ${SPRING_DATASOURCE_USERNAME:${PGUSER:postgres}}
+    password: ${SPRING_DATASOURCE_PASSWORD:${PGPASSWORD:postgres}}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 12MB
+
+server:
+  port: ${PORT:8080}
+  error:
+    include-message: always
+
+app:
+  admin:
+    username: ${ADMIN_USERNAME:admin}
+    # plain text, or a BCrypt hash starting with $2
+    password: ${ADMIN_PASSWORD:admin}
+  jwt:
+    secret: ${JWT_SECRET:dev-only-secret-change-me-in-railway-env-32-bytes-min}
+    ttl-hours: ${JWT_TTL_HOURS:72}
+  cors:
+    origins: ${CORS_ORIGINS:*}
+  storage:
+    endpoint: ${B2_ENDPOINT:https://s3.us-east-005.backblazeb2.com}
+    region: ${B2_REGION:us-east-005}
+    bucket: ${B2_BUCKET:sonic-hub}
+    key-id: ${B2_KEY_ID:}
+    app-key: ${B2_APP_KEY:}
+    prefix: ${STORAGE_PREFIX:competition-fantasy/v2}
+    cdn-base-url: ${CDN_BASE:https://sonic-hub.b-cdn.net}
+  imports:
+    dir: ${IMPORT_DIR:imports}

@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://competition-fantasy/imports/v1.json",
+  "title": "Competition Fantasy import document v1",
+  "description": "One document = one universe. Every entity has a stable key; re-running a file upserts by key. A season is replaced as a whole on re-import. Team references accept the team key, its exact name, or any alias.",
+  "type": "object",
+  "required": ["schemaVersion", "universe"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "universe": {
+      "type": "object", "required": ["key"], "additionalProperties": false,
+      "properties": {
+        "key": { "$ref": "#/$defs/key" },
+        "name": { "type": "string" },
+        "description": { "type": ["string", "null"] },
+        "type": { "enum": ["FICTIONAL", "REAL"] },
+        "usesNations": { "type": "boolean" }
+      }
+    },
+    "nations": { "type": "array", "items": { "$ref": "#/$defs/nation" } },
+    "stadiums": { "type": "array", "items": { "$ref": "#/$defs/stadium" } },
+    "teams": { "type": "array", "items": { "$ref": "#/$defs/team" } },
+    "teamProfiles": { "type": "array", "items": { "$ref": "#/$defs/teamProfile" } },
+    "kits": { "type": "array", "items": { "$ref": "#/$defs/kit" } },
+    "competitions": { "type": "array", "items": { "$ref": "#/$defs/competition" } },
+    "seasons": { "type": "array", "items": { "$ref": "#/$defs/season" } }
+  },
+  "$defs": {
+    "key": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$", "maxLength": 64, "description": "Stable slug, lower-case, dashes" },
+    "teamRef": { "type": "string", "description": "Team key, exact name, or alias" },
+    "date": { "type": "string", "format": "date", "description": "ISO date, e.g. 2005-03-14" },
+    "colors": {
+      "type": "object", "additionalProperties": true,
+      "description": "Nation: {primary, secondary, text}. Team profile: {home:{bg,text}, away:{bg,text}}. Hex strings."
+    },
+    "nation": {
+      "type": "object", "required": ["key", "name", "code"], "additionalProperties": false,
+      "properties": {
+        "key": { "$ref": "#/$defs/key" }, "name": { "type": "string" },
+        "code": { "type": "string", "minLength": 2, "maxLength": 3 },
+        "colors": { "$ref": "#/$defs/colors" }, "description": { "type": ["string", "null"] }
+      }
+    },
+    "stadium": {
+      "type": "object", "required": ["key", "name"], "additionalProperties": false,
+      "properties": {
+        "key": { "$ref": "#/$defs/key" }, "name": { "type": "string" }, "city": { "type": ["string", "null"] },
+        "capacity": { "type": ["integer", "null"] }, "inspiredBy": { "type": ["string", "null"] }, "description": { "type": ["string", "null"] }
+      }
+    },
+    "team": {
+      "type": "object", "required": ["key", "name"], "additionalProperties": false,
+      "properties": {
+        "key": { "$ref": "#/$defs/key" }, "name": { "type": "string" }, "shortName": { "type": ["string", "null"] },
+        "code": { "type": ["string", "null"], "maxLength": 4 }, "type": { "enum": ["CLUB", "NATIONAL"] },
+        "nation": { "type": ["string", "null"], "description": "Nation key, code or name" },
+        "aliases": { "type": "array", "items": { "type": "string" } },
+        "homeStadium": { "type": ["string", "null"], "description": "Stadium key" },
+        "description": { "type": ["string", "null"] }, "foundedYear": { "type": ["integer", "null"] }, "dissolvedYear": { "type": ["integer", "null"] }
+      }
+    },
+    "teamProfile": {
+      "type": "object", "required": ["team", "year"], "additionalProperties": false,
+      "properties": {
+        "team": { "$ref": "#/$defs/teamRef" }, "year": { "type": "integer" }, "displayName": { "type": ["string", "null"] },
+        "sponsor": { "type": ["string", "null"] }, "colors": { "$ref": "#/$defs/colors" }, "notes": { "type": ["string", "null"] }
+      }
+    },
+    "kit": {
+      "type": "object", "required": ["team", "year", "kind"], "additionalProperties": false,
+      "properties": {
+        "team": { "$ref": "#/$defs/teamRef" }, "year": { "type": "integer" }, "kind": { "enum": ["HOME", "AWAY", "THIRD"] },
+        "shirt": { "type": ["string", "null"] }, "shorts": { "type": ["string", "null"] }, "socks": { "type": ["string", "null"] }, "sponsor": { "type": ["string", "null"] }
+      }
+    },
+    "competition": {
+      "type": "object", "required": ["key", "name"], "additionalProperties": false,
+      "properties": {
+        "key": { "$ref": "#/$defs/key" }, "name": { "type": "string" }, "sport": { "type": "string", "default": "FOOTBALL" },
+        "teamLevel": { "enum": ["CLUB", "NATIONAL"] }, "tier": { "type": ["integer", "null"] }, "description": { "type": ["string", "null"] }
+      }
+    },
+    "season": {
+      "type": "object", "required": ["competition", "key", "name"], "additionalProperties": false,
+      "properties": {
+        "competition": { "type": "string", "description": "Competition key" },
+        "key": { "$ref": "#/$defs/key" }, "name": { "type": "string" }, "year": { "type": ["integer", "null"] },
+        "startDate": { "$ref": "#/$defs/date" }, "endDate": { "$ref": "#/$defs/date" },
+        "status": { "enum": ["PLANNED", "ONGOING", "COMPLETED"] },
+        "preset": { "type": ["string", "null"], "description": "Format preset key, e.g. WORLD_CUP_32, LEAGUE_2RR" },
+        "format": { "type": ["object", "null"], "description": "Full format definition; overrides preset when present" },
+        "notes": { "type": ["string", "null"] },
+        "teams": { "type": "array", "items": { "type": "object", "required": ["team"], "additionalProperties": false,
+          "properties": { "team": { "$ref": "#/$defs/teamRef" }, "seed": { "type": ["integer", "null"] }, "pot": { "type": ["integer", "null"] } } } },
+        "stages": { "type": "array", "items": { "$ref": "#/$defs/stage" } },
+        "honours": { "type": "array", "items": { "type": "object", "required": ["team", "kind"], "additionalProperties": false,
+          "properties": { "team": { "$ref": "#/$defs/teamRef" }, "kind": { "enum": ["CHAMPION", "RUNNER_UP", "THIRD", "FOURTH", "PROMOTED", "RELEGATED"] } } } }
+      }
+    },
+    "stage": {
+      "type": "object", "required": ["key"], "additionalProperties": false,
+      "description": "Stage key should match a stage in the season's format so its config (tie-breaks, zones, legs) is picked up.",
+      "properties": {
+        "key": { "type": "string" }, "name": { "type": ["string", "null"] },
+        "type": { "enum": ["ROUND_ROBIN", "KNOCKOUT", "LEAGUE_PHASE", "SINGLE_MATCH"] },
+        "config": { "type": ["object", "null"], "description": "StageDef override; defaults to the format's stage with the same key" },
+        "groups": { "type": "array", "items": { "$ref": "#/$defs/group" }, "description": "ROUND_ROBIN / LEAGUE_PHASE stages" },
+        "rounds": { "type": "array", "items": { "$ref": "#/$defs/koRound" }, "description": "KNOCKOUT / SINGLE_MATCH stages" }
+      }
+    },
+    "group": {
+      "type": "object", "required": ["key"], "additionalProperties": false,
+      "properties": {
+        "key": { "type": "string" }, "name": { "type": ["string", "null"] },
+        "teams": { "type": "array", "items": { "$ref": "#/$defs/teamRef" } },
+        "rounds": { "type": "array", "items": { "type": "object", "additionalProperties": false,
+          "properties": {
+            "number": { "type": ["integer", "null"] }, "name": { "type": ["string", "null"] },
+            "startDate": { "$ref": "#/$defs/date" }, "endDate": { "$ref": "#/$defs/date" },
+            "matches": { "type": "array", "items": { "$ref": "#/$defs/match" } } } } },
+        "recordedStandings": { "type": "array", "items": { "type": "object", "required": ["rows"], "additionalProperties": false,
+          "properties": {
+            "afterRound": { "type": ["integer", "null"], "description": "Checkpoint round; omit or 0 for the final table" },
+            "rows": { "type": "array", "items": { "type": "object", "required": ["team"], "additionalProperties": false,
+              "properties": {
+                "team": { "$ref": "#/$defs/teamRef" }, "position": { "type": ["integer", "null"] }, "played": { "type": ["integer", "null"] },
+                "won": { "type": ["integer", "null"] }, "drawn": { "type": ["integer", "null"] }, "lost": { "type": ["integer", "null"] },
+                "goalsFor": { "type": ["integer", "null"] }, "goalsAgainst": { "type": ["integer", "null"] }, "points": { "type": ["integer", "null"] },
+                "zone": { "type": ["string", "null"] } } } } } } }
+      }
+    },
+    "koRound": {
+      "type": "object", "required": ["key"], "additionalProperties": false,
+      "properties": {
+        "key": { "type": "string" }, "name": { "type": ["string", "null"] }, "legs": { "type": ["integer", "null"], "minimum": 1, "maximum": 2 },
+        "placement": { "type": "boolean", "description": "true for third-place style matches" },
+        "ties": { "type": "array", "items": { "$ref": "#/$defs/tie" } }
+      }
+    },
+    "tie": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "position": { "type": ["integer", "null"] },
+        "home": { "$ref": "#/$defs/teamRef" }, "away": { "$ref": "#/$defs/teamRef" },
+        "homeSource": { "type": ["object", "null"], "description": "Where the slot comes from, e.g. {\"type\":\"GROUP_POSITION\",\"stage\":\"GS\",\"group\":\"A\",\"position\":1}" },
+        "awaySource": { "type": ["object", "null"] },
+        "matches": { "type": "array", "items": { "$ref": "#/$defs/match" } },
+        "winner": { "type": ["string", "null"], "description": "Team ref; computed from the matches when omitted" },
+        "resolution": { "enum": ["AGGREGATE", "AWAY_GOALS", "EXTRA_TIME", "PENALTIES", "REPLAY", "WALKOVER", "LOTS", null] }
+      }
+    },
+    "match": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "leg": { "type": ["integer", "null"] },
+        "home": { "$ref": "#/$defs/teamRef" }, "away": { "$ref": "#/$defs/teamRef" },
+        "homeScore": { "type": ["integer", "null"] }, "awayScore": { "type": ["integer", "null"] },
+        "homeEt": { "type": ["integer", "null"], "description": "Score after extra time (total), when played" },
+        "awayEt": { "type": ["integer", "null"] },
+        "homePens": { "type": ["integer", "null"] }, "awayPens": { "type": ["integer", "null"] },
+        "walkover": { "enum": ["HOME", "AWAY", null] },
+        "date": { "$ref": "#/$defs/date" }, "stadium": { "type": ["string", "null"], "description": "Stadium key" },
+        "status": { "enum": ["SCHEDULED", "PLAYED", "UNKNOWN", "CANCELLED", null], "description": "Defaults to PLAYED when both scores exist" },
+        "source": { "enum": ["NOTEBOOK", "MANUAL", "IMPORT", "SIMULATED", null] },
+        "sourceRef": { "type": ["string", "null"], "description": "e.g. notebook page or image name" },
+        "confidence": { "enum": ["DRAFT", "VERIFIED", null] },
+        "notes": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

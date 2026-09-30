@@ -1,0 +1,21 @@
+{
+  "key": "EURO_24",
+  "name": "European Championship, 24 teams with best thirds (2016–2024)",
+  "family": "GROUPS_BEST_THIRDS",
+  "teams": 24,
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "GS", "name": "Group stage", "type": "ROUND_ROBIN",
+      "groups": 6, "teamsPerGroup": 4, "meetings": 1, "venue": "NEUTRAL",
+      "tiebreakers": ["H2H", "GD", "GF", "WINS", "FAIR_PLAY", "RANKING", "LOTS"],
+      "zones": [ { "positions": [1, 2], "kind": "QUALIFY", "label": "Round of 16" }, { "positions": [3], "kind": "PLAYOFF", "label": "Best four thirds" } ]
+    },
+    {
+      "key": "KO", "name": "Knockout stage", "type": "KNOCKOUT",
+      "legs": 1, "decider": ["EXTRA_TIME", "PENALTIES"], "thirdPlace": false,
+      "rounds": [ { "key": "R16", "name": "Round of 16" }, { "key": "QF", "name": "Quarter-finals" }, { "key": "SF", "name": "Semi-finals" }, { "key": "F", "name": "Final" } ],
+      "entry": { "from": "GS", "positions": [1, 2], "bestPlaced": { "position": 3, "count": 4 }, "bracket": "UEFA_24" }
+    }
+  ]
+}

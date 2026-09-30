@@ -1,0 +1,22 @@
+{
+  "key": "UCL_2003_2024",
+  "name": "Champions League, home-and-away groups then two-legged knockout (2003–2024)",
+  "family": "HOME_AWAY_GROUPS_KNOCKOUT",
+  "teams": 32,
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "GS", "name": "Group stage", "type": "ROUND_ROBIN",
+      "groups": 8, "teamsPerGroup": 4, "meetings": 2, "venue": "HOME_AWAY",
+      "tiebreakers": ["H2H", "H2H_AWAY_GOALS", "GD", "GF", "AWAY_GOALS", "WINS", "FAIR_PLAY", "RANKING"],
+      "zones": [ { "positions": [1, 2], "kind": "QUALIFY", "label": "Round of 16" }, { "positions": [3], "kind": "OTHER", "label": "Europa League knockout" } ],
+      "entry": { "from": "SEASON_TEAMS", "constraints": ["SAME_NATION"] }
+    },
+    {
+      "key": "KO", "name": "Knockout stage", "type": "KNOCKOUT",
+      "legs": 2, "decider": ["AGGREGATE", "AWAY_GOALS", "EXTRA_TIME", "PENALTIES"],
+      "rounds": [ { "key": "R16", "name": "Round of 16", "legs": 2 }, { "key": "QF", "name": "Quarter-finals", "legs": 2 }, { "key": "SF", "name": "Semi-finals", "legs": 2 }, { "key": "F", "name": "Final", "legs": 1 } ],
+      "entry": { "from": "GS", "positions": [1, 2], "bracket": "UEFA_GROUPS_8_TO_R16", "constraints": ["SAME_GROUP", "SAME_NATION"] }
+    }
+  ]
+}

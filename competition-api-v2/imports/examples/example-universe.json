@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "universe": { "key": "example", "name": "Example Universe", "type": "FICTIONAL", "usesNations": true,
+    "description": "Small sample covering a league, a group-and-knockout cup, recorded tables and honours." },
+  "nations": [
+    { "key": "north", "name": "North", "code": "NOR", "colors": { "primary": "#1d4ed8", "secondary": "#ffffff", "text": "#ffffff" } },
+    { "key": "south", "name": "South", "code": "SOU", "colors": { "primary": "#b91c1c", "secondary": "#ffffff", "text": "#ffffff" } }
+  ],
+  "stadiums": [
+    { "key": "harbour-park", "name": "Harbour Park", "city": "Northport", "capacity": 42000, "inspiredBy": "Anfield" }
+  ],
+  "teams": [
+    { "key": "north", "name": "North", "type": "NATIONAL", "nation": "north", "code": "NOR" },
+    { "key": "south", "name": "South", "type": "NATIONAL", "nation": "south", "code": "SOU" },
+    { "key": "harbour-city", "name": "Harbour City", "shortName": "Harbour", "code": "HAR", "type": "CLUB", "nation": "north", "aliases": ["Harbour"], "homeStadium": "harbour-park" },
+    { "key": "ridge-united", "name": "Ridge United", "shortName": "Ridge", "code": "RID", "type": "CLUB", "nation": "north" },
+    { "key": "valley-fc", "name": "Valley FC", "shortName": "Valley", "code": "VAL", "type": "CLUB", "nation": "south" },
+    { "key": "coast-athletic", "name": "Coast Athletic", "shortName": "Coast", "code": "COA", "type": "CLUB", "nation": "south", "aliases": ["Coast Ath"] }
+  ],
+  "teamProfiles": [
+    { "team": "harbour-city", "year": 2004, "sponsor": "Tidal", "colors": { "home": { "bg": "#1d4ed8", "text": "#ffffff" }, "away": { "bg": "#ffffff", "text": "#1d4ed8" } } }
+  ],
+  "kits": [
+    { "team": "harbour-city", "year": 2004, "kind": "HOME", "shirt": "#1d4ed8", "shorts": "#ffffff", "socks": "#1d4ed8", "sponsor": "Tidal" }
+  ],
+  "competitions": [
+    { "key": "northern-league", "name": "Northern League", "teamLevel": "CLUB", "tier": 1 },
+    { "key": "continental-cup", "name": "Continental Cup", "teamLevel": "CLUB" }
+  ],
+  "seasons": [
+    {
+      "competition": "northern-league", "key": "2004", "name": "Season 2004", "year": 2004,
+      "startDate": "2004-01-10", "endDate": "2004-06-20", "status": "COMPLETED", "preset": "LEAGUE_1RR",
+      "teams": [ { "team": "harbour-city", "seed": 1 }, { "team": "ridge-united", "seed": 2 }, { "team": "valley-fc", "seed": 3 }, { "team": "coast-athletic", "seed": 4 } ],
+      "stages": [
+        { "key": "REG", "type": "ROUND_ROBIN",
+          "groups": [ { "key": "T", "name": "Table", "teams": ["harbour-city", "ridge-united", "valley-fc", "coast-athletic"],
+            "rounds": [
+              { "number": 1, "matches": [
+                { "home": "harbour-city", "away": "ridge-united", "homeScore": 2, "awayScore": 1, "date": "2004-01-10", "source": "NOTEBOOK", "sourceRef": "IMG_0001" },
+                { "home": "valley-fc", "away": "Coast Ath", "homeScore": 0, "awayScore": 0, "date": "2004-01-10", "source": "NOTEBOOK", "sourceRef": "IMG_0001" } ] },
+              { "number": 2, "matches": [
+                { "home": "ridge-united", "away": "valley-fc", "homeScore": 1, "awayScore": 3, "date": "2004-01-17" },
+                { "home": "coast-athletic", "away": "Harbour", "homeScore": 1, "awayScore": 1, "date": "2004-01-17" } ] },
+              { "number": 3, "matches": [
+                { "home": "harbour-city", "away": "valley-fc", "homeScore": 1, "awayScore": 0, "date": "2004-01-24" },
+                { "home": "ridge-united", "away": "coast-athletic", "homeScore": null, "awayScore": null, "status": "UNKNOWN", "notes": "Page missing from the notebook" } ] }
+            ],
+            "recordedStandings": [
+              { "afterRound": 3, "rows": [
+                { "team": "harbour-city", "position": 1, "played": 3, "won": 2, "drawn": 1, "lost": 0, "goalsFor": 4, "goalsAgainst": 2, "points": 7 },
+                { "team": "valley-fc", "position": 2, "played": 3, "won": 1, "drawn": 1, "lost": 1, "goalsFor": 3, "goalsAgainst": 2, "points": 4 },
+                { "team": "coast-athletic", "position": 3, "played": 2, "won": 0, "drawn": 2, "lost": 0, "goalsFor": 1, "goalsAgainst": 1, "points": 2 },
+                { "team": "ridge-united", "position": 4, "played": 2, "won": 0, "drawn": 0, "lost": 2, "goalsFor": 2, "goalsAgainst": 5, "points": 0 } ] }
+            ]
+          } ] }
+      ],
+      "honours": [ { "team": "harbour-city", "kind": "CHAMPION" } ]
+    },
+    {
+      "competition": "continental-cup", "key": "2004", "name": "Continental Cup 2004", "year": 2004, "status": "COMPLETED",
+      "format": {
+        "key": "MINI_CUP", "name": "Mini cup", "family": "GROUPS_TOP_TWO", "points": { "win": 3, "draw": 1, "loss": 0 },
+        "stages": [
+          { "key": "GS", "name": "Group stage", "type": "ROUND_ROBIN", "groups": 1, "teamsPerGroup": 4, "meetings": 1,
+            "tiebreakers": ["H2H", "GD", "GF"], "zones": [ { "positions": [1, 2], "kind": "QUALIFY", "label": "Final" } ] },
+          { "key": "KO", "name": "Final", "type": "KNOCKOUT", "legs": 2, "decider": ["AGGREGATE", "AWAY_GOALS", "EXTRA_TIME", "PENALTIES"],
+            "rounds": [ { "key": "F", "name": "Final", "legs": 2 } ], "entry": { "from": "GS", "positions": [1, 2] } }
+        ]
+      },
+      "teams": [ { "team": "harbour-city" }, { "team": "ridge-united" }, { "team": "valley-fc" }, { "team": "coast-athletic" } ],
+      "stages": [
+        { "key": "GS", "groups": [ { "key": "A", "name": "Group A", "teams": ["harbour-city", "ridge-united", "valley-fc", "coast-athletic"],
+          "rounds": [
+            { "number": 1, "matches": [ { "home": "harbour-city", "away": "coast-athletic", "homeScore": 3, "awayScore": 0 }, { "home": "ridge-united", "away": "valley-fc", "homeScore": 2, "awayScore": 2 } ] },
+            { "number": 2, "matches": [ { "home": "valley-fc", "away": "harbour-city", "homeScore": 1, "awayScore": 1 }, { "home": "coast-athletic", "away": "ridge-united", "homeScore": 0, "awayScore": 1 } ] },
+            { "number": 3, "matches": [ { "home": "harbour-city", "away": "ridge-united", "homeScore": 0, "awayScore": 0 }, { "home": "valley-fc", "away": "coast-athletic", "homeScore": 2, "awayScore": 0 } ] }
+          ] } ] },
+        { "key": "KO", "rounds": [ { "key": "F", "name": "Final", "legs": 2, "ties": [
+          { "position": 1, "home": "harbour-city", "away": "ridge-united",
+            "homeSource": { "type": "GROUP_POSITION", "stage": "GS", "group": "A", "position": 1 },
+            "awaySource": { "type": "GROUP_POSITION", "stage": "GS", "group": "A", "position": 2 },
+            "matches": [ { "leg": 1, "home": "harbour-city", "away": "ridge-united", "homeScore": 1, "awayScore": 0 },
+                         { "leg": 2, "home": "ridge-united", "away": "harbour-city", "homeScore": 2, "awayScore": 1, "homeEt": 2, "awayEt": 1, "homePens": 4, "awayPens": 5 } ] }
+        ] } ] }
+      ],
+      "honours": [ { "team": "harbour-city", "kind": "CHAMPION" }, { "team": "ridge-united", "kind": "RUNNER_UP" } ]
+    }
+  ]
+}

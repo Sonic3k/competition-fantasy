@@ -1,0 +1,20 @@
+{
+  "key": "LEAGUE_PLAYOFFS_3_6",
+  "name": "League with promotion play-offs, 3rd–6th (EFL Championship)",
+  "family": "LEAGUE_PLAYOFFS",
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "REG", "name": "Regular season", "type": "ROUND_ROBIN",
+      "groups": 1, "meetings": 2, "venue": "HOME_AWAY",
+      "tiebreakers": ["GD", "GF", "H2H"],
+      "zones": [ { "positions": [1], "kind": "CHAMPION", "label": "Champion" }, { "positions": [1, 2], "kind": "PROMOTION", "label": "Promoted" }, { "positions": [3, 4, 5, 6], "kind": "PLAYOFF", "label": "Play-offs" } ]
+    },
+    {
+      "key": "PO", "name": "Play-offs", "type": "KNOCKOUT",
+      "legs": 2, "decider": ["AGGREGATE", "EXTRA_TIME", "PENALTIES"],
+      "rounds": [ { "key": "SF", "name": "Semi-finals", "legs": 2 }, { "key": "F", "name": "Final", "legs": 1 } ],
+      "entry": { "from": "REG", "positions": [3, 4, 5, 6], "bracket": "PLAYOFF_3_6" }
+    }
+  ]
+}

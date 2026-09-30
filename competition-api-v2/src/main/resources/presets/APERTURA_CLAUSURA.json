@@ -1,0 +1,21 @@
+{
+  "key": "APERTURA_CLAUSURA",
+  "name": "Split season, Apertura and Clausura",
+  "family": "SPLIT_SEASON",
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "AP", "name": "Apertura", "type": "ROUND_ROBIN",
+      "groups": 1, "meetings": 1, "venue": "HOME_AWAY",
+      "tiebreakers": ["GD", "GF", "H2H"],
+      "zones": [ { "positions": [1], "kind": "CHAMPION", "label": "Apertura champion" } ]
+    },
+    {
+      "key": "CL", "name": "Clausura", "type": "ROUND_ROBIN",
+      "groups": 1, "meetings": 1, "venue": "HOME_AWAY",
+      "tiebreakers": ["GD", "GF", "H2H"],
+      "zones": [ { "positions": [1], "kind": "CHAMPION", "label": "Clausura champion" } ],
+      "entry": { "from": "SEASON_TEAMS" }
+    }
+  ]
+}

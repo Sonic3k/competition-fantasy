@@ -1,0 +1,28 @@
+{
+  "key": "WONDER_EMPIRES_C1",
+  "name": "Wonder Empires C1: two group stages, then two-legged knockout",
+  "family": "TWO_GROUP_STAGES",
+  "teams": 32,
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "GS", "name": "Group stage", "type": "ROUND_ROBIN",
+      "groups": 8, "teamsPerGroup": 4, "meetings": 1, "venue": "HOME_AWAY",
+      "tiebreakers": ["GD", "GF", "H2H"],
+      "zones": [ { "positions": [1, 2], "kind": "QUALIFY", "label": "Elimination groups" } ]
+    },
+    {
+      "key": "EG", "name": "Elimination groups", "type": "ROUND_ROBIN",
+      "groups": 4, "teamsPerGroup": 4, "meetings": 1, "venue": "HOME_AWAY",
+      "tiebreakers": ["GD", "GF", "H2H"],
+      "zones": [ { "positions": [1, 2], "kind": "QUALIFY", "label": "Quarter-finals" } ],
+      "entry": { "from": "GS", "positions": [1, 2] }
+    },
+    {
+      "key": "KO", "name": "Knockout stage", "type": "KNOCKOUT",
+      "legs": 2, "decider": ["AGGREGATE", "EXTRA_TIME", "PENALTIES"],
+      "rounds": [ { "key": "QF", "name": "Quarter-finals", "legs": 2 }, { "key": "SF", "name": "Semi-finals", "legs": 2 }, { "key": "F", "name": "Final", "legs": 1 } ],
+      "entry": { "from": "EG", "positions": [1, 2] }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "key": "WORLD_CUP_1974_SECOND_GROUPS",
+  "name": "World Cup 1974/1978, second group stage then final",
+  "family": "GROUPS_FINAL_GROUP",
+  "teams": 16,
+  "points": { "win": 2, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "GS", "name": "First group stage", "type": "ROUND_ROBIN",
+      "groups": 4, "teamsPerGroup": 4, "meetings": 1, "venue": "NEUTRAL",
+      "tiebreakers": ["GD", "GF", "LOTS"],
+      "zones": [ { "positions": [1, 2], "kind": "QUALIFY", "label": "Second group stage" } ]
+    },
+    {
+      "key": "GS2", "name": "Second group stage", "type": "ROUND_ROBIN",
+      "groups": 2, "teamsPerGroup": 4, "meetings": 1, "venue": "NEUTRAL",
+      "tiebreakers": ["GD", "GF", "LOTS"],
+      "zones": [ { "positions": [1], "kind": "QUALIFY", "label": "Final" }, { "positions": [2], "kind": "PLAYOFF", "label": "Third place play-off" } ],
+      "entry": { "from": "GS", "positions": [1, 2], "constraints": ["SAME_GROUP"] }
+    },
+    {
+      "key": "KO", "name": "Finals", "type": "KNOCKOUT",
+      "legs": 1, "decider": ["EXTRA_TIME", "PENALTIES"], "thirdPlace": true,
+      "rounds": [ { "key": "3P", "name": "Third place play-off", "placement": true }, { "key": "F", "name": "Final" } ],
+      "entry": { "from": "GS2", "positions": [1, 2], "bracket": "GROUP_WINNERS_FINAL" }
+    }
+  ]
+}

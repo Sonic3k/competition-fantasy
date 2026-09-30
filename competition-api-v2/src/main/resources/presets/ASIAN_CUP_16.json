@@ -1,0 +1,21 @@
+{
+  "key": "ASIAN_CUP_16",
+  "name": "Asian Cup, 16 teams (2004–2015)",
+  "family": "GROUPS_TOP_TWO",
+  "teams": 16,
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "GS", "name": "Group stage", "type": "ROUND_ROBIN",
+      "groups": 4, "teamsPerGroup": 4, "meetings": 1, "venue": "NEUTRAL",
+      "tiebreakers": ["H2H", "GD", "GF", "FAIR_PLAY", "LOTS"],
+      "zones": [ { "positions": [1, 2], "kind": "QUALIFY", "label": "Quarter-finals" } ]
+    },
+    {
+      "key": "KO", "name": "Knockout stage", "type": "KNOCKOUT",
+      "legs": 1, "decider": ["EXTRA_TIME", "PENALTIES"], "thirdPlace": true,
+      "rounds": [ { "key": "QF", "name": "Quarter-finals" }, { "key": "SF", "name": "Semi-finals" }, { "key": "3P", "name": "Third place play-off", "placement": true }, { "key": "F", "name": "Final" } ],
+      "entry": { "from": "GS", "positions": [1, 2], "bracket": "AFC_16" }
+    }
+  ]
+}

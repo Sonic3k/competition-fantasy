@@ -1,0 +1,21 @@
+{
+  "key": "EURO_16",
+  "name": "European Championship, 16 teams (1996–2012)",
+  "family": "GROUPS_TOP_TWO",
+  "teams": 16,
+  "points": { "win": 3, "draw": 1, "loss": 0 },
+  "stages": [
+    {
+      "key": "GS", "name": "Group stage", "type": "ROUND_ROBIN",
+      "groups": 4, "teamsPerGroup": 4, "meetings": 1, "venue": "NEUTRAL",
+      "tiebreakers": ["H2H", "GD", "GF", "WINS", "FAIR_PLAY", "RANKING", "LOTS"],
+      "zones": [ { "positions": [1, 2], "kind": "QUALIFY", "label": "Quarter-finals" } ]
+    },
+    {
+      "key": "KO", "name": "Knockout stage", "type": "KNOCKOUT",
+      "legs": 1, "decider": ["EXTRA_TIME", "PENALTIES"], "thirdPlace": false,
+      "rounds": [ { "key": "QF", "name": "Quarter-finals" }, { "key": "SF", "name": "Semi-finals" }, { "key": "F", "name": "Final" } ],
+      "entry": { "from": "GS", "positions": [1, 2], "bracket": "UEFA_16" }
+    }
+  ]
+}
