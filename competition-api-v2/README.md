@@ -11,19 +11,25 @@ export ADMIN_USERNAME=admin ADMIN_PASSWORD=change-me JWT_SECRET=$(openssl rand -
 ./mvnw spring-boot:run        # or: mvn spring-boot:run
 ```
 
-`GET /api/health` → `{"status":"ok"}`. Built-in format presets are loaded from `src/main/resources/presets/*.json` on startup.
+`GET /api/health` → `{"status":"UP", …}`. Built-in format presets are loaded from `src/main/resources/presets/*.json` on startup.
 
-## Environment (Railway service, root dir `competition-api-v2`)
+## Railway
+
+Service `competition-fantasy-api` in the `sonic-hub` project, root dir `competition-api-v2`, built by Railpack (`mvn install`, runs the jar from `target/`; nothing else from the folder reaches the image, which is why `imports/` is packaged into the jar).
+
+Database: its own database `competition_fantasy` and role `competition_fantasy_app` on the shared sonic-hub `Postgres` service (same pattern as sonic-mystic). Flyway owns schema `public`; schema `legacy_v1` is a read-only copy of the v1 data from the old Competition Fantasy DB, kept as the source for migrating it into v2.
+
+## Environment
 
 | Variable | Purpose |
 |---|---|
-| `SPRING_DATASOURCE_URL` **or** `PGHOST/PGPORT/PGDATABASE/PGUSER/PGPASSWORD` | Postgres |
+| `SPRING_DATASOURCE_URL` **or** `PGHOST/PGPORT/PGDATABASE/PGUSER/PGPASSWORD` | Postgres (Railway: `PGHOST`/`PGPORT` reference `Postgres`, `PGDATABASE=competition_fantasy`, `PGUSER=competition_fantasy_app`) |
 | `ADMIN_USERNAME`, `ADMIN_PASSWORD` | single admin; password plain or BCrypt (`$2…`) |
 | `JWT_SECRET` (≥32 chars), `JWT_TTL_HOURS` (default 72) | admin tokens |
 | `CORS_ORIGINS` | comma-separated origins of the frontend |
-| `B2_ENDPOINT`, `B2_REGION`, `B2_BUCKET`, `B2_KEY_ID`, `B2_APP_KEY` | Backblaze B2 (S3 API) |
+| `B2_ENDPOINT` (bare host or URL), `B2_REGION`, `B2_BUCKET`, `B2_KEY_ID`, `B2_APP_KEY` | Backblaze B2 (S3 API) |
 | `STORAGE_PREFIX` (default `competition-fantasy/v2`), `CDN_BASE` | object key prefix and public CDN base |
-| `IMPORT_DIR` (default `imports`) | folder the Script Manager reads JSON files from |
+| `IMPORT_DIR` (default `imports`) | folder the Script Manager reads JSON files from when it exists on disk; otherwise the copy packaged in the jar |
 
 ## Security
 

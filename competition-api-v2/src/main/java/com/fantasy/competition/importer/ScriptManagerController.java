@@ -1,10 +1,8 @@
 package com.fantasy.competition.importer;
 
-import com.fantasy.competition.common.AppProperties;
 import com.fantasy.competition.common.BadRequestException;
 import com.fantasy.competition.common.NotFoundException;
 import com.fasterxml.jackson.annotation.JsonRawValue;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,15 +16,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Instant;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
- * Script Manager: JSON files committed under the import folder (default ./imports) plus uploads.
+ * Script Manager: JSON files committed under competition-api-v2/imports (see {@link ImportFiles}) plus uploads.
  * schema/ and examples/ subfolders are listed but flagged so they are not run by accident.
  */
 @RestController
@@ -41,44 +35,31 @@ public class ScriptManagerController {
     private final ImportService imports;
     private final ImportRunRepository runs;
     private final ImportChangeRepository changes;
-    private final Path importDir;
+    private final ImportFiles files;
 
-    public ScriptManagerController(ImportService imports, ImportRunRepository runs, ImportChangeRepository changes, AppProperties props) {
+    public ScriptManagerController(ImportService imports, ImportRunRepository runs, ImportChangeRepository changes, ImportFiles files) {
         this.imports = imports;
         this.runs = runs;
         this.changes = changes;
-        this.importDir = Paths.get(props.imports() == null ? "imports" : props.imports().dirOrDefault()).toAbsolutePath().normalize();
+        this.files = files;
     }
 
     @GetMapping("/files")
     public List<FileInfo> files() throws IOException {
-        if (!Files.isDirectory(importDir)) return List.of();
-        try (Stream<Path> walk = Files.walk(importDir)) {
-            return walk.filter(p -> Files.isRegularFile(p) && p.toString().endsWith(".json"))
-                    .map(p -> {
-                        String rel = importDir.relativize(p).toString().replace('\\', '/');
-                        boolean example = rel.startsWith("schema/") || rel.startsWith("examples/");
-                        try {
-                            return new FileInfo(rel, Files.size(p), Files.getLastModifiedTime(p).toInstant(), example);
-                        } catch (IOException e) {
-                            return new FileInfo(rel, 0, null, example);
-                        }
-                    })
-                    .sorted((a, b) -> a.path().compareTo(b.path()))
-                    .toList();
-        }
+        return files.list().stream()
+                .map(e -> new FileInfo(e.path(), e.sizeBytes(), e.modifiedAt(), e.path().startsWith("schema/") || e.path().startsWith("examples/")))
+                .toList();
     }
 
     @GetMapping(value = "/files/content", produces = MediaType.APPLICATION_JSON_VALUE)
     public String content(@RequestParam String path) throws IOException {
-        return Files.readString(resolve(path), StandardCharsets.UTF_8);
+        return files.read(path);
     }
 
     @PostMapping("/run")
     public ImportService.Report run(@RequestBody RunRequest req) throws IOException {
         if (req.file() == null || req.file().isBlank()) throw new BadRequestException("file is required");
-        Path file = resolve(req.file());
-        String text = Files.readString(file, StandardCharsets.UTF_8);
+        String text = files.read(req.file());
         return imports.run(req.file(), text, ImportRun.Source.REPO, req.dryRun() != null && req.dryRun());
     }
 
@@ -111,24 +92,11 @@ public class ScriptManagerController {
 
     @GetMapping(value = "/schema", produces = MediaType.APPLICATION_JSON_VALUE)
     public String schema() throws IOException {
-        Path schema = importDir.resolve("schema").resolve("v1.json");
-        if (!Files.exists(schema)) throw new NotFoundException("Import schema", "imports/schema/v1.json");
-        return Files.readString(schema, StandardCharsets.UTF_8);
-    }
-
-    private Path resolve(String relative) {
-        Path p = importDir.resolve(relative).toAbsolutePath().normalize();
-        if (!p.startsWith(importDir) || !Files.isRegularFile(p) || !p.toString().endsWith(".json")) {
-            throw new BadRequestException("Not an import file: " + relative);
-        }
-        return p;
+        return files.read("schema/v1.json");
     }
 
     private RunDto toDto(ImportRun r) {
         return new RunDto(r.getId(), r.getFileName(), r.getSource().name(), r.getChecksum(), r.isDryRun(), r.getStatus().name(),
                 r.getStartedAt(), r.getFinishedAt(), r.getSummary(), r.getLog(), changes.countByRunId(r.getId()));
     }
-
-    @SuppressWarnings("unused")
-    private static HttpStatus unused() { return HttpStatus.OK; }
 }

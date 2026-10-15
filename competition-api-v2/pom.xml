@@ -71,6 +71,22 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <!-- import files ship inside the jar: the Railway image keeps only target/ -->
+            <resource>
+                <directory>imports</directory>
+                <targetPath>imports</targetPath>
+                <includes>
+                    <include>**/*.json</include>
+                </includes>
+                <excludes>
+                    <exclude>uploads/**</exclude>
+                </excludes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
