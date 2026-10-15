@@ -55,7 +55,7 @@ public class StorageService {
             synchronized (this) {
                 if (client == null) {
                     client = S3Client.builder()
-                            .endpointOverride(URI.create(cfg.endpoint()))
+                            .endpointOverride(URI.create(endpointUrl(cfg.endpoint())))
                             .region(Region.of(cfg.region() == null ? "us-east-005" : cfg.region()))
                             .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(cfg.keyId(), cfg.appKey())))
                             .serviceConfiguration(S3Configuration.builder().pathStyleAccessEnabled(true).build())
@@ -65,5 +65,11 @@ public class StorageService {
             }
         }
         return c;
+    }
+
+    /** The shared Railway variable B2_ENDPOINT is a bare host (s3.us-east-005.backblazeb2.com); the SDK needs a URL. */
+    static String endpointUrl(String endpoint) {
+        String e = endpoint == null || endpoint.isBlank() ? "s3.us-east-005.backblazeb2.com" : endpoint.trim();
+        return e.contains("://") ? e : "https://" + e;
     }
 }

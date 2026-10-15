@@ -403,7 +403,6 @@ public class ImportService {
         }
         s = seasons.save(s);
         ctx.record("SEASON", s.getId(), created);
-        ctx.counts.merge(created ? "SEASON created" : "SEASON replaced", 1, Integer::sum);
         FormatDefinition def = formats.parse(s.getFormat());
 
         for (SeasonTeamIn st : nz(in.teams())) {

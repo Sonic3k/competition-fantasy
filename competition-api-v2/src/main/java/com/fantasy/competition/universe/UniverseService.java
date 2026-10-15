@@ -9,6 +9,7 @@ import com.fantasy.competition.team.NationRepository;
 import com.fantasy.competition.team.TeamRepository;
 import com.fantasy.competition.universe.UniverseDtos.UniverseDto;
 import com.fantasy.competition.universe.UniverseDtos.UniverseRequest;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,14 +24,16 @@ public class UniverseService {
     private final TeamRepository teams;
     private final NationRepository nations;
     private final AssetLookup assets;
+    private final JdbcTemplate jdbc;
 
     public UniverseService(UniverseRepository universes, CompetitionRepository competitions, TeamRepository teams,
-                           NationRepository nations, AssetLookup assets) {
+                           NationRepository nations, AssetLookup assets, JdbcTemplate jdbc) {
         this.universes = universes;
         this.competitions = competitions;
         this.teams = teams;
         this.nations = nations;
         this.assets = assets;
+        this.jdbc = jdbc;
     }
 
     @Transactional(readOnly = true)
@@ -74,9 +77,20 @@ public class UniverseService {
         return get(u.getKey());
     }
 
+    /**
+     * Deletes in dependency order, one statement per level. A single DELETE on universes would cascade to
+     * competitions (and on to matches) and to teams (setting matches' team columns to null) in the same
+     * statement; Postgres then re-checks the second SET NULL update of a match against a season that the
+     * other cascade has already removed, and the whole delete fails with a foreign-key violation.
+     */
     @Transactional
     public void delete(Long id) {
-        universes.delete(byId(id));
+        Universe u = byId(id);
+        jdbc.update("delete from competitions where universe_id = ?", u.getId());
+        jdbc.update("delete from teams where universe_id = ?", u.getId());
+        jdbc.update("delete from stadiums where universe_id = ?", u.getId());
+        jdbc.update("delete from nations where universe_id = ?", u.getId());
+        universes.delete(u);
     }
 
     private void apply(Universe u, UniverseRequest req) {
