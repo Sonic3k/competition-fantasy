@@ -99,6 +99,39 @@ public class AssetService {
         assets.delete(a);
     }
 
+    public record Registered(Asset asset, boolean created) {}
+
+    /**
+     * Registers an image that is already in storage (for example a file migrated from v1) by its URL. Nothing is
+     * uploaded; a second call with the same file returns the existing asset.
+     */
+    @Transactional
+    public Registered registerExternal(String url, String contentType, Integer width, Integer height, Long sizeBytes, String title, String collection) {
+        if (url == null || !(url.startsWith("https://") || url.startsWith("http://"))) throw new BadRequestException("image url must be http(s): " + url);
+        String key = storage.keyOf(url);
+        Asset existing = assets.findByStorageKey(key).orElse(null);
+        if (existing != null) return new Registered(existing, false);
+        Asset a = new Asset();
+        a.setStorageKey(key);
+        a.setUrl(url);
+        a.setContentType(contentType != null ? contentType : typeOf(url));
+        a.setSizeBytes(sizeBytes);
+        a.setWidth(width);
+        a.setHeight(height);
+        a.setTitle(title);
+        a.setCollection(collection);
+        return new Registered(assets.save(a), true);
+    }
+
+    /** Makes the asset the owner's current image for the slot; returns null when it already is. */
+    @Transactional
+    public SlotDto attachIfChanged(String ownerType, Long ownerId, String slot, Long assetId) {
+        List<AssetSlot> current = slots.findByOwnerTypeAndOwnerIdAndSlotAndCurrentTrue(
+                ownerType == null ? "" : ownerType.toUpperCase(Locale.ROOT), ownerId, slot == null ? "" : slot.toUpperCase(Locale.ROOT));
+        if (current.size() == 1 && current.get(0).getAssetId().equals(assetId)) return null;
+        return attach(ownerType, ownerId, slot, assetId);
+    }
+
     /** Attaches an asset to an owner's slot; the previous current image stays in the history. */
     @Transactional
     public SlotDto attach(String ownerType, Long ownerId, String slot, Long assetId) {
@@ -153,6 +186,18 @@ public class AssetService {
             case "image/svg+xml" -> ".svg";
             default -> "";
         };
+    }
+
+    private static String typeOf(String url) {
+        String u = url.toLowerCase(Locale.ROOT);
+        int q = u.indexOf('?');
+        if (q >= 0) u = u.substring(0, q);
+        if (u.endsWith(".png")) return "image/png";
+        if (u.endsWith(".jpg") || u.endsWith(".jpeg")) return "image/jpeg";
+        if (u.endsWith(".webp")) return "image/webp";
+        if (u.endsWith(".gif")) return "image/gif";
+        if (u.endsWith(".svg")) return "image/svg+xml";
+        return null;
     }
 
     private static String stripExtension(String name) {

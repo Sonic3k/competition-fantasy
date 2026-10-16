@@ -40,6 +40,15 @@ public class StorageService {
         return base + "/" + key;
     }
 
+    /** Storage key of a file served from the CDN (or any URL): the path after the host, without the leading slash. */
+    public String keyOf(String url) {
+        String base = cfg == null || cfg.cdnBaseUrl() == null ? "" : cfg.cdnBaseUrl();
+        if (base.endsWith("/")) base = base.substring(0, base.length() - 1);
+        if (!base.isEmpty() && url.startsWith(base + "/")) return url.substring(base.length() + 1);
+        String path = URI.create(url).getPath();
+        return path.startsWith("/") ? path.substring(1) : path;
+    }
+
     public void put(String key, byte[] bytes, String contentType) {
         client().putObject(PutObjectRequest.builder().bucket(cfg.bucket()).key(key).contentType(contentType).build(), RequestBody.fromBytes(bytes));
     }

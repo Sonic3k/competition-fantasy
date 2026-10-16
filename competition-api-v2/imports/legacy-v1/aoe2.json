@@ -1,0 +1,1566 @@
+{
+  "schemaVersion": 1,
+  "universe": { "key": "aoe2", "name": "Age Of Empires 2 Universe", "type": "FICTIONAL", "usesNations": true },
+  "nations": [
+    {
+      "key": "armenians",
+      "name": "Armenians",
+      "code": "ARM",
+      "colors": { "primary": "#D2691E", "text": "#FFFFFF" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/feea1e06-67d2-486e-9189-52b90c9ae52b/emblem.png", "contentType": "image/png", "sizeBytes": 129886 }
+      }
+    },
+    {
+      "key": "aztecs",
+      "name": "Aztecs",
+      "code": "AZT",
+      "colors": { "primary": "#006847", "text": "#FFD700" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/180142d8-fee1-4e90-81d6-ff32f79ad815/emblem.png", "contentType": "image/png", "sizeBytes": 30896 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/180142d8-fee1-4e90-81d6-ff32f79ad815/logo.webp", "contentType": "image/webp", "sizeBytes": 6934 }
+      }
+    },
+    {
+      "key": "bengalis",
+      "name": "Bengalis",
+      "code": "BEN",
+      "colors": { "primary": "#006A4E", "text": "#FFFFFF" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/113e3565-2e34-41ad-8134-88e5d23f2536/emblem.png", "contentType": "image/png", "sizeBytes": 124560 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/113e3565-2e34-41ad-8134-88e5d23f2536/logo.webp", "contentType": "image/webp", "sizeBytes": 171662 }
+      }
+    },
+    {
+      "key": "berbers",
+      "name": "Berbers",
+      "code": "BER",
+      "colors": { "primary": "#C2956B", "text": "#1C1C1C" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/0307c463-32df-4dcd-a2f6-871014f9e253/emblem.png", "contentType": "image/png", "sizeBytes": 32396 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/0307c463-32df-4dcd-a2f6-871014f9e253/logo.webp", "contentType": "image/webp", "sizeBytes": 6202 }
+      }
+    },
+    {
+      "key": "bohemians",
+      "name": "Bohemians",
+      "code": "BOH",
+      "colors": { "primary": "#D7141A", "text": "#FFFFFF" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/b0c9baec-f1d2-45e7-acc7-8418491376c1/emblem.png", "contentType": "image/png", "sizeBytes": 45096 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/b0c9baec-f1d2-45e7-acc7-8418491376c1/logo.webp", "contentType": "image/webp", "sizeBytes": 5466 }
+      }
+    },
+    {
+      "key": "britons",
+      "name": "Britons",
+      "code": "BRI",
+      "colors": {
+        "primary": "#CC0000",
+        "text": "#FFFFFF",
+        "away": { "bg": "#FFFFFF", "text": "#CC0000" }
+      },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/29ef4208-9ba0-4f26-a08c-d9fdd086410e/emblem.png", "contentType": "image/png", "sizeBytes": 26076 }
+      }
+    },
+    {
+      "key": "bulgarians",
+      "name": "Bulgarians",
+      "code": "BUL",
+      "colors": { "primary": "#00966E", "text": "#FFFFFF" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/152682c8-b7ea-4e77-bf26-253e51b7d1b4/emblem.png", "contentType": "image/png", "sizeBytes": 29658 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/152682c8-b7ea-4e77-bf26-253e51b7d1b4/logo.webp", "contentType": "image/webp", "sizeBytes": 6370 }
+      }
+    },
+    {
+      "key": "burgundians",
+      "name": "Burgundians",
+      "code": "BUR",
+      "colors": { "primary": "#1E3A5F", "text": "#FFD700" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/3e051c5f-59eb-4224-8dcb-c2758aaef74c/emblem.png", "contentType": "image/png", "sizeBytes": 37080 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/3e051c5f-59eb-4224-8dcb-c2758aaef74c/logo.webp", "contentType": "image/webp", "sizeBytes": 4448 }
+      }
+    },
+    {
+      "key": "burmese",
+      "name": "Burmese",
+      "code": "BRM",
+      "colors": { "primary": "#FECB00", "text": "#1C1C1C" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/9a23b533-add3-4853-a944-84056d476c7a/emblem.png", "contentType": "image/png", "sizeBytes": 45206 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/9a23b533-add3-4853-a944-84056d476c7a/logo.webp", "contentType": "image/webp", "sizeBytes": 6314 }
+      }
+    },
+    {
+      "key": "byzantines",
+      "name": "Byzantines",
+      "code": "BYZ",
+      "colors": {
+        "primary": "#7B2D8E",
+        "text": "#FFD700",
+        "away": { "bg": "#FFD700", "text": "#7B2D8E" }
+      },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/eb613d23-6dde-4f8b-bf50-6223d9f11223/emblem.png", "contentType": "image/png", "sizeBytes": 40316 }
+      }
+    },
+    {
+      "key": "celts",
+      "name": "Celts",
+      "code": "CEL",
+      "colors": {
+        "primary": "#228B22",
+        "text": "#FFFFFF",
+        "away": { "bg": "#FFFFFF", "text": "#228B22" }
+      },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/44e4897b-dbfe-41cb-819b-1be97e625b02/emblem.png", "contentType": "image/png", "sizeBytes": 27428 }
+      }
+    },
+    {
+      "key": "chinese",
+      "name": "Chinese",
+      "code": "CHI",
+      "colors": {
+        "primary": "#CC0000",
+        "text": "#FFD700",
+        "away": { "bg": "#FFD700", "text": "#CC0000" }
+      },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/8bbe83f4-4d0f-47aa-bf56-3362f92b486d/emblem.png", "contentType": "image/png", "sizeBytes": 31088 }
+      }
+    },
+    {
+      "key": "cumans",
+      "name": "Cumans",
+      "code": "CUM",
+      "colors": { "primary": "#E8D44D", "text": "#2E4057" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/96f54a74-af47-415a-970c-2e8be629e915/emblem.png", "contentType": "image/png", "sizeBytes": 38744 }
+      }
+    },
+    {
+      "key": "dravidians",
+      "name": "Dravidians",
+      "code": "DRA",
+      "colors": { "primary": "#800020", "text": "#FFD700" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/e939cb8b-0a80-4abb-8959-bbb01e59094f/emblem.png", "contentType": "image/png", "sizeBytes": 127202 }
+      }
+    },
+    {
+      "key": "ethiopians",
+      "name": "Ethiopians",
+      "code": "ETH",
+      "colors": { "primary": "#009A44", "text": "#FCD116" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/ef41a471-6250-45f1-9247-0407ac2aa3b0/emblem.png", "contentType": "image/png", "sizeBytes": 35108 }
+      }
+    },
+    {
+      "key": "franks",
+      "name": "Franks",
+      "code": "FRA",
+      "colors": {
+        "primary": "#0055A4",
+        "text": "#FFD700",
+        "away": { "bg": "#FFFFFF", "text": "#0055A4" }
+      },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/7ab67669-9ec6-414c-ba29-9041a6ea2125/emblem.png", "contentType": "image/png", "sizeBytes": 26554 }
+      }
+    },
+    {
+      "key": "georgians",
+      "name": "Georgians",
+      "code": "GEO",
+      "colors": { "primary": "#FF0000", "text": "#FFFFFF" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/19dee544-50a7-4ead-b853-243d3e3cf47d/emblem.png", "contentType": "image/png", "sizeBytes": 48956 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/19dee544-50a7-4ead-b853-243d3e3cf47d/logo.webp", "contentType": "image/webp", "sizeBytes": 4374 }
+      }
+    },
+    {
+      "key": "goths",
+      "name": "Goths",
+      "code": "GOT",
+      "colors": {
+        "primary": "#4A3728",
+        "text": "#C0C0C0",
+        "away": { "bg": "#C0C0C0", "text": "#4A3728" }
+      },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/cdec019c-0e4e-4a79-8aec-524d603afca9/emblem.png", "contentType": "image/png", "sizeBytes": 29712 }
+      }
+    },
+    {
+      "key": "gurjaras",
+      "name": "Gurjaras",
+      "code": "GUR",
+      "colors": { "primary": "#FF9933", "text": "#1C1C1C" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/4b5011c0-1d4c-4747-9fc1-3df00b67f157/emblem.png", "contentType": "image/png", "sizeBytes": 111070 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/4b5011c0-1d4c-4747-9fc1-3df00b67f157/logo.webp", "contentType": "image/webp", "sizeBytes": 187058 }
+      }
+    },
+    {
+      "key": "hindustanis",
+      "name": "Hindustanis",
+      "code": "HIN",
+      "colors": { "primary": "#138808", "text": "#FFFFFF" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/bd6b53dc-64f2-4282-b189-483ef79c8d88/emblem.png", "contentType": "image/png", "sizeBytes": 32648 }
+      }
+    },
+    {
+      "key": "huns",
+      "name": "Huns",
+      "code": "HUN",
+      "colors": { "primary": "#8B0000", "text": "#FFD700" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/28f6f122-b8a8-4c89-918e-c8f88cdc3fb2/emblem.png", "contentType": "image/png", "sizeBytes": 37040 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/28f6f122-b8a8-4c89-918e-c8f88cdc3fb2/logo.webp", "contentType": "image/webp", "sizeBytes": 4660 }
+      }
+    },
+    {
+      "key": "inca",
+      "name": "Inca",
+      "code": "INC",
+      "colors": { "primary": "#B8860B", "text": "#FFFFFF" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/1d7bf748-4c36-4440-8ea4-e3e2cda39f54/emblem.png", "contentType": "image/png", "sizeBytes": 32890 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/1d7bf748-4c36-4440-8ea4-e3e2cda39f54/logo.webp", "contentType": "image/webp", "sizeBytes": 4572 }
+      }
+    },
+    {
+      "key": "italians",
+      "name": "Italians",
+      "code": "ITA",
+      "colors": { "primary": "#003399", "text": "#FFFFFF" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/08748120-daff-4163-9283-151fa4f22882/emblem.png", "contentType": "image/png", "sizeBytes": 29268 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/08748120-daff-4163-9283-151fa4f22882/logo.webp", "contentType": "image/webp", "sizeBytes": 4536 }
+      }
+    },
+    {
+      "key": "japanese",
+      "name": "Japanese",
+      "code": "JAP",
+      "colors": {
+        "primary": "#FFFFFF",
+        "text": "#CC0000",
+        "away": { "bg": "#CC0000", "text": "#FFFFFF" }
+      },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/e29a5912-9054-41fb-9d8a-14d462fc355c/emblem.png", "contentType": "image/png", "sizeBytes": 28672 }
+      }
+    },
+    {
+      "key": "jurchens",
+      "name": "Jurchens",
+      "code": "JUR",
+      "colors": { "primary": "#006666", "text": "#FFD700" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/86df25cb-77ce-4792-a6cd-6319858b5cfb/emblem.png", "contentType": "image/png", "sizeBytes": 35942 }
+      }
+    },
+    {
+      "key": "khitans",
+      "name": "Khitans",
+      "code": "KHI",
+      "colors": { "primary": "#4B0082", "text": "#C0C0C0" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/81e4dd06-3b22-42ae-95fc-994fdfc1c798/emblem.png", "contentType": "image/png", "sizeBytes": 33310 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/81e4dd06-3b22-42ae-95fc-994fdfc1c798/logo.webp", "contentType": "image/webp", "sizeBytes": 24964 }
+      }
+    },
+    {
+      "key": "khmer",
+      "name": "Khmer",
+      "code": "KHM",
+      "colors": { "primary": "#8B4513", "text": "#FFD700" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/56b34a4e-172e-44e2-a033-c3f25019ba29/emblem.png", "contentType": "image/png", "sizeBytes": 45960 }
+      }
+    },
+    {
+      "key": "koreans",
+      "name": "Koreans",
+      "code": "KOR",
+      "colors": { "primary": "#003478", "text": "#FFFFFF" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/9da686ec-f371-4225-b9a1-dcba6b1df0c8/emblem.png", "contentType": "image/png", "sizeBytes": 26048 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/9da686ec-f371-4225-b9a1-dcba6b1df0c8/logo.webp", "contentType": "image/webp", "sizeBytes": 5914 }
+      }
+    },
+    {
+      "key": "lithuanians",
+      "name": "Lithuanians",
+      "code": "LIT",
+      "colors": { "primary": "#FDB913", "text": "#006A44" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/653e32ba-815a-4af5-9599-e666fc1ea62e/emblem.png", "contentType": "image/png", "sizeBytes": 31652 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/653e32ba-815a-4af5-9599-e666fc1ea62e/logo.webp", "contentType": "image/webp", "sizeBytes": 3944 }
+      }
+    },
+    {
+      "key": "magyars",
+      "name": "Magyars",
+      "code": "MAG",
+      "colors": { "primary": "#CE2939", "text": "#FFFFFF" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/02470929-5a66-4f64-bf72-4dbf7aee8ac1/emblem.png", "contentType": "image/png", "sizeBytes": 35102 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/02470929-5a66-4f64-bf72-4dbf7aee8ac1/logo.webp", "contentType": "image/webp", "sizeBytes": 3962 }
+      }
+    },
+    {
+      "key": "malay",
+      "name": "Malay",
+      "code": "MAL",
+      "colors": { "primary": "#660099", "text": "#FFD700" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/30d7ee74-b402-4db6-b6ba-05cf9aa3cd5b/emblem.png", "contentType": "image/png", "sizeBytes": 36646 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/30d7ee74-b402-4db6-b6ba-05cf9aa3cd5b/logo.webp", "contentType": "image/webp", "sizeBytes": 7200 }
+      }
+    },
+    {
+      "key": "malians",
+      "name": "Malians",
+      "code": "MLI",
+      "colors": { "primary": "#FFD700", "text": "#009639" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/0f59bba9-8344-4c02-a2f4-74fbe411e164/emblem.png", "contentType": "image/png", "sizeBytes": 36710 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/0f59bba9-8344-4c02-a2f4-74fbe411e164/logo.webp", "contentType": "image/webp", "sizeBytes": 6812 }
+      }
+    },
+    {
+      "key": "mapuche",
+      "name": "Mapuche",
+      "code": "MAP",
+      "colors": {
+        "primary": "#1B4F9C",
+        "text": "#FFFFFF",
+        "away": { "bg": "#FFFFFF", "text": "#1B4F9C" }
+      }
+    },
+    {
+      "key": "maya",
+      "name": "Maya",
+      "code": "MAY",
+      "colors": { "primary": "#2E8B57", "text": "#1C1C1C" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/cec2ddb1-a713-4ff9-84c0-373d6e47771a/emblem.png", "contentType": "image/png", "sizeBytes": 30160 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/cec2ddb1-a713-4ff9-84c0-373d6e47771a/logo.webp", "contentType": "image/webp", "sizeBytes": 6920 }
+      }
+    },
+    {
+      "key": "mongols",
+      "name": "Mongols",
+      "code": "MON",
+      "colors": {
+        "primary": "#003893",
+        "text": "#FFD700",
+        "away": { "bg": "#FFD700", "text": "#003893" }
+      },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/0563b03c-b807-4f72-bcd8-9a547d5f6db9/emblem.png", "contentType": "image/png", "sizeBytes": 28654 }
+      }
+    },
+    {
+      "key": "muisca",
+      "name": "Muisca",
+      "code": "MUI",
+      "colors": {
+        "primary": "#C9A227",
+        "text": "#222222",
+        "away": { "bg": "#222222", "text": "#C9A227" }
+      }
+    },
+    {
+      "key": "persians",
+      "name": "Persians",
+      "code": "PER",
+      "colors": {
+        "primary": "#DAA520",
+        "text": "#1C1C1C",
+        "away": { "bg": "#1C1C1C", "text": "#DAA520" }
+      },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/39e225a7-9c43-4a4e-ab1e-f53534a860d3/emblem.png", "contentType": "image/png", "sizeBytes": 31866 }
+      }
+    },
+    {
+      "key": "poles",
+      "name": "Poles",
+      "code": "POL",
+      "colors": { "primary": "#DC143C", "text": "#FFFFFF" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/4432c1c0-c7e6-42c6-86e9-983d4ba2bf9e/emblem.png", "contentType": "image/png", "sizeBytes": 158406 }
+      }
+    },
+    {
+      "key": "portuguese",
+      "name": "Portuguese",
+      "code": "POR",
+      "colors": { "primary": "#003399", "text": "#FFD700" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/1712efab-949f-4671-b883-9347ea9b30a5/emblem.png", "contentType": "image/png", "sizeBytes": 34810 }
+      }
+    },
+    {
+      "key": "romans",
+      "name": "Romans",
+      "code": "ROM",
+      "colors": { "primary": "#6B3FA0", "text": "#FFD700" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/24c82b2d-e9aa-48a2-8bfd-6529f6c56130/emblem.png", "contentType": "image/png", "sizeBytes": 32018 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/24c82b2d-e9aa-48a2-8bfd-6529f6c56130/logo.webp", "contentType": "image/webp", "sizeBytes": 176124 }
+      }
+    },
+    {
+      "key": "saracens",
+      "name": "Saracens",
+      "code": "SAR",
+      "colors": {
+        "primary": "#C8B200",
+        "text": "#1C1C1C",
+        "away": { "bg": "#1C1C1C", "text": "#C8B200" }
+      },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/3981de8c-602c-4bd6-87c8-77b8ae8c73c0/emblem.png", "contentType": "image/png", "sizeBytes": 29838 }
+      }
+    },
+    {
+      "key": "sicilians",
+      "name": "Sicilians",
+      "code": "SIC",
+      "colors": { "primary": "#F4A300", "text": "#CC0000" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/4bb6e511-8f77-4ba9-9368-0878c41a27d9/emblem.png", "contentType": "image/png", "sizeBytes": 47088 }
+      }
+    },
+    {
+      "key": "slavs",
+      "name": "Slavs",
+      "code": "SLV",
+      "colors": { "primary": "#0039A6", "text": "#FFFFFF" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/dd27cffb-fa72-4b35-a6fe-da6dd9365be3/emblem.png", "contentType": "image/png", "sizeBytes": 39816 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/dd27cffb-fa72-4b35-a6fe-da6dd9365be3/logo.webp", "contentType": "image/webp", "sizeBytes": 5802 }
+      }
+    },
+    {
+      "key": "spanish",
+      "name": "Spanish",
+      "code": "SPA",
+      "colors": { "primary": "#AA151B", "text": "#F1BF00" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/97cbdd74-4913-47f6-bdb4-d703d97a7b88/emblem.png", "contentType": "image/png", "sizeBytes": 44542 },
+        "EMBLEM": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/97cbdd74-4913-47f6-bdb4-d703d97a7b88/logo.webp", "contentType": "image/webp", "sizeBytes": 5150 }
+      }
+    },
+    {
+      "key": "tatars",
+      "name": "Tatars",
+      "code": "TAT",
+      "colors": { "primary": "#2F4F4F", "text": "#FFD700" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/bdf8716b-b6ae-4da3-82c6-d46ad2cb6128/emblem.png", "contentType": "image/png", "sizeBytes": 40906 }
+      }
+    },
+    {
+      "key": "teutons",
+      "name": "Teutons",
+      "code": "TEU",
+      "colors": {
+        "primary": "#1C1C1C",
+        "text": "#FFFFFF",
+        "away": { "bg": "#FFFFFF", "text": "#1C1C1C" }
+      },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/10918e4b-4c5e-4c9f-b6d8-6fa62dd71f45/emblem.png", "contentType": "image/png", "sizeBytes": 25594 }
+      }
+    },
+    {
+      "key": "tupi",
+      "name": "Tupi",
+      "code": "TUP",
+      "colors": {
+        "primary": "#1E7A3D",
+        "text": "#FFD23F",
+        "away": { "bg": "#FFD23F", "text": "#1E7A3D" }
+      }
+    },
+    {
+      "key": "turks",
+      "name": "Turks",
+      "code": "TUR",
+      "colors": {
+        "primary": "#E30A17",
+        "text": "#FFFFFF",
+        "away": { "bg": "#FFFFFF", "text": "#E30A17" }
+      },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/9ac66725-f084-4a57-8483-b98e952e13cd/emblem.png", "contentType": "image/png", "sizeBytes": 35468 }
+      }
+    },
+    {
+      "key": "vietnamese",
+      "name": "Vietnamese",
+      "code": "VIE",
+      "colors": { "primary": "#DA251D", "text": "#FFD700" },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/78d2cdae-b41d-4b95-a601-f57c5bbae236/emblem.png", "contentType": "image/png", "sizeBytes": 32964 }
+      }
+    },
+    {
+      "key": "vikings",
+      "name": "Vikings",
+      "code": "VIK",
+      "colors": {
+        "primary": "#4A6A8A",
+        "text": "#FFFFFF",
+        "away": { "bg": "#FFFFFF", "text": "#4A6A8A" }
+      },
+      "images": {
+        "FLAG": { "url": "https://sonic-hub.b-cdn.net/competition-fantasy/nations/8aa9f696-7249-47a6-a8ed-e5b5315d9f12/emblem.png", "contentType": "image/png", "sizeBytes": 20742 }
+      }
+    }
+  ],
+  "teams": [
+    { "key": "armenians", "name": "Armenians", "type": "NATIONAL", "nation": "armenians" },
+    { "key": "aztecs", "name": "Aztecs", "code": "AZT", "type": "NATIONAL", "nation": "aztecs" },
+    { "key": "bengalis", "name": "Bengalis", "type": "NATIONAL", "nation": "bengalis" },
+    { "key": "berbers", "name": "Berbers", "code": "BER", "type": "NATIONAL", "nation": "berbers" },
+    { "key": "bohemians", "name": "Bohemians", "code": "BOH", "type": "NATIONAL", "nation": "bohemians" },
+    { "key": "britons", "name": "Britons", "code": "BRI", "type": "NATIONAL", "nation": "britons" },
+    { "key": "bulgarians", "name": "Bulgarians", "code": "BUL", "type": "NATIONAL", "nation": "bulgarians" },
+    { "key": "burgundians", "name": "Burgundians", "type": "NATIONAL", "nation": "burgundians" },
+    { "key": "burmese", "name": "Burmese", "code": "BUR", "type": "NATIONAL", "nation": "burmese" },
+    { "key": "byzantines", "name": "Byzantines", "code": "BYZ", "type": "NATIONAL", "nation": "byzantines" },
+    { "key": "celts", "name": "Celts", "code": "CEL", "type": "NATIONAL", "nation": "celts" },
+    { "key": "chinese", "name": "Chinese", "code": "CHI", "type": "NATIONAL", "nation": "chinese" },
+    { "key": "cumans", "name": "Cumans", "code": "CUM", "type": "NATIONAL", "nation": "cumans" },
+    { "key": "dravidians", "name": "Dravidians", "type": "NATIONAL", "nation": "dravidians" },
+    { "key": "ethiopians", "name": "Ethiopians", "code": "ETH", "type": "NATIONAL", "nation": "ethiopians" },
+    { "key": "franks", "name": "Franks", "code": "FRA", "type": "NATIONAL", "nation": "franks" },
+    { "key": "georgians", "name": "Georgians", "type": "NATIONAL", "nation": "georgians" },
+    { "key": "goths", "name": "Goths", "type": "NATIONAL", "nation": "goths" },
+    { "key": "gurjaras", "name": "Gurjaras", "code": "GUR", "type": "NATIONAL", "nation": "gurjaras" },
+    { "key": "hindustanis", "name": "Hindustanis", "code": "HIN", "type": "NATIONAL", "nation": "hindustanis" },
+    { "key": "huns", "name": "Huns", "code": "HUN", "type": "NATIONAL", "nation": "huns" },
+    { "key": "inca", "name": "Inca", "type": "NATIONAL", "nation": "inca" },
+    { "key": "italians", "name": "Italians", "type": "NATIONAL", "nation": "italians" },
+    { "key": "japanese", "name": "Japanese", "code": "JAP", "type": "NATIONAL", "nation": "japanese" },
+    { "key": "jurchens", "name": "Jurchens", "type": "NATIONAL", "nation": "jurchens" },
+    { "key": "khitans", "name": "Khitans", "type": "NATIONAL", "nation": "khitans" },
+    { "key": "khmer", "name": "Khmer", "code": "KHM", "type": "NATIONAL", "nation": "khmer" },
+    { "key": "koreans", "name": "Koreans", "type": "NATIONAL", "nation": "koreans" },
+    { "key": "lithuanians", "name": "Lithuanians", "code": "LIT", "type": "NATIONAL", "nation": "lithuanians" },
+    { "key": "magyars", "name": "Magyars", "code": "MAG", "type": "NATIONAL", "nation": "magyars" },
+    { "key": "malay", "name": "Malay", "type": "NATIONAL", "nation": "malay" },
+    { "key": "malians", "name": "Malians", "code": "MLI", "type": "NATIONAL", "nation": "malians" },
+    { "key": "mapuche", "name": "Mapuche", "code": "MAP", "type": "NATIONAL", "nation": "mapuche" },
+    { "key": "maya", "name": "Maya", "type": "NATIONAL", "nation": "maya" },
+    { "key": "mongols", "name": "Mongols", "code": "MON", "type": "NATIONAL", "nation": "mongols" },
+    { "key": "muisca", "name": "Muisca", "code": "MUI", "type": "NATIONAL", "nation": "muisca" },
+    { "key": "persians", "name": "Persians", "code": "PER", "type": "NATIONAL", "nation": "persians" },
+    { "key": "poles", "name": "Poles", "code": "POL", "type": "NATIONAL", "nation": "poles" },
+    { "key": "portuguese", "name": "Portuguese", "type": "NATIONAL", "nation": "portuguese" },
+    { "key": "romans", "name": "Romans", "code": "ROM", "type": "NATIONAL", "nation": "romans" },
+    { "key": "saracens", "name": "Saracens", "code": "SAR", "type": "NATIONAL", "nation": "saracens" },
+    { "key": "sicilians", "name": "Sicilians", "type": "NATIONAL", "nation": "sicilians" },
+    { "key": "slavs", "name": "Slavs", "type": "NATIONAL", "nation": "slavs" },
+    { "key": "spanish", "name": "Spanish", "code": "SPA", "type": "NATIONAL", "nation": "spanish" },
+    { "key": "tatars", "name": "Tatars", "code": "TAT", "type": "NATIONAL", "nation": "tatars" },
+    { "key": "teutons", "name": "Teutons", "code": "TEU", "type": "NATIONAL", "nation": "teutons" },
+    { "key": "tupi", "name": "Tupi", "code": "TUP", "type": "NATIONAL", "nation": "tupi" },
+    { "key": "turks", "name": "Turks", "code": "TUR", "type": "NATIONAL", "nation": "turks" },
+    { "key": "vietnamese", "name": "Vietnamese", "code": "VIE", "type": "NATIONAL", "nation": "vietnamese" },
+    { "key": "vikings", "name": "Vikings", "code": "VIK", "type": "NATIONAL", "nation": "vikings" },
+    { "key": "arc-main", "name": "Arc Main", "code": "ARC", "type": "CLUB", "nation": "franks" },
+    { "key": "belisarius-united", "name": "Belisarius United", "code": "BEL", "type": "CLUB", "nation": "byzantines" },
+    { "key": "benlizihad-united", "name": "Benlizihad United", "code": "BZU", "type": "CLUB", "nation": "saracens" },
+    { "key": "blastoise", "name": "Blastoise", "code": "BLS", "type": "CLUB", "nation": "teutons" },
+    { "key": "bohemia", "name": "Bohemia", "code": "BOH", "type": "CLUB", "nation": "teutons" },
+    { "key": "british-city", "name": "British City", "code": "BRC", "type": "CLUB", "nation": "britons" },
+    { "key": "celt-united", "name": "Celt United", "code": "CLU", "type": "CLUB", "nation": "celts" },
+    { "key": "chu-koo-nu", "name": "Chu-Koo-Nu", "code": "CKN", "type": "CLUB", "nation": "chinese" },
+    { "key": "dark-iii", "name": "Dark III", "code": "DRK", "type": "CLUB", "nation": "britons" },
+    { "key": "dragon-burgundy", "name": "Dragon Burgundy", "code": "DRB", "type": "CLUB", "nation": "franks" },
+    { "key": "general-siede", "name": "General Siede", "code": "GNS", "type": "CLUB", "nation": "goths" },
+    { "key": "greek-united", "name": "Greek United", "code": "GKU", "type": "CLUB", "nation": "byzantines" },
+    { "key": "green-cycene", "name": "Green Cycene", "code": "GCY", "type": "CLUB", "nation": "celts" },
+    { "key": "huskarl", "name": "Huskarl", "code": "HUS", "type": "CLUB", "nation": "goths" },
+    { "key": "infantry-berserk", "name": "Infantry Berserk", "code": "INF", "type": "CLUB", "nation": "vikings" },
+    { "key": "janissary", "name": "Janissary", "code": "JAN", "type": "CLUB", "nation": "turks" },
+    { "key": "kajinuo", "name": "Kajinuo", "code": "KAJ", "type": "CLUB", "nation": "japanese" },
+    { "key": "kitabatake", "name": "Kitabatake", "code": "KIT", "type": "CLUB", "nation": "japanese" },
+    { "key": "knight-templar", "name": "Knight Templar", "code": "KNT", "type": "CLUB", "nation": "teutons" },
+    { "key": "lerberk", "name": "Lerberk", "code": "LER", "type": "CLUB", "nation": "turks" },
+    { "key": "mameluke", "name": "Mameluke", "code": "MAM", "type": "CLUB", "nation": "saracens" },
+    { "key": "mangudai", "name": "Mangudai", "code": "MNG", "type": "CLUB", "nation": "mongols" },
+    { "key": "naiman", "name": "Naiman", "code": "NAI", "type": "CLUB", "nation": "mongols" },
+    { "key": "persata", "name": "Persata", "code": "PES", "type": "CLUB", "nation": "mongols" },
+    { "key": "rider-woadwood", "name": "Rider Woadwood", "code": "RID", "type": "CLUB", "nation": "celts" },
+    { "key": "roland", "name": "Roland", "code": "ROL", "type": "CLUB", "nation": "franks" },
+    { "key": "rover-shah", "name": "Rover Shah", "code": "RVS", "type": "CLUB", "nation": "persians" },
+    { "key": "rudolph-swabian", "name": "Rudolph Swabian", "code": "RDS", "type": "CLUB", "nation": "teutons" },
+    { "key": "ship-parcicion", "name": "Ship Parcicion", "code": "SHP", "type": "CLUB", "nation": "vikings" },
+    { "key": "teamton", "name": "Teamton", "code": "TEA", "type": "CLUB", "nation": "chinese" },
+    { "key": "war-elephant", "name": "War Elephant", "code": "WAR", "type": "CLUB", "nation": "persians" },
+    { "key": "yoshiga-minamoto", "name": "Yoshiga Minamoto", "code": "YOS", "type": "CLUB", "nation": "japanese" }
+  ],
+  "competitions": [
+    { "key": "wonder-empires-football", "name": "Wonder Empires Football", "sport": "FOOTBALL", "teamLevel": "CLUB" }
+  ],
+  "seasons": [
+    {
+      "competition": "wonder-empires-football",
+      "key": "season-1",
+      "name": "Season 1",
+      "year": 2004,
+      "status": "COMPLETED",
+      "preset": "WONDER_EMPIRES_C1",
+      "teams": [
+        { "team": "british-city" },
+        { "team": "belisarius-united" },
+        { "team": "bohemia" },
+        { "team": "teamton" },
+        { "team": "rider-woadwood" },
+        { "team": "war-elephant" },
+        { "team": "blastoise" },
+        { "team": "kitabatake" },
+        { "team": "benlizihad-united" },
+        { "team": "general-siede" },
+        { "team": "naiman" },
+        { "team": "dragon-burgundy" },
+        { "team": "lerberk" },
+        { "team": "infantry-berserk" },
+        { "team": "chu-koo-nu" },
+        { "team": "dark-iii" },
+        { "team": "knight-templar" },
+        { "team": "mangudai" },
+        { "team": "arc-main" },
+        { "team": "mameluke" },
+        { "team": "huskarl" },
+        { "team": "kajinuo" },
+        { "team": "green-cycene" },
+        { "team": "greek-united" },
+        { "team": "yoshiga-minamoto" },
+        { "team": "roland" },
+        { "team": "janissary" },
+        { "team": "ship-parcicion" },
+        { "team": "persata" },
+        { "team": "celt-united" },
+        { "team": "rover-shah" },
+        { "team": "rudolph-swabian" }
+      ],
+      "stages": [
+        {
+          "key": "GS",
+          "name": "Group Stage",
+          "type": "ROUND_ROBIN",
+          "groups": [
+            {
+              "key": "A",
+              "name": "Group A",
+              "teams": ["british-city", "belisarius-united", "bohemia", "teamton"],
+              "rounds": [
+                {
+                  "number": 1,
+                  "name": "MD1",
+                  "matches": [
+                    { "home": "british-city", "away": "belisarius-united", "homeScore": 3, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "bohemia", "away": "teamton", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 2,
+                  "name": "MD2",
+                  "matches": [
+                    { "home": "teamton", "away": "belisarius-united", "homeScore": 2, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "british-city", "away": "bohemia", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 3,
+                  "name": "MD3",
+                  "matches": [
+                    { "home": "belisarius-united", "away": "bohemia", "homeScore": 2, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "teamton", "away": "british-city", "homeScore": 0, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 4,
+                  "name": "MD4",
+                  "matches": [
+                    { "home": "british-city", "away": "teamton", "homeScore": 2, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "bohemia", "away": "belisarius-united", "homeScore": 2, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 5,
+                  "name": "MD5",
+                  "matches": [
+                    { "home": "belisarius-united", "away": "british-city", "homeScore": 4, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "teamton", "away": "bohemia", "homeScore": 2, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 6,
+                  "name": "MD6",
+                  "matches": [
+                    { "home": "belisarius-united", "away": "teamton", "homeScore": 5, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "bohemia", "away": "british-city", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                }
+              ],
+              "recordedStandings": [
+                {
+                  "afterRound": 0,
+                  "rows": [
+                    { "team": "belisarius-united", "position": 1, "played": 6, "won": 3, "drawn": 2, "lost": 1, "goalsFor": 19, "goalsAgainst": 13, "points": 11 },
+                    { "team": "bohemia", "position": 2, "played": 6, "won": 2, "drawn": 3, "lost": 1, "goalsFor": 9, "goalsAgainst": 8, "points": 9 },
+                    { "team": "british-city", "position": 3, "played": 6, "won": 2, "drawn": 3, "lost": 1, "goalsFor": 9, "goalsAgainst": 8, "points": 9 },
+                    { "team": "teamton", "position": 4, "played": 6, "won": 0, "drawn": 2, "lost": 4, "goalsFor": 7, "goalsAgainst": 15, "points": 2 }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "B",
+              "name": "Group B",
+              "teams": ["rider-woadwood", "war-elephant", "blastoise", "kitabatake"],
+              "rounds": [
+                {
+                  "number": 1,
+                  "name": "MD1",
+                  "matches": [
+                    { "home": "rider-woadwood", "away": "war-elephant", "homeScore": 3, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "blastoise", "away": "kitabatake", "homeScore": 3, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 2,
+                  "name": "MD2",
+                  "matches": [
+                    { "home": "kitabatake", "away": "war-elephant", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "rider-woadwood", "away": "blastoise", "homeScore": 3, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 3,
+                  "name": "MD3",
+                  "matches": [
+                    { "home": "war-elephant", "away": "blastoise", "homeScore": 3, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "kitabatake", "away": "rider-woadwood", "homeScore": 1, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 4,
+                  "name": "MD4",
+                  "matches": [
+                    { "home": "blastoise", "away": "war-elephant", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "rider-woadwood", "away": "kitabatake", "homeScore": 3, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 5,
+                  "name": "MD5",
+                  "matches": [
+                    { "home": "war-elephant", "away": "rider-woadwood", "homeScore": 2, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "kitabatake", "away": "blastoise", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 6,
+                  "name": "MD6",
+                  "matches": [
+                    { "home": "war-elephant", "away": "kitabatake", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "blastoise", "away": "rider-woadwood", "homeScore": 1, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                }
+              ],
+              "recordedStandings": [
+                {
+                  "afterRound": 0,
+                  "rows": [
+                    { "team": "rider-woadwood", "position": 1, "played": 6, "won": 3, "drawn": 0, "lost": 3, "goalsFor": 9, "goalsAgainst": 6, "points": 9 },
+                    { "team": "war-elephant", "position": 2, "played": 6, "won": 2, "drawn": 3, "lost": 1, "goalsFor": 7, "goalsAgainst": 7, "points": 9 },
+                    { "team": "blastoise", "position": 3, "played": 6, "won": 2, "drawn": 2, "lost": 2, "goalsFor": 9, "goalsAgainst": 10, "points": 8 },
+                    { "team": "kitabatake", "position": 4, "played": 6, "won": 1, "drawn": 3, "lost": 2, "goalsFor": 6, "goalsAgainst": 8, "points": 6 }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "C",
+              "name": "Group C",
+              "teams": ["benlizihad-united", "general-siede", "naiman", "dragon-burgundy"],
+              "rounds": [
+                {
+                  "number": 1,
+                  "name": "MD1",
+                  "matches": [
+                    { "home": "naiman", "away": "dragon-burgundy", "homeScore": 2, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "benlizihad-united", "away": "general-siede", "homeScore": 2, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 2,
+                  "name": "MD2",
+                  "matches": [
+                    { "home": "dragon-burgundy", "away": "general-siede", "homeScore": 2, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "benlizihad-united", "away": "naiman", "homeScore": 0, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 3,
+                  "name": "MD3",
+                  "matches": [
+                    { "home": "general-siede", "away": "naiman", "homeScore": 2, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "dragon-burgundy", "away": "benlizihad-united", "homeScore": 1, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 4,
+                  "name": "MD4",
+                  "matches": [
+                    { "home": "benlizihad-united", "away": "dragon-burgundy", "homeScore": 2, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "naiman", "away": "general-siede", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 5,
+                  "name": "MD5",
+                  "matches": [
+                    { "home": "general-siede", "away": "benlizihad-united", "homeScore": 3, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "dragon-burgundy", "away": "naiman", "homeScore": 1, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 6,
+                  "name": "MD6",
+                  "matches": [
+                    { "home": "general-siede", "away": "dragon-burgundy", "homeScore": 2, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "naiman", "away": "benlizihad-united", "homeScore": 3, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                }
+              ],
+              "recordedStandings": [
+                {
+                  "afterRound": 0,
+                  "rows": [
+                    { "team": "dragon-burgundy", "position": 1, "played": 6, "won": 2, "drawn": 3, "lost": 1, "goalsFor": 10, "goalsAgainst": 9, "points": 9 },
+                    { "team": "benlizihad-united", "position": 2, "played": 6, "won": 2, "drawn": 2, "lost": 2, "goalsFor": 11, "goalsAgainst": 10, "points": 8 },
+                    { "team": "naiman", "position": 3, "played": 6, "won": 2, "drawn": 2, "lost": 2, "goalsFor": 8, "goalsAgainst": 7, "points": 8 },
+                    { "team": "general-siede", "position": 4, "played": 6, "won": 1, "drawn": 3, "lost": 2, "goalsFor": 9, "goalsAgainst": 10, "points": 6 }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "D",
+              "name": "Group D",
+              "teams": ["lerberk", "infantry-berserk", "chu-koo-nu", "dark-iii"],
+              "rounds": [
+                {
+                  "number": 1,
+                  "name": "MD1",
+                  "matches": [
+                    { "home": "lerberk", "away": "infantry-berserk", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "chu-koo-nu", "away": "dark-iii", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 2,
+                  "name": "MD2",
+                  "matches": [
+                    { "home": "dark-iii", "away": "infantry-berserk", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "lerberk", "away": "chu-koo-nu", "homeScore": 4, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 3,
+                  "name": "MD3",
+                  "matches": [
+                    { "home": "infantry-berserk", "away": "chu-koo-nu", "homeScore": 1, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "dark-iii", "away": "lerberk", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 4,
+                  "name": "MD4",
+                  "matches": [
+                    { "home": "chu-koo-nu", "away": "infantry-berserk", "homeScore": 1, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "lerberk", "away": "dark-iii", "homeScore": 0, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 5,
+                  "name": "MD5",
+                  "matches": [
+                    { "home": "dark-iii", "away": "chu-koo-nu", "homeScore": 0, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "infantry-berserk", "away": "lerberk", "homeScore": 0, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 6,
+                  "name": "MD6",
+                  "matches": [
+                    { "home": "chu-koo-nu", "away": "lerberk", "homeScore": 2, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "infantry-berserk", "away": "dark-iii", "homeScore": 2, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                }
+              ],
+              "recordedStandings": [
+                {
+                  "afterRound": 0,
+                  "rows": [
+                    { "team": "lerberk", "position": 1, "played": 6, "won": 2, "drawn": 3, "lost": 1, "goalsFor": 10, "goalsAgainst": 4, "points": 9 },
+                    { "team": "infantry-berserk", "position": 2, "played": 6, "won": 2, "drawn": 2, "lost": 2, "goalsFor": 8, "goalsAgainst": 9, "points": 8 },
+                    { "team": "chu-koo-nu", "position": 3, "played": 6, "won": 2, "drawn": 2, "lost": 2, "goalsFor": 8, "goalsAgainst": 11, "points": 8 },
+                    { "team": "dark-iii", "position": 4, "played": 6, "won": 1, "drawn": 2, "lost": 3, "goalsFor": 4, "goalsAgainst": 6, "points": 5 }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "E",
+              "name": "Group E",
+              "teams": ["knight-templar", "mangudai", "arc-main", "mameluke"],
+              "rounds": [
+                {
+                  "number": 1,
+                  "name": "MD1",
+                  "matches": [
+                    { "home": "arc-main", "away": "mameluke", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "knight-templar", "away": "mangudai", "homeScore": 3, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 2,
+                  "name": "MD2",
+                  "matches": [
+                    { "home": "mameluke", "away": "mangudai", "homeScore": 3, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "knight-templar", "away": "arc-main", "homeScore": 2, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 3,
+                  "name": "MD3",
+                  "matches": [
+                    { "home": "mameluke", "away": "knight-templar", "homeScore": 2, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "mangudai", "away": "arc-main", "homeScore": 1, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 4,
+                  "name": "MD4",
+                  "matches": [
+                    { "home": "arc-main", "away": "mangudai", "homeScore": 1, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "knight-templar", "away": "mameluke", "homeScore": 4, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 5,
+                  "name": "MD5",
+                  "matches": [
+                    { "home": "mameluke", "away": "arc-main", "homeScore": 3, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "mangudai", "away": "knight-templar", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 6,
+                  "name": "MD6",
+                  "matches": [
+                    { "home": "mangudai", "away": "mameluke", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "arc-main", "away": "knight-templar", "homeScore": 0, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                }
+              ],
+              "recordedStandings": [
+                {
+                  "afterRound": 0,
+                  "rows": [
+                    { "team": "knight-templar", "position": 1, "played": 6, "won": 4, "drawn": 1, "lost": 1, "goalsFor": 10, "goalsAgainst": 5, "points": 13 },
+                    { "team": "mameluke", "position": 2, "played": 6, "won": 3, "drawn": 2, "lost": 1, "goalsFor": 11, "goalsAgainst": 5, "points": 11 },
+                    { "team": "arc-main", "position": 3, "played": 6, "won": 2, "drawn": 1, "lost": 3, "goalsFor": 4, "goalsAgainst": 7, "points": 7 },
+                    { "team": "mangudai", "position": 4, "played": 6, "won": 0, "drawn": 2, "lost": 4, "goalsFor": 1, "goalsAgainst": 9, "points": 2 }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "F",
+              "name": "Group F",
+              "teams": ["huskarl", "kajinuo", "green-cycene", "greek-united"],
+              "rounds": [
+                {
+                  "number": 1,
+                  "name": "MD1",
+                  "matches": [
+                    { "home": "huskarl", "away": "kajinuo", "homeScore": 3, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "green-cycene", "away": "greek-united", "homeScore": 0, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 2,
+                  "name": "MD2",
+                  "matches": [
+                    { "home": "greek-united", "away": "kajinuo", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "huskarl", "away": "green-cycene", "homeScore": 2, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 3,
+                  "name": "MD3",
+                  "matches": [
+                    { "home": "kajinuo", "away": "green-cycene", "homeScore": 2, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "greek-united", "away": "huskarl", "homeScore": 0, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 4,
+                  "name": "MD4",
+                  "matches": [
+                    { "home": "huskarl", "away": "greek-united", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "green-cycene", "away": "kajinuo", "homeScore": 3, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 5,
+                  "name": "MD5",
+                  "matches": [
+                    { "home": "greek-united", "away": "green-cycene", "homeScore": 0, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "kajinuo", "away": "huskarl", "homeScore": 1, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 6,
+                  "name": "MD6",
+                  "matches": [
+                    { "home": "kajinuo", "away": "greek-united", "homeScore": 1, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "green-cycene", "away": "huskarl", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                }
+              ],
+              "recordedStandings": [
+                {
+                  "afterRound": 0,
+                  "rows": [
+                    { "team": "huskarl", "position": 1, "played": 6, "won": 3, "drawn": 2, "lost": 1, "goalsFor": 9, "goalsAgainst": 4, "points": 11 },
+                    { "team": "green-cycene", "position": 2, "played": 6, "won": 2, "drawn": 2, "lost": 2, "goalsFor": 8, "goalsAgainst": 7, "points": 8 },
+                    { "team": "greek-united", "position": 3, "played": 6, "won": 2, "drawn": 2, "lost": 2, "goalsFor": 4, "goalsAgainst": 5, "points": 8 },
+                    { "team": "kajinuo", "position": 4, "played": 6, "won": 1, "drawn": 2, "lost": 3, "goalsFor": 5, "goalsAgainst": 10, "points": 5 }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "G",
+              "name": "Group G",
+              "teams": ["yoshiga-minamoto", "roland", "janissary", "ship-parcicion"],
+              "rounds": [
+                {
+                  "number": 1,
+                  "name": "MD1",
+                  "matches": [
+                    { "home": "janissary", "away": "ship-parcicion", "homeScore": 3, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "yoshiga-minamoto", "away": "roland", "homeScore": 2, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 2,
+                  "name": "MD2",
+                  "matches": [
+                    { "home": "yoshiga-minamoto", "away": "janissary", "homeScore": 1, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "ship-parcicion", "away": "roland", "homeScore": 2, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 3,
+                  "name": "MD3",
+                  "matches": [
+                    { "home": "roland", "away": "janissary", "homeScore": 2, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "ship-parcicion", "away": "yoshiga-minamoto", "homeScore": 3, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 4,
+                  "name": "MD4",
+                  "matches": [
+                    { "home": "janissary", "away": "roland", "homeScore": 3, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "yoshiga-minamoto", "away": "ship-parcicion", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 5,
+                  "name": "MD5",
+                  "matches": [
+                    { "home": "roland", "away": "yoshiga-minamoto", "homeScore": 3, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "ship-parcicion", "away": "janissary", "homeScore": 0, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 6,
+                  "name": "MD6",
+                  "matches": [
+                    { "home": "roland", "away": "ship-parcicion", "homeScore": 1, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "janissary", "away": "yoshiga-minamoto", "homeScore": 0, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                }
+              ],
+              "recordedStandings": [
+                {
+                  "afterRound": 0,
+                  "rows": [
+                    { "team": "roland", "position": 1, "played": 6, "won": 4, "drawn": 1, "lost": 1, "goalsFor": 13, "goalsAgainst": 9, "points": 13 },
+                    { "team": "yoshiga-minamoto", "position": 2, "played": 6, "won": 2, "drawn": 2, "lost": 2, "goalsFor": 10, "goalsAgainst": 10, "points": 8 },
+                    { "team": "janissary", "position": 3, "played": 6, "won": 2, "drawn": 1, "lost": 3, "goalsFor": 8, "goalsAgainst": 9, "points": 7 },
+                    { "team": "ship-parcicion", "position": 4, "played": 6, "won": 1, "drawn": 2, "lost": 3, "goalsFor": 7, "goalsAgainst": 10, "points": 5 }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "H",
+              "name": "Group H",
+              "teams": ["persata", "celt-united", "rover-shah", "rudolph-swabian"],
+              "rounds": [
+                {
+                  "number": 1,
+                  "name": "MD1",
+                  "matches": [
+                    { "home": "rover-shah", "away": "rudolph-swabian", "homeScore": 3, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "persata", "away": "celt-united", "homeScore": 2, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 2,
+                  "name": "MD2",
+                  "matches": [
+                    { "home": "persata", "away": "rover-shah", "homeScore": 3, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "rudolph-swabian", "away": "celt-united", "homeScore": 1, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 3,
+                  "name": "MD3",
+                  "matches": [
+                    { "home": "rudolph-swabian", "away": "persata", "homeScore": 1, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "celt-united", "away": "rover-shah", "homeScore": 2, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 4,
+                  "name": "MD4",
+                  "matches": [
+                    { "home": "rover-shah", "away": "celt-united", "homeScore": 2, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "persata", "away": "rudolph-swabian", "homeScore": 3, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 5,
+                  "name": "MD5",
+                  "matches": [
+                    { "home": "rudolph-swabian", "away": "rover-shah", "homeScore": 2, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "celt-united", "away": "persata", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 6,
+                  "name": "MD6",
+                  "matches": [
+                    { "home": "rover-shah", "away": "persata", "homeScore": 2, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "celt-united", "away": "rudolph-swabian", "homeScore": 0, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                }
+              ],
+              "recordedStandings": [
+                {
+                  "afterRound": 0,
+                  "rows": [
+                    { "team": "persata", "position": 1, "played": 6, "won": 3, "drawn": 2, "lost": 1, "goalsFor": 11, "goalsAgainst": 8, "points": 11 },
+                    { "team": "rudolph-swabian", "position": 2, "played": 6, "won": 3, "drawn": 1, "lost": 2, "goalsFor": 12, "goalsAgainst": 8, "points": 10 },
+                    { "team": "rover-shah", "position": 3, "played": 6, "won": 1, "drawn": 3, "lost": 2, "goalsFor": 10, "goalsAgainst": 12, "points": 6 },
+                    { "team": "celt-united", "position": 4, "played": 6, "won": 1, "drawn": 2, "lost": 3, "goalsFor": 6, "goalsAgainst": 11, "points": 5 }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "EG",
+          "name": "Elimination Groups II",
+          "type": "ROUND_ROBIN",
+          "groups": [
+            {
+              "key": "A",
+              "name": "Group A",
+              "teams": ["huskarl", "persata", "rider-woadwood", "roland"],
+              "rounds": [
+                {
+                  "number": 1,
+                  "name": "MD1",
+                  "matches": [
+                    { "home": "huskarl", "away": "persata", "homeScore": 2, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "rider-woadwood", "away": "roland", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 2,
+                  "name": "MD2",
+                  "matches": [
+                    { "home": "huskarl", "away": "rider-woadwood", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "roland", "away": "persata", "homeScore": 1, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 3,
+                  "name": "MD3",
+                  "matches": [
+                    { "home": "persata", "away": "rider-woadwood", "homeScore": 2, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "roland", "away": "huskarl", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 4,
+                  "name": "MD4",
+                  "matches": [
+                    { "home": "huskarl", "away": "roland", "homeScore": 2, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "rider-woadwood", "away": "persata", "homeScore": 0, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 5,
+                  "name": "MD5",
+                  "matches": [
+                    { "home": "persata", "away": "huskarl", "homeScore": 2, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "roland", "away": "rider-woadwood", "homeScore": 2, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 6,
+                  "name": "MD6",
+                  "matches": [
+                    { "home": "persata", "away": "roland", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "rider-woadwood", "away": "huskarl", "homeScore": 0, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                }
+              ],
+              "recordedStandings": [
+                {
+                  "afterRound": 0,
+                  "rows": [
+                    { "team": "persata", "position": 1, "played": 6, "won": 3, "drawn": 2, "lost": 1, "goalsFor": 10, "goalsAgainst": 6, "points": 11 },
+                    { "team": "huskarl", "position": 2, "played": 6, "won": 2, "drawn": 3, "lost": 1, "goalsFor": 10, "goalsAgainst": 7, "points": 9 },
+                    { "team": "rider-woadwood", "position": 3, "played": 6, "won": 1, "drawn": 3, "lost": 2, "goalsFor": 6, "goalsAgainst": 10, "points": 6 },
+                    { "team": "roland", "position": 4, "played": 6, "won": 0, "drawn": 4, "lost": 2, "goalsFor": 4, "goalsAgainst": 7, "points": 4 }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "B",
+              "name": "Group B",
+              "teams": ["bohemia", "war-elephant", "infantry-berserk", "green-cycene"],
+              "rounds": [
+                {
+                  "number": 1,
+                  "name": "MD1",
+                  "matches": [
+                    { "home": "bohemia", "away": "war-elephant", "homeScore": 1, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "infantry-berserk", "away": "green-cycene", "homeScore": 2, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 2,
+                  "name": "MD2",
+                  "matches": [
+                    { "home": "green-cycene", "away": "war-elephant", "homeScore": 1, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "bohemia", "away": "infantry-berserk", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 3,
+                  "name": "MD3",
+                  "matches": [
+                    { "home": "green-cycene", "away": "bohemia", "homeScore": 1, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "war-elephant", "away": "infantry-berserk", "homeScore": 3, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 4,
+                  "name": "MD4",
+                  "matches": [
+                    { "home": "bohemia", "away": "green-cycene", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "infantry-berserk", "away": "war-elephant", "homeScore": 2, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 5,
+                  "name": "MD5",
+                  "matches": [
+                    { "home": "green-cycene", "away": "infantry-berserk", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "war-elephant", "away": "bohemia", "homeScore": 0, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 6,
+                  "name": "MD6",
+                  "matches": [
+                    { "home": "war-elephant", "away": "green-cycene", "homeScore": 2, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "infantry-berserk", "away": "bohemia", "homeScore": 0, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                }
+              ],
+              "recordedStandings": [
+                {
+                  "afterRound": 0,
+                  "rows": [
+                    { "team": "green-cycene", "position": 1, "played": 6, "won": 2, "drawn": 3, "lost": 1, "goalsFor": 5, "goalsAgainst": 5, "points": 9 },
+                    { "team": "bohemia", "position": 2, "played": 6, "won": 2, "drawn": 2, "lost": 2, "goalsFor": 5, "goalsAgainst": 5, "points": 8 },
+                    { "team": "infantry-berserk", "position": 3, "played": 6, "won": 1, "drawn": 4, "lost": 1, "goalsFor": 9, "goalsAgainst": 8, "points": 7 },
+                    { "team": "war-elephant", "position": 4, "played": 6, "won": 1, "drawn": 3, "lost": 2, "goalsFor": 10, "goalsAgainst": 11, "points": 6 }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "C",
+              "name": "Group C",
+              "teams": ["yoshiga-minamoto", "dragon-burgundy", "rudolph-swabian", "mameluke"],
+              "rounds": [
+                {
+                  "number": 1,
+                  "name": "MD1",
+                  "matches": [
+                    { "home": "yoshiga-minamoto", "away": "dragon-burgundy", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "rudolph-swabian", "away": "mameluke", "homeScore": 1, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 2,
+                  "name": "MD2",
+                  "matches": [
+                    { "home": "yoshiga-minamoto", "away": "rudolph-swabian", "homeScore": 3, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "mameluke", "away": "dragon-burgundy", "homeScore": 3, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 3,
+                  "name": "MD3",
+                  "matches": [
+                    { "home": "dragon-burgundy", "away": "rudolph-swabian", "homeScore": 1, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "mameluke", "away": "yoshiga-minamoto", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 4,
+                  "name": "MD4",
+                  "matches": [
+                    { "home": "yoshiga-minamoto", "away": "mameluke", "homeScore": 0, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "rudolph-swabian", "away": "dragon-burgundy", "homeScore": 3, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 5,
+                  "name": "MD5",
+                  "matches": [
+                    { "home": "dragon-burgundy", "away": "yoshiga-minamoto", "homeScore": 2, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "mameluke", "away": "rudolph-swabian", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 6,
+                  "name": "MD6",
+                  "matches": [
+                    { "home": "dragon-burgundy", "away": "mameluke", "homeScore": 2, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "rudolph-swabian", "away": "yoshiga-minamoto", "homeScore": 0, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                }
+              ],
+              "recordedStandings": [
+                {
+                  "afterRound": 0,
+                  "rows": [
+                    { "team": "mameluke", "position": 1, "played": 6, "won": 3, "drawn": 2, "lost": 1, "goalsFor": 9, "goalsAgainst": 3, "points": 11 },
+                    { "team": "dragon-burgundy", "position": 2, "played": 6, "won": 3, "drawn": 1, "lost": 2, "goalsFor": 6, "goalsAgainst": 7, "points": 10 },
+                    { "team": "yoshiga-minamoto", "position": 3, "played": 6, "won": 1, "drawn": 3, "lost": 2, "goalsFor": 4, "goalsAgainst": 8, "points": 6 },
+                    { "team": "rudolph-swabian", "position": 4, "played": 6, "won": 1, "drawn": 2, "lost": 3, "goalsFor": 7, "goalsAgainst": 8, "points": 5 }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "D",
+              "name": "Group D",
+              "teams": ["benlizihad-united", "knight-templar", "belisarius-united", "lerberk"],
+              "rounds": [
+                {
+                  "number": 1,
+                  "name": "MD1",
+                  "matches": [
+                    { "home": "belisarius-united", "away": "lerberk", "homeScore": 2, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "benlizihad-united", "away": "knight-templar", "homeScore": 1, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 2,
+                  "name": "MD2",
+                  "matches": [
+                    { "home": "benlizihad-united", "away": "belisarius-united", "homeScore": 2, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "lerberk", "away": "knight-templar", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 3,
+                  "name": "MD3",
+                  "matches": [
+                    { "home": "knight-templar", "away": "belisarius-united", "homeScore": 1, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "lerberk", "away": "benlizihad-united", "homeScore": 2, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 4,
+                  "name": "MD4",
+                  "matches": [
+                    { "home": "belisarius-united", "away": "knight-templar", "homeScore": 2, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "benlizihad-united", "away": "lerberk", "homeScore": 0, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 5,
+                  "name": "MD5",
+                  "matches": [
+                    { "home": "knight-templar", "away": "benlizihad-united", "homeScore": 3, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "lerberk", "away": "belisarius-united", "homeScore": 1, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "number": 6,
+                  "name": "MD6",
+                  "matches": [
+                    { "home": "knight-templar", "away": "lerberk", "homeScore": 2, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "home": "belisarius-united", "away": "benlizihad-united", "homeScore": 1, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                }
+              ],
+              "recordedStandings": [
+                {
+                  "afterRound": 0,
+                  "rows": [
+                    { "team": "belisarius-united", "position": 1, "played": 6, "won": 3, "drawn": 1, "lost": 2, "goalsFor": 9, "goalsAgainst": 6, "points": 10 },
+                    { "team": "knight-templar", "position": 2, "played": 6, "won": 3, "drawn": 1, "lost": 2, "goalsFor": 8, "goalsAgainst": 8, "points": 10 },
+                    { "team": "lerberk", "position": 3, "played": 6, "won": 2, "drawn": 3, "lost": 1, "goalsFor": 8, "goalsAgainst": 7, "points": 9 },
+                    { "team": "benlizihad-united", "position": 4, "played": 6, "won": 1, "drawn": 1, "lost": 4, "goalsFor": 5, "goalsAgainst": 9, "points": 4 }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "KO",
+          "name": "Knockout stage",
+          "type": "KNOCKOUT",
+          "rounds": [
+            {
+              "key": "QF",
+              "name": "Quarter Final",
+              "legs": 2,
+              "ties": [
+                {
+                  "position": 1,
+                  "home": "bohemia",
+                  "away": "persata",
+                  "matches": [
+                    { "leg": 1, "home": "bohemia", "away": "persata", "homeScore": 2, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "leg": 2, "home": "persata", "away": "bohemia", "homeScore": 2, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "position": 2,
+                  "home": "knight-templar",
+                  "away": "huskarl",
+                  "matches": [
+                    { "leg": 1, "home": "knight-templar", "away": "huskarl", "homeScore": 4, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "leg": 2, "home": "huskarl", "away": "knight-templar", "homeScore": 3, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "position": 3,
+                  "home": "green-cycene",
+                  "away": "mameluke",
+                  "matches": [
+                    { "leg": 1, "home": "green-cycene", "away": "mameluke", "homeScore": 1, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "leg": 2, "home": "mameluke", "away": "green-cycene", "homeScore": 3, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "position": 4,
+                  "home": "belisarius-united",
+                  "away": "dragon-burgundy",
+                  "matches": [
+                    { "leg": 1, "home": "belisarius-united", "away": "dragon-burgundy", "homeScore": 1, "awayScore": 0, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "leg": 2, "home": "dragon-burgundy", "away": "belisarius-united", "homeScore": 1, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "SF",
+              "name": "Semi Final",
+              "legs": 2,
+              "ties": [
+                {
+                  "position": 1,
+                  "home": "persata",
+                  "away": "knight-templar",
+                  "matches": [
+                    { "leg": 1, "home": "persata", "away": "knight-templar", "homeScore": 0, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "leg": 2, "home": "knight-templar", "away": "persata", "homeScore": 3, "awayScore": 3, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                },
+                {
+                  "position": 2,
+                  "home": "mameluke",
+                  "away": "belisarius-united",
+                  "matches": [
+                    { "leg": 1, "home": "mameluke", "away": "belisarius-united", "homeScore": 1, "awayScore": 2, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" },
+                    { "leg": 2, "home": "belisarius-united", "away": "mameluke", "homeScore": 3, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED" }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "F",
+              "name": "Final",
+              "legs": 1,
+              "ties": [
+                {
+                  "position": 1,
+                  "home": "knight-templar",
+                  "away": "belisarius-united",
+                  "matches": [
+                    { "home": "knight-templar", "away": "belisarius-united", "homeScore": 2, "awayScore": 1, "status": "PLAYED", "source": "NOTEBOOK", "confidence": "VERIFIED", "notes": "Mainer Park" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "honours": [
+        { "team": "knight-templar", "kind": "CHAMPION" },
+        { "team": "belisarius-united", "kind": "RUNNER_UP" }
+      ]
+    }
+  ]
+}

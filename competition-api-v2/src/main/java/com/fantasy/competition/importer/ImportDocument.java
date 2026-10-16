@@ -3,11 +3,14 @@ package com.fantasy.competition.importer;
 import tools.jackson.databind.JsonNode;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * The JSON import document (schema v1). One document = one universe. Every entity has a stable `key`;
  * re-running a file upserts by key. Team references accept a key, the exact name, or any alias.
  * Seasons are replaced as a whole on re-import (stages, matches, tables, honours).
+ * {@code images} maps a slot (FLAG, EMBLEM, LOGO, …) to a URL of a file already in storage, or to
+ * {url, contentType, width, height, sizeBytes, title}; nothing is uploaded.
  */
 public record ImportDocument(
         Integer schemaVersion,
@@ -20,20 +23,20 @@ public record ImportDocument(
         List<CompetitionIn> competitions,
         List<SeasonIn> seasons
 ) {
-    public record UniverseIn(String key, String name, String description, String type, Boolean usesNations) {}
+    public record UniverseIn(String key, String name, String description, String type, Boolean usesNations, Map<String, JsonNode> images) {}
 
-    public record NationIn(String key, String name, String code, JsonNode colors, String description) {}
+    public record NationIn(String key, String name, String code, JsonNode colors, String description, Map<String, JsonNode> images) {}
 
-    public record StadiumIn(String key, String name, String city, Integer capacity, String inspiredBy, String description) {}
+    public record StadiumIn(String key, String name, String city, Integer capacity, String inspiredBy, String description, Map<String, JsonNode> images) {}
 
     public record TeamIn(String key, String name, String shortName, String code, String type, String nation, List<String> aliases,
-                         String homeStadium, String description, Integer foundedYear, Integer dissolvedYear) {}
+                         String homeStadium, String description, Integer foundedYear, Integer dissolvedYear, Map<String, JsonNode> images) {}
 
     public record ProfileIn(String team, Integer year, String displayName, String sponsor, JsonNode colors, String notes) {}
 
     public record KitIn(String team, Integer year, String kind, String shirt, String shorts, String socks, String sponsor) {}
 
-    public record CompetitionIn(String key, String name, String sport, String teamLevel, Integer tier, String description) {}
+    public record CompetitionIn(String key, String name, String sport, String teamLevel, Integer tier, String description, Map<String, JsonNode> images) {}
 
     public record SeasonIn(String competition, String key, String name, Integer year, String startDate, String endDate, String status,
                            String preset, JsonNode format, String notes, List<SeasonTeamIn> teams, List<StageIn> stages, List<HonourIn> honours) {}

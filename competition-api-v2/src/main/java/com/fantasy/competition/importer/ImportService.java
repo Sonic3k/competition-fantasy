@@ -1,5 +1,8 @@
 package com.fantasy.competition.importer;
 
+import com.fantasy.competition.asset.AssetRepository;
+import com.fantasy.competition.asset.AssetService;
+import com.fantasy.competition.asset.AssetSlotRepository;
 import com.fantasy.competition.common.Json;
 import com.fantasy.competition.common.Slugs;
 import com.fantasy.competition.competition.Competition;
@@ -76,6 +79,8 @@ import org.springframework.transaction.support.TransactionTemplate;
 import java.security.MessageDigest;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import tools.jackson.databind.JsonNode;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -116,6 +121,9 @@ public class ImportService {
     private final FormatService formats;
     private final StandingsService standingsService;
     private final CompetitionService competitionService;
+    private final AssetService assetService;
+    private final AssetRepository assets;
+    private final AssetSlotRepository assetSlots;
     private final TransactionTemplate tx;
     private final Json json;
 
@@ -125,6 +133,7 @@ public class ImportService {
                          StageRepository stages, StageGroupRepository groups, StageGroupTeamRepository groupTeams, RoundRepository rounds,
                          KoRoundRepository koRounds, TieRepository ties, MatchRepository matches, HonourRepository honours,
                          FormatService formats, StandingsService standingsService, CompetitionService competitionService,
+                         AssetService assetService, AssetRepository assets, AssetSlotRepository assetSlots,
                          PlatformTransactionManager txManager, Json json) {
         this.runStore = runStore;
         this.changes = changes;
@@ -149,6 +158,9 @@ public class ImportService {
         this.formats = formats;
         this.standingsService = standingsService;
         this.competitionService = competitionService;
+        this.assetService = assetService;
+        this.assets = assets;
+        this.assetSlots = assetSlots;
         this.tx = new TransactionTemplate(txManager);
         this.json = json;
     }
@@ -183,7 +195,7 @@ public class ImportService {
         return report;
     }
 
-    /** Deletes everything a run created, newest first. Updated or replaced records are not restored. */
+    /** Deletes everything a run created, newest first. Updated or replaced records are not restored; image files stay in storage. */
     @Transactional
     public int revert(Long runId) {
         List<ImportChange> list = changes.findByRunIdOrderByOrdinalDesc(runId);
@@ -200,6 +212,8 @@ public class ImportService {
                 case "KIT" -> kits.deleteById(c.getEntityId());
                 case "COMPETITION" -> competitions.deleteById(c.getEntityId());
                 case "SEASON" -> seasons.deleteById(c.getEntityId());
+                case "ASSET_SLOT" -> assetSlots.deleteById(c.getEntityId());
+                case "ASSET" -> assets.deleteById(c.getEntityId());
                 default -> { continue; }
             }
             n++;
@@ -237,6 +251,7 @@ public class ImportService {
         if (in.usesNations() != null) u.setUsesNations(in.usesNations());
         u = universes.save(u);
         ctx.record("UNIVERSE", u.getId(), created);
+        attachImages("UNIVERSE", u.getId(), in.images(), "universe " + key, ctx);
         ctx.log("Universe " + key + (created ? " created" : " updated"));
         return u;
     }
@@ -263,6 +278,7 @@ public class ImportService {
         n = nations.save(n);
         ctx.nationsByKey.put(key, n);
         ctx.record("NATION", n.getId(), created);
+        attachImages("NATION", n.getId(), in.images(), "nation " + key, ctx);
     }
 
     private void upsertStadium(StadiumIn in, Ctx ctx) {
@@ -280,6 +296,7 @@ public class ImportService {
         s = stadiums.save(s);
         ctx.stadiumsByKey.put(key, s);
         ctx.record("STADIUM", s.getId(), created);
+        attachImages("STADIUM", s.getId(), in.images(), "stadium " + key, ctx);
     }
 
     private void upsertTeam(TeamIn in, Ctx ctx) {
@@ -310,6 +327,7 @@ public class ImportService {
         t = teams.save(t);
         ctx.addTeam(t);
         ctx.record("TEAM", t.getId(), created);
+        attachImages("TEAM", t.getId(), in.images(), "team " + key, ctx);
         for (String alias : nz(in.aliases())) {
             if (isBlank(alias)) continue;
             String lower = alias.trim().toLowerCase(Locale.ROOT);
@@ -365,6 +383,41 @@ public class ImportService {
         c = competitions.save(c);
         ctx.competitionsByKey.put(key, c);
         ctx.record("COMPETITION", c.getId(), created);
+        attachImages("COMPETITION", c.getId(), in.images(), "competition " + key, ctx);
+    }
+
+    /** images: {SLOT: url | {url, contentType, width, height, sizeBytes, title}} — files already in storage, registered by URL. */
+    private void attachImages(String ownerType, Long ownerId, Map<String, JsonNode> images, String where, Ctx ctx) {
+        if (images == null) return;
+        for (Map.Entry<String, JsonNode> e : images.entrySet()) {
+            String slot = e.getKey() == null ? "" : e.getKey().toUpperCase(Locale.ROOT);
+            if (!AssetService.SLOTS.contains(slot)) { ctx.errors.add(where + ": unknown image slot '" + e.getKey() + "'"); continue; }
+            JsonNode v = e.getValue();
+            String url = v == null ? null : v.isString() ? v.stringValue() : str(v, "url");
+            if (url == null || !(url.startsWith("https://") || url.startsWith("http://"))) {
+                ctx.errors.add(where + " " + slot + ": image needs an http(s) url");
+                continue;
+            }
+            String title = str(v, "title");
+            AssetService.Registered r = assetService.registerExternal(url, str(v, "contentType"), integer(v, "width"), integer(v, "height"),
+                    v != null && v.path("sizeBytes").isIntegralNumber() ? v.path("sizeBytes").asLong() : null,
+                    title != null ? title : where + " " + slot.toLowerCase(Locale.ROOT), ownerType.toLowerCase(Locale.ROOT) + "s");
+            if (r.created()) ctx.record("ASSET", r.asset().getId(), true);
+            AssetService.SlotDto attached = assetService.attachIfChanged(ownerType, ownerId, slot, r.asset().getId());
+            if (attached != null) ctx.record("ASSET_SLOT", attached.id(), true);
+        }
+    }
+
+    private static String str(JsonNode node, String field) {
+        if (node == null || !node.isObject()) return null;
+        JsonNode f = node.path(field);
+        return f.isString() ? f.stringValue() : null;
+    }
+
+    private static Integer integer(JsonNode node, String field) {
+        if (node == null || !node.isObject()) return null;
+        JsonNode f = node.path(field);
+        return f.isIntegralNumber() ? f.asInt() : null;
     }
 
     private void importSeason(SeasonIn in, Ctx ctx) {

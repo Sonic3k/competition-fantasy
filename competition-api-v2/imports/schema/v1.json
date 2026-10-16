@@ -15,7 +15,8 @@
         "name": { "type": "string" },
         "description": { "type": ["string", "null"] },
         "type": { "enum": ["FICTIONAL", "REAL"] },
-        "usesNations": { "type": "boolean" }
+        "usesNations": { "type": "boolean" },
+        "images": { "$ref": "#/$defs/images" }
       }
     },
     "nations": { "type": "array", "items": { "$ref": "#/$defs/nation" } },
@@ -30,6 +31,19 @@
     "key": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$", "maxLength": 64, "description": "Stable slug, lower-case, dashes" },
     "teamRef": { "type": "string", "description": "Team key, exact name, or alias" },
     "date": { "type": "string", "format": "date", "description": "ISO date, e.g. 2005-03-14" },
+    "images": {
+      "type": "object",
+      "description": "Slot -> image already in storage, referenced by URL (nothing is uploaded). A string is the URL.",
+      "propertyNames": { "enum": ["LOGO", "BANNER", "FLAG", "EMBLEM", "AVATAR", "IMAGE", "POSTER", "BACKGROUND", "KIT_HOME", "KIT_AWAY", "KIT_THIRD"] },
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "string", "pattern": "^https?://" },
+          { "type": "object", "required": ["url"], "additionalProperties": false,
+            "properties": { "url": { "type": "string", "pattern": "^https?://" }, "contentType": { "type": "string" }, "width": { "type": "integer" },
+              "height": { "type": "integer" }, "sizeBytes": { "type": "integer" }, "title": { "type": "string" } } }
+        ]
+      }
+    },
     "colors": {
       "type": "object", "additionalProperties": true,
       "description": "Nation: {primary, secondary, text}. Team profile: {home:{bg,text}, away:{bg,text}}. Hex strings."
@@ -39,14 +53,14 @@
       "properties": {
         "key": { "$ref": "#/$defs/key" }, "name": { "type": "string" },
         "code": { "type": "string", "minLength": 2, "maxLength": 3 },
-        "colors": { "$ref": "#/$defs/colors" }, "description": { "type": ["string", "null"] }
+        "colors": { "$ref": "#/$defs/colors" }, "description": { "type": ["string", "null"] }, "images": { "$ref": "#/$defs/images" }
       }
     },
     "stadium": {
       "type": "object", "required": ["key", "name"], "additionalProperties": false,
       "properties": {
         "key": { "$ref": "#/$defs/key" }, "name": { "type": "string" }, "city": { "type": ["string", "null"] },
-        "capacity": { "type": ["integer", "null"] }, "inspiredBy": { "type": ["string", "null"] }, "description": { "type": ["string", "null"] }
+        "capacity": { "type": ["integer", "null"] }, "inspiredBy": { "type": ["string", "null"] }, "description": { "type": ["string", "null"] }, "images": { "$ref": "#/$defs/images" }
       }
     },
     "team": {
@@ -57,7 +71,7 @@
         "nation": { "type": ["string", "null"], "description": "Nation key, code or name" },
         "aliases": { "type": "array", "items": { "type": "string" } },
         "homeStadium": { "type": ["string", "null"], "description": "Stadium key" },
-        "description": { "type": ["string", "null"] }, "foundedYear": { "type": ["integer", "null"] }, "dissolvedYear": { "type": ["integer", "null"] }
+        "description": { "type": ["string", "null"] }, "foundedYear": { "type": ["integer", "null"] }, "dissolvedYear": { "type": ["integer", "null"] }, "images": { "$ref": "#/$defs/images" }
       }
     },
     "teamProfile": {
@@ -78,7 +92,7 @@
       "type": "object", "required": ["key", "name"], "additionalProperties": false,
       "properties": {
         "key": { "$ref": "#/$defs/key" }, "name": { "type": "string" }, "sport": { "type": "string", "default": "FOOTBALL" },
-        "teamLevel": { "enum": ["CLUB", "NATIONAL"] }, "tier": { "type": ["integer", "null"] }, "description": { "type": ["string", "null"] }
+        "teamLevel": { "enum": ["CLUB", "NATIONAL"] }, "tier": { "type": ["integer", "null"] }, "description": { "type": ["string", "null"] }, "images": { "$ref": "#/$defs/images" }
       }
     },
     "season": {

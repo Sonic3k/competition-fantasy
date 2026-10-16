@@ -6,9 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public interface AssetRepository extends JpaRepository<Asset, Long> {
     Page<Asset> findByCollectionOrderByCreatedAtDesc(String collection, Pageable pageable);
     Page<Asset> findAllByOrderByCreatedAtDesc(Pageable pageable);
     List<Asset> findByIdIn(Collection<Long> ids);
+    Optional<Asset> findByStorageKey(String storageKey);
 }
