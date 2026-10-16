@@ -1,6 +1,4 @@
 const BASE = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '') ?? ''
-const TOKEN_KEY = 'cf.admin.token'
-const USER_KEY = 'cf.admin.user'
 
 export class ApiError extends Error {
   status: number
@@ -12,20 +10,6 @@ export class ApiError extends Error {
     this.detail = detail
     this.errors = errors
   }
-}
-
-export const auth = {
-  token: () => localStorage.getItem(TOKEN_KEY),
-  user: () => localStorage.getItem(USER_KEY),
-  set(token: string, user: string) {
-    localStorage.setItem(TOKEN_KEY, token)
-    localStorage.setItem(USER_KEY, user)
-  },
-  clear() {
-    localStorage.removeItem(TOKEN_KEY)
-    localStorage.removeItem(USER_KEY)
-  },
-  loggedIn: () => !!localStorage.getItem(TOKEN_KEY),
 }
 
 export function apiUrl(path: string) {
@@ -42,14 +26,11 @@ async function parseError(res: Response): Promise<ApiError> {
   } catch {
     // no body
   }
-  if (res.status === 401) auth.clear()
   return new ApiError(res.status, detail ?? `${res.status} ${res.statusText}`, detail, errors)
 }
 
 export async function api<T>(path: string, init: RequestInit & { json?: unknown } = {}): Promise<T> {
   const headers = new Headers(init.headers)
-  const token = auth.token()
-  if (token) headers.set('Authorization', `Bearer ${token}`)
   let body = init.body
   if (init.json !== undefined) {
     headers.set('Content-Type', 'application/json')

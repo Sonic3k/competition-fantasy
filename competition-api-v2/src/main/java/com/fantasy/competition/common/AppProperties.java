@@ -4,13 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /** All app.* settings (see application.yml). Bound from environment variables on Railway. */
 @ConfigurationProperties(prefix = "app")
-public record AppProperties(Admin admin, Jwt jwt, Cors cors, Storage storage, Imports imports) {
-
-    public record Admin(String username, String password) {}
-
-    public record Jwt(String secret, Integer ttlHours) {
-        public int ttlHoursOrDefault() { return ttlHours == null ? 72 : ttlHours; }
-    }
+public record AppProperties(Cors cors, Storage storage, Imports imports) {
 
     public record Cors(String origins) {}
 

@@ -7,7 +7,6 @@ Requirements: `Competition Fantasy v2 — Requirements` (Claude Doc).
 
 ```bash
 export PGHOST=localhost PGPORT=5432 PGDATABASE=competition_v2 PGUSER=postgres PGPASSWORD=postgres
-export ADMIN_USERNAME=admin ADMIN_PASSWORD=change-me JWT_SECRET=$(openssl rand -hex 32)
 ./mvnw spring-boot:run        # or: mvn spring-boot:run
 ```
 
@@ -24,16 +23,10 @@ Database: its own database `competition_fantasy` and role `competition_fantasy_a
 | Variable | Purpose |
 |---|---|
 | `SPRING_DATASOURCE_URL` **or** `PGHOST/PGPORT/PGDATABASE/PGUSER/PGPASSWORD` | Postgres (Railway: `PGHOST`/`PGPORT` reference `Postgres`, `PGDATABASE=competition_fantasy`, `PGUSER=competition_fantasy_app`) |
-| `ADMIN_USERNAME`, `ADMIN_PASSWORD` | single admin; password plain or BCrypt (`$2…`) |
-| `JWT_SECRET` (≥32 chars), `JWT_TTL_HOURS` (default 72) | admin tokens |
 | `CORS_ORIGINS` | comma-separated origins of the frontend |
 | `B2_ENDPOINT` (bare host or URL), `B2_REGION`, `B2_BUCKET`, `B2_KEY_ID`, `B2_APP_KEY` | Backblaze B2 (S3 API) |
 | `STORAGE_PREFIX` (default `competition-fantasy/v2`), `CDN_BASE` | object key prefix and public CDN base |
 | `IMPORT_DIR` (default `imports`) | folder the Script Manager reads JSON files from when it exists on disk; otherwise the copy packaged in the jar |
-
-## Security
-
-Public: every `GET /api/**` except `/api/admin/**`. Everything else needs `Authorization: Bearer <jwt>` from `POST /api/auth/login {username,password}`.
 
 ## Main endpoints
 
@@ -41,7 +34,7 @@ Public reads: `/api/universes`, `/api/universes/{key}/{nations|stadiums|teams|co
 `/api/competitions/{id}`, `/api/seasons/{id}` (full season view: stages → groups/rounds/matches, knockout rounds → ties, calculated + recorded tables, honours),
 `/api/stage-groups/{id}/table?upToRound=N`, `/api/matches/{id}`, `/api/teams/{a}/head-to-head/{b}`, `/api/presets`, `/api/assets`.
 
-Admin (`/api/admin/...`): CRUD for universes, nations, stadiums, teams (+profiles, kits), competitions, seasons (create from `presetKey` or explicit `format`; `scaffold` builds stages/groups/rounds from the format), stages, groups, group teams, rounds, knockout rounds, ties, matches (`PUT /matches/{id}/result` recalculates the table and resolves the tie), recorded standings, honours, presets, assets (upload + attach to slots), and the Script Manager.
+Admin (`/api/admin/...`, no login): CRUD for universes, nations, stadiums, teams (+profiles, kits), competitions, seasons (create from `presetKey` or explicit `format`; `scaffold` builds stages/groups/rounds from the format), stages, groups, group teams, rounds, knockout rounds, ties, matches (`PUT /matches/{id}/result` recalculates the table and resolves the tie), recorded standings, honours, presets, assets (upload + attach to slots), and the Script Manager.
 
 ## Script Manager (data loading)
 

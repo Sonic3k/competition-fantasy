@@ -6,8 +6,7 @@ import { CompetitionPage } from './viewer/pages/CompetitionPage'
 import { SeasonPage } from './viewer/pages/SeasonPage'
 import { TeamPage } from './viewer/pages/TeamPage'
 import { NationPage } from './viewer/pages/NationPage'
-import { AdminLayout, RequireAuth } from './admin/AdminLayout'
-import { LoginPage } from './admin/pages/LoginPage'
+import { AdminLayout } from './admin/AdminLayout'
 import { AdminHome } from './admin/pages/AdminHome'
 import { UniverseAdmin } from './admin/pages/UniverseAdmin'
 import { TeamAdmin } from './admin/pages/TeamAdmin'
@@ -28,18 +27,15 @@ export default function App() {
         <Route path="teams/:id" element={<TeamPage />} />
         <Route path="nations/:id" element={<NationPage />} />
       </Route>
-      <Route path="admin/login" element={<LoginPage />} />
-      <Route path="admin" element={<RequireAuth />}>
-        <Route element={<AdminLayout />}>
-          <Route index element={<AdminHome />} />
-          <Route path="universes/:key" element={<UniverseAdmin />} />
-          <Route path="teams/:id" element={<TeamAdmin />} />
-          <Route path="competitions/:id" element={<CompetitionAdmin />} />
-          <Route path="seasons/:id" element={<SeasonWorkspace />} />
-          <Route path="presets" element={<PresetsAdmin />} />
-          <Route path="imports" element={<ScriptManager />} />
-          <Route path="assets" element={<AssetsAdmin />} />
-        </Route>
+      <Route path="admin" element={<AdminLayout />}>
+        <Route index element={<AdminHome />} />
+        <Route path="universes/:key" element={<UniverseAdmin />} />
+        <Route path="teams/:id" element={<TeamAdmin />} />
+        <Route path="competitions/:id" element={<CompetitionAdmin />} />
+        <Route path="seasons/:id" element={<SeasonWorkspace />} />
+        <Route path="presets" element={<PresetsAdmin />} />
+        <Route path="imports" element={<ScriptManager />} />
+        <Route path="assets" element={<AssetsAdmin />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

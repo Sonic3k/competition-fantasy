@@ -1,5 +1,4 @@
 import { Link, Outlet, useLocation } from 'react-router'
-import { auth } from '@/api/client'
 
 export function ViewerLayout() {
   const { pathname } = useLocation()
@@ -12,7 +11,7 @@ export function ViewerLayout() {
           </Link>
           <nav className="flex items-center gap-4 text-sm text-ink-2">
             <Link to="/" className={pathname === '/' ? 'text-ink' : 'hover:text-ink'}>Universes</Link>
-            <Link to="/admin" className="rounded-sm border border-rule px-2 py-1 hover:border-ink-3">{auth.loggedIn() ? 'Admin' : 'Sign in'}</Link>
+            <Link to="/admin" className="rounded-sm border border-rule px-2 py-1 hover:border-ink-3">Admin</Link>
           </nav>
         </div>
       </header>

@@ -27,13 +27,6 @@ server:
     include-message: always
 
 app:
-  admin:
-    username: ${ADMIN_USERNAME:admin}
-    # plain text, or a BCrypt hash starting with $2
-    password: ${ADMIN_PASSWORD:admin}
-  jwt:
-    secret: ${JWT_SECRET:dev-only-secret-change-me-in-railway-env-32-bytes-min}
-    ttl-hours: ${JWT_TTL_HOURS:72}
   cors:
     origins: ${CORS_ORIGINS:*}
   storage:

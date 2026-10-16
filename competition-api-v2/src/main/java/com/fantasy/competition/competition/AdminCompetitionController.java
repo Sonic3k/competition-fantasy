@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Map;
 
-/** Admin writes for competitions, seasons and their structure. Every endpoint needs the admin JWT. */
+/** Admin writes for competitions, seasons and their structure. */
 @RestController
 @RequestMapping("/api/admin")
 public class AdminCompetitionController {

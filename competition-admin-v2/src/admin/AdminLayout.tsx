@@ -1,12 +1,5 @@
-import { Link, NavLink, Navigate, Outlet, useLocation } from 'react-router'
-import { auth } from '@/api/client'
+import { Link, NavLink, Outlet } from 'react-router'
 import { cx } from '@/components/ui'
-
-export function RequireAuth() {
-  const location = useLocation()
-  if (!auth.loggedIn()) return <Navigate to="/admin/login" replace state={{ from: location.pathname }} />
-  return <Outlet />
-}
 
 const nav = [
   { to: '/admin', label: 'Universes', end: true },
@@ -30,9 +23,8 @@ export function AdminLayout() {
             </NavLink>
           ))}
         </nav>
-        <div className="mt-auto border-t border-rule px-4 py-3 text-xs text-ink-3">
-          <div>{auth.user()}</div>
-          <button type="button" className="mt-1 text-biro hover:underline" onClick={() => { auth.clear(); location.href = '/' }}>Sign out</button>
+        <div className="border-t border-rule px-4 py-3 text-xs">
+          <Link to="/" className="text-biro hover:underline">Open the viewer</Link>
         </div>
       </aside>
       <main className="min-w-0 flex-1 px-8 py-6">

@@ -22,6 +22,6 @@ The API must list this app's origin in `CORS_ORIGINS`.
 
 ## Layout
 
-- `src/api` — DTO types, fetch client (token in `localStorage` as `cf.admin.token`), TanStack Query hooks
+- `src/api` — DTO types, fetch client, TanStack Query hooks
 - `src/viewer` — public pages; `viewer/season` renders a stage from its type only (round robin → table + rounds or group grid, knockout → bracket, league phase → one table)
-- `src/admin` — login, universes/nations/stadiums/teams/competitions CRUD, team profiles & kits, season workspace (teams, structure, matches, notebook tables, honours), presets, script manager, assets
+- `src/admin` — no login; universes/nations/stadiums/teams/competitions CRUD, team profiles & kits, season workspace (teams, structure, matches, notebook tables, honours), presets, script manager, assets

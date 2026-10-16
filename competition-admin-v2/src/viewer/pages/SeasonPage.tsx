@@ -3,7 +3,6 @@ import { Link, useParams, useSearchParams } from 'react-router'
 import { useSeason } from '@/api/hooks'
 import { TeamChip } from '@/components/TeamChip'
 import { Badge, ErrorBox, PageTitle, Spinner, Tabs } from '@/components/ui'
-import { auth } from '@/api/client'
 import { statusLabel } from '@/lib/format'
 import { StageRenderer } from '../season/StageRenderer'
 
@@ -51,7 +50,7 @@ export function SeasonPage() {
           <>
             <Badge tone={v.season.status === 'COMPLETED' ? 'neutral' : v.season.status === 'ONGOING' ? 'green' : 'amber'}>{statusLabel[v.season.status]}</Badge>
             {v.format?.name && <Badge>{v.format.name}</Badge>}
-            {auth.loggedIn() && <Link to={`/admin/seasons/${v.season.id}`} className="text-sm text-biro hover:underline">Edit</Link>}
+            <Link to={`/admin/seasons/${v.season.id}`} className="text-sm text-biro hover:underline">Edit</Link>
           </>
         }
       >

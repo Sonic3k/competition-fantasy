@@ -371,4 +371,3 @@ export interface ImportRunDto {
   changes: number
 }
 
-export interface LoginResponse { token: string; username: string; expiresInHours: number }
