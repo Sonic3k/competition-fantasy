@@ -10,8 +10,8 @@ Output: imports/legacy-v1/othelose.json and imports/legacy-v1/aoe2.json (schema 
 
 Decisions (agreed for this migration):
 - Two universes as in v1. The AOE2 World Cup 2026 is not carried over.
-- Notebook (RECORDED) tables keep the row order they were entered in, which is the notebook order;
-  v1 CALCULATED tables are not copied (v2 recalculates them from the results).
+- Notebook (RECORDED) tables are ranked the way v1 showed them: points, then goals for (v1's query order;
+  rows level on both keep their stored order). v1 CALCULATED tables are not copied (v2 recalculates them).
 - Wonder Empires Season 1 has no dates: v1's generated dates overlapped across stages.
 - v1 short_name becomes the team code; Othelose club colours become a team profile for every year the club played.
 - Mapuche, Muisca and Tupi get the code and colours from v1's aoe2_rebuild_foundation.sql (missing in the v1 database).
@@ -173,10 +173,11 @@ def recorded_tables(v1, season_id, group_id, keys):
             tables.setdefault(x["after_round"] or 0, []).append(x)
     out = []
     for after in sorted(tables, key=lambda a: (a == 0, a)):  # checkpoints in order, final table last
+        ranked = sorted(tables[after], key=lambda r: (-r["points"], -r["goals_for"]))  # v1: ORDER BY points DESC, goals_for DESC
         out.append({"afterRound": after, "rows": [
             {"team": keys[r["team_id"]], "position": i + 1, "played": r["played"], "won": r["won"], "drawn": r["drawn"],
              "lost": r["lost"], "goalsFor": r["goals_for"], "goalsAgainst": r["goals_against"], "points": r["points"]}
-            for i, r in enumerate(tables[after])]})
+            for i, r in enumerate(ranked)]})
     return out
 
 

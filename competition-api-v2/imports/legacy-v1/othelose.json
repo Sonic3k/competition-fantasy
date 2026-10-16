@@ -907,8 +907,8 @@
                     { "team": "mener-lying", "position": 2, "played": 5, "won": 4, "drawn": 0, "lost": 1, "goalsFor": 10, "goalsAgainst": 4, "points": 12 },
                     { "team": "hrilling-best", "position": 3, "played": 5, "won": 3, "drawn": 2, "lost": 0, "goalsFor": 9, "goalsAgainst": 5, "points": 11 },
                     { "team": "rab-pladineer", "position": 4, "played": 5, "won": 3, "drawn": 1, "lost": 1, "goalsFor": 7, "goalsAgainst": 4, "points": 10 },
-                    { "team": "fulhaster", "position": 5, "played": 5, "won": 3, "drawn": 0, "lost": 2, "goalsFor": 8, "goalsAgainst": 2, "points": 9 },
-                    { "team": "mize-mole", "position": 6, "played": 5, "won": 2, "drawn": 3, "lost": 0, "goalsFor": 10, "goalsAgainst": 7, "points": 9 },
+                    { "team": "mize-mole", "position": 5, "played": 5, "won": 2, "drawn": 3, "lost": 0, "goalsFor": 10, "goalsAgainst": 7, "points": 9 },
+                    { "team": "fulhaster", "position": 6, "played": 5, "won": 3, "drawn": 0, "lost": 2, "goalsFor": 8, "goalsAgainst": 2, "points": 9 },
                     { "team": "tatines-david", "position": 7, "played": 5, "won": 2, "drawn": 2, "lost": 1, "goalsFor": 7, "goalsAgainst": 6, "points": 8 },
                     { "team": "domehampton", "position": 8, "played": 5, "won": 2, "drawn": 1, "lost": 2, "goalsFor": 5, "goalsAgainst": 8, "points": 7 },
                     { "team": "ben-derber", "position": 9, "played": 5, "won": 2, "drawn": 0, "lost": 3, "goalsFor": 4, "goalsAgainst": 8, "points": 6 },
@@ -916,8 +916,8 @@
                     { "team": "notes-valzine", "position": 11, "played": 5, "won": 1, "drawn": 2, "lost": 2, "goalsFor": 7, "goalsAgainst": 10, "points": 5 },
                     { "team": "nrucaste", "position": 12, "played": 5, "won": 1, "drawn": 1, "lost": 3, "goalsFor": 6, "goalsAgainst": 9, "points": 4 },
                     { "team": "iteser-icer", "position": 13, "played": 5, "won": 1, "drawn": 1, "lost": 3, "goalsFor": 5, "goalsAgainst": 10, "points": 4 },
-                    { "team": "eldiadion", "position": 14, "played": 5, "won": 1, "drawn": 0, "lost": 4, "goalsFor": 3, "goalsAgainst": 5, "points": 3 },
-                    { "team": "occating-menchiote", "position": 15, "played": 5, "won": 1, "drawn": 0, "lost": 4, "goalsFor": 6, "goalsAgainst": 11, "points": 3 },
+                    { "team": "occating-menchiote", "position": 14, "played": 5, "won": 1, "drawn": 0, "lost": 4, "goalsFor": 6, "goalsAgainst": 11, "points": 3 },
+                    { "team": "eldiadion", "position": 15, "played": 5, "won": 1, "drawn": 0, "lost": 4, "goalsFor": 3, "goalsAgainst": 5, "points": 3 },
                     { "team": "twine-oner", "position": 16, "played": 5, "won": 0, "drawn": 1, "lost": 4, "goalsFor": 3, "goalsAgainst": 9, "points": 1 }
                   ]
                 },
@@ -936,8 +936,8 @@
                     { "team": "iteser-icer", "position": 10, "played": 7, "won": 2, "drawn": 2, "lost": 3, "goalsFor": 9, "goalsAgainst": 13, "points": 8 },
                     { "team": "domehampton", "position": 11, "played": 7, "won": 2, "drawn": 2, "lost": 3, "goalsFor": 5, "goalsAgainst": 10, "points": 8 },
                     { "team": "ben-derber", "position": 12, "played": 7, "won": 2, "drawn": 1, "lost": 4, "goalsFor": 6, "goalsAgainst": 11, "points": 7 },
-                    { "team": "nrucaste", "position": 13, "played": 7, "won": 1, "drawn": 2, "lost": 4, "goalsFor": 6, "goalsAgainst": 10, "points": 5 },
-                    { "team": "notes-valzine", "position": 14, "played": 7, "won": 1, "drawn": 2, "lost": 4, "goalsFor": 8, "goalsAgainst": 18, "points": 5 },
+                    { "team": "notes-valzine", "position": 13, "played": 7, "won": 1, "drawn": 2, "lost": 4, "goalsFor": 8, "goalsAgainst": 18, "points": 5 },
+                    { "team": "nrucaste", "position": 14, "played": 7, "won": 1, "drawn": 2, "lost": 4, "goalsFor": 6, "goalsAgainst": 10, "points": 5 },
                     { "team": "twine-oner", "position": 15, "played": 7, "won": 1, "drawn": 1, "lost": 5, "goalsFor": 5, "goalsAgainst": 11, "points": 4 },
                     { "team": "eldiadion", "position": 16, "played": 7, "won": 1, "drawn": 0, "lost": 6, "goalsFor": 4, "goalsAgainst": 8, "points": 3 }
                   ]
@@ -948,19 +948,19 @@
                     { "team": "acer-robert", "position": 1, "played": 9, "won": 5, "drawn": 3, "lost": 1, "goalsFor": 21, "goalsAgainst": 12, "points": 18 },
                     { "team": "mize-mole", "position": 2, "played": 9, "won": 5, "drawn": 3, "lost": 1, "goalsFor": 17, "goalsAgainst": 10, "points": 18 },
                     { "team": "hrilling-best", "position": 3, "played": 9, "won": 5, "drawn": 3, "lost": 1, "goalsFor": 14, "goalsAgainst": 8, "points": 18 },
-                    { "team": "mener-lying", "position": 4, "played": 9, "won": 5, "drawn": 2, "lost": 2, "goalsFor": 12, "goalsAgainst": 7, "points": 17 },
-                    { "team": "rab-pladineer", "position": 5, "played": 9, "won": 5, "drawn": 2, "lost": 2, "goalsFor": 13, "goalsAgainst": 9, "points": 17 },
+                    { "team": "rab-pladineer", "position": 4, "played": 9, "won": 5, "drawn": 2, "lost": 2, "goalsFor": 13, "goalsAgainst": 9, "points": 17 },
+                    { "team": "mener-lying", "position": 5, "played": 9, "won": 5, "drawn": 2, "lost": 2, "goalsFor": 12, "goalsAgainst": 7, "points": 17 },
                     { "team": "pulzerr", "position": 6, "played": 9, "won": 4, "drawn": 3, "lost": 2, "goalsFor": 13, "goalsAgainst": 8, "points": 15 },
                     { "team": "fulhaster", "position": 7, "played": 9, "won": 4, "drawn": 1, "lost": 4, "goalsFor": 13, "goalsAgainst": 6, "points": 13 },
                     { "team": "ben-derber", "position": 8, "played": 9, "won": 4, "drawn": 1, "lost": 4, "goalsFor": 12, "goalsAgainst": 14, "points": 13 },
                     { "team": "iteser-icer", "position": 9, "played": 9, "won": 3, "drawn": 3, "lost": 3, "goalsFor": 11, "goalsAgainst": 14, "points": 12 },
                     { "team": "occating-menchiote", "position": 10, "played": 9, "won": 3, "drawn": 1, "lost": 5, "goalsFor": 13, "goalsAgainst": 13, "points": 10 },
                     { "team": "tatines-david", "position": 11, "played": 9, "won": 3, "drawn": 1, "lost": 5, "goalsFor": 12, "goalsAgainst": 15, "points": 10 },
-                    { "team": "domehampton", "position": 12, "played": 9, "won": 2, "drawn": 3, "lost": 4, "goalsFor": 9, "goalsAgainst": 15, "points": 9 },
-                    { "team": "notes-valzine", "position": 13, "played": 9, "won": 2, "drawn": 3, "lost": 4, "goalsFor": 14, "goalsAgainst": 21, "points": 9 },
+                    { "team": "notes-valzine", "position": 12, "played": 9, "won": 2, "drawn": 3, "lost": 4, "goalsFor": 14, "goalsAgainst": 21, "points": 9 },
+                    { "team": "domehampton", "position": 13, "played": 9, "won": 2, "drawn": 3, "lost": 4, "goalsFor": 9, "goalsAgainst": 15, "points": 9 },
                     { "team": "eldiadion", "position": 14, "played": 9, "won": 2, "drawn": 1, "lost": 6, "goalsFor": 8, "goalsAgainst": 11, "points": 7 },
-                    { "team": "twine-oner", "position": 15, "played": 9, "won": 1, "drawn": 2, "lost": 6, "goalsFor": 5, "goalsAgainst": 12, "points": 5 },
-                    { "team": "nrucaste", "position": 16, "played": 9, "won": 1, "drawn": 2, "lost": 6, "goalsFor": 6, "goalsAgainst": 15, "points": 5 }
+                    { "team": "nrucaste", "position": 15, "played": 9, "won": 1, "drawn": 2, "lost": 6, "goalsFor": 6, "goalsAgainst": 15, "points": 5 },
+                    { "team": "twine-oner", "position": 16, "played": 9, "won": 1, "drawn": 2, "lost": 6, "goalsFor": 5, "goalsAgainst": 12, "points": 5 }
                   ]
                 },
                 {
@@ -999,8 +999,8 @@
                     { "team": "tatines-david", "position": 10, "played": 13, "won": 4, "drawn": 4, "lost": 5, "goalsFor": 18, "goalsAgainst": 19, "points": 16 },
                     { "team": "notes-valzine", "position": 11, "played": 13, "won": 4, "drawn": 4, "lost": 5, "goalsFor": 17, "goalsAgainst": 23, "points": 16 },
                     { "team": "iteser-icer", "position": 12, "played": 13, "won": 3, "drawn": 5, "lost": 5, "goalsFor": 15, "goalsAgainst": 22, "points": 14 },
-                    { "team": "nrucaste", "position": 13, "played": 13, "won": 4, "drawn": 0, "lost": 9, "goalsFor": 11, "goalsAgainst": 18, "points": 12 },
-                    { "team": "eldiadion", "position": 14, "played": 13, "won": 3, "drawn": 3, "lost": 7, "goalsFor": 14, "goalsAgainst": 18, "points": 12 },
+                    { "team": "eldiadion", "position": 13, "played": 13, "won": 3, "drawn": 3, "lost": 7, "goalsFor": 14, "goalsAgainst": 18, "points": 12 },
+                    { "team": "nrucaste", "position": 14, "played": 13, "won": 4, "drawn": 0, "lost": 9, "goalsFor": 11, "goalsAgainst": 18, "points": 12 },
                     { "team": "domehampton", "position": 15, "played": 13, "won": 3, "drawn": 2, "lost": 8, "goalsFor": 13, "goalsAgainst": 20, "points": 11 },
                     { "team": "twine-oner", "position": 16, "played": 13, "won": 1, "drawn": 3, "lost": 9, "goalsFor": 8, "goalsAgainst": 22, "points": 6 }
                   ]
@@ -1008,19 +1008,19 @@
                 {
                   "afterRound": 15,
                   "rows": [
-                    { "team": "hrilling-best", "position": 1, "played": 15, "won": 9, "drawn": 4, "lost": 2, "goalsFor": 26, "goalsAgainst": 13, "points": 31 },
-                    { "team": "acer-robert", "position": 2, "played": 15, "won": 9, "drawn": 4, "lost": 2, "goalsFor": 31, "goalsAgainst": 19, "points": 31 },
+                    { "team": "acer-robert", "position": 1, "played": 15, "won": 9, "drawn": 4, "lost": 2, "goalsFor": 31, "goalsAgainst": 19, "points": 31 },
+                    { "team": "hrilling-best", "position": 2, "played": 15, "won": 9, "drawn": 4, "lost": 2, "goalsFor": 26, "goalsAgainst": 13, "points": 31 },
                     { "team": "mener-lying", "position": 3, "played": 15, "won": 8, "drawn": 3, "lost": 4, "goalsFor": 26, "goalsAgainst": 17, "points": 27 },
                     { "team": "ben-derber", "position": 4, "played": 15, "won": 8, "drawn": 2, "lost": 5, "goalsFor": 20, "goalsAgainst": 19, "points": 26 },
                     { "team": "rab-pladineer", "position": 5, "played": 15, "won": 8, "drawn": 1, "lost": 6, "goalsFor": 18, "goalsAgainst": 12, "points": 25 },
                     { "team": "fulhaster", "position": 6, "played": 15, "won": 7, "drawn": 3, "lost": 5, "goalsFor": 26, "goalsAgainst": 14, "points": 24 },
                     { "team": "mize-mole", "position": 7, "played": 15, "won": 7, "drawn": 2, "lost": 6, "goalsFor": 23, "goalsAgainst": 17, "points": 23 },
-                    { "team": "notes-valzine", "position": 8, "played": 15, "won": 5, "drawn": 4, "lost": 6, "goalsFor": 19, "goalsAgainst": 26, "points": 19 },
-                    { "team": "tatines-david", "position": 9, "played": 15, "won": 5, "drawn": 3, "lost": 7, "goalsFor": 22, "goalsAgainst": 23, "points": 18 },
-                    { "team": "pulzerr", "position": 10, "played": 15, "won": 4, "drawn": 5, "lost": 6, "goalsFor": 19, "goalsAgainst": 22, "points": 17 },
-                    { "team": "iteser-icer", "position": 11, "played": 15, "won": 4, "drawn": 4, "lost": 7, "goalsFor": 17, "goalsAgainst": 24, "points": 16 },
-                    { "team": "nrucaste", "position": 12, "played": 15, "won": 5, "drawn": 0, "lost": 10, "goalsFor": 15, "goalsAgainst": 22, "points": 15 },
-                    { "team": "occating-menchiote", "position": 13, "played": 15, "won": 6, "drawn": 3, "lost": 6, "goalsFor": 23, "goalsAgainst": 18, "points": 21 },
+                    { "team": "occating-menchiote", "position": 8, "played": 15, "won": 6, "drawn": 3, "lost": 6, "goalsFor": 23, "goalsAgainst": 18, "points": 21 },
+                    { "team": "notes-valzine", "position": 9, "played": 15, "won": 5, "drawn": 4, "lost": 6, "goalsFor": 19, "goalsAgainst": 26, "points": 19 },
+                    { "team": "tatines-david", "position": 10, "played": 15, "won": 5, "drawn": 3, "lost": 7, "goalsFor": 22, "goalsAgainst": 23, "points": 18 },
+                    { "team": "pulzerr", "position": 11, "played": 15, "won": 4, "drawn": 5, "lost": 6, "goalsFor": 19, "goalsAgainst": 22, "points": 17 },
+                    { "team": "iteser-icer", "position": 12, "played": 15, "won": 4, "drawn": 4, "lost": 7, "goalsFor": 17, "goalsAgainst": 24, "points": 16 },
+                    { "team": "nrucaste", "position": 13, "played": 15, "won": 5, "drawn": 0, "lost": 10, "goalsFor": 15, "goalsAgainst": 22, "points": 15 },
                     { "team": "domehampton", "position": 14, "played": 15, "won": 4, "drawn": 2, "lost": 9, "goalsFor": 13, "goalsAgainst": 27, "points": 14 },
                     { "team": "eldiadion", "position": 15, "played": 15, "won": 3, "drawn": 2, "lost": 10, "goalsFor": 15, "goalsAgainst": 22, "points": 11 },
                     { "team": "twine-oner", "position": 16, "played": 15, "won": 2, "drawn": 4, "lost": 9, "goalsFor": 12, "goalsAgainst": 28, "points": 10 }
@@ -1037,8 +1037,8 @@
                     { "team": "fulhaster", "position": 6, "played": 17, "won": 8, "drawn": 3, "lost": 6, "goalsFor": 29, "goalsAgainst": 17, "points": 27 },
                     { "team": "mize-mole", "position": 7, "played": 17, "won": 8, "drawn": 3, "lost": 6, "goalsFor": 28, "goalsAgainst": 21, "points": 27 },
                     { "team": "notes-valzine", "position": 8, "played": 17, "won": 7, "drawn": 4, "lost": 6, "goalsFor": 23, "goalsAgainst": 27, "points": 25 },
-                    { "team": "occating-menchiote", "position": 9, "played": 17, "won": 6, "drawn": 3, "lost": 8, "goalsFor": 23, "goalsAgainst": 20, "points": 21 },
-                    { "team": "tatines-david", "position": 10, "played": 17, "won": 6, "drawn": 3, "lost": 8, "goalsFor": 25, "goalsAgainst": 25, "points": 21 },
+                    { "team": "tatines-david", "position": 9, "played": 17, "won": 6, "drawn": 3, "lost": 8, "goalsFor": 25, "goalsAgainst": 25, "points": 21 },
+                    { "team": "occating-menchiote", "position": 10, "played": 17, "won": 6, "drawn": 3, "lost": 8, "goalsFor": 23, "goalsAgainst": 20, "points": 21 },
                     { "team": "pulzerr", "position": 11, "played": 17, "won": 5, "drawn": 4, "lost": 8, "goalsFor": 22, "goalsAgainst": 25, "points": 19 },
                     { "team": "iteser-icer", "position": 12, "played": 17, "won": 5, "drawn": 4, "lost": 8, "goalsFor": 20, "goalsAgainst": 26, "points": 19 },
                     { "team": "nrucaste", "position": 13, "played": 17, "won": 6, "drawn": 1, "lost": 10, "goalsFor": 18, "goalsAgainst": 24, "points": 19 },
@@ -1056,13 +1056,13 @@
                     { "team": "mize-mole", "position": 4, "played": 19, "won": 9, "drawn": 4, "lost": 6, "goalsFor": 30, "goalsAgainst": 22, "points": 31 },
                     { "team": "fulhaster", "position": 5, "played": 19, "won": 9, "drawn": 3, "lost": 7, "goalsFor": 32, "goalsAgainst": 19, "points": 30 },
                     { "team": "mener-lying", "position": 6, "played": 19, "won": 9, "drawn": 3, "lost": 7, "goalsFor": 32, "goalsAgainst": 24, "points": 30 },
-                    { "team": "rab-pladineer", "position": 7, "played": 19, "won": 9, "drawn": 1, "lost": 9, "goalsFor": 22, "goalsAgainst": 18, "points": 28 },
-                    { "team": "notes-valzine", "position": 8, "played": 19, "won": 8, "drawn": 4, "lost": 7, "goalsFor": 26, "goalsAgainst": 28, "points": 28 },
-                    { "team": "occating-menchiote", "position": 9, "played": 19, "won": 7, "drawn": 3, "lost": 9, "goalsFor": 25, "goalsAgainst": 21, "points": 24 },
+                    { "team": "notes-valzine", "position": 7, "played": 19, "won": 8, "drawn": 4, "lost": 7, "goalsFor": 26, "goalsAgainst": 28, "points": 28 },
+                    { "team": "rab-pladineer", "position": 8, "played": 19, "won": 9, "drawn": 1, "lost": 9, "goalsFor": 22, "goalsAgainst": 18, "points": 28 },
+                    { "team": "nrucaste", "position": 9, "played": 19, "won": 8, "drawn": 1, "lost": 10, "goalsFor": 22, "goalsAgainst": 28, "points": 25 },
                     { "team": "tatines-david", "position": 10, "played": 19, "won": 7, "drawn": 3, "lost": 9, "goalsFor": 26, "goalsAgainst": 28, "points": 24 },
-                    { "team": "pulzerr", "position": 11, "played": 19, "won": 6, "drawn": 5, "lost": 8, "goalsFor": 25, "goalsAgainst": 26, "points": 23 },
-                    { "team": "iteser-icer", "position": 12, "played": 19, "won": 6, "drawn": 5, "lost": 8, "goalsFor": 22, "goalsAgainst": 30, "points": 23 },
-                    { "team": "nrucaste", "position": 13, "played": 19, "won": 8, "drawn": 1, "lost": 10, "goalsFor": 22, "goalsAgainst": 28, "points": 25 },
+                    { "team": "occating-menchiote", "position": 11, "played": 19, "won": 7, "drawn": 3, "lost": 9, "goalsFor": 25, "goalsAgainst": 21, "points": 24 },
+                    { "team": "pulzerr", "position": 12, "played": 19, "won": 6, "drawn": 5, "lost": 8, "goalsFor": 25, "goalsAgainst": 26, "points": 23 },
+                    { "team": "iteser-icer", "position": 13, "played": 19, "won": 6, "drawn": 5, "lost": 8, "goalsFor": 22, "goalsAgainst": 30, "points": 23 },
                     { "team": "domehampton", "position": 14, "played": 19, "won": 6, "drawn": 3, "lost": 10, "goalsFor": 22, "goalsAgainst": 31, "points": 21 },
                     { "team": "eldiadion", "position": 15, "played": 19, "won": 5, "drawn": 3, "lost": 11, "goalsFor": 21, "goalsAgainst": 28, "points": 18 },
                     { "team": "twine-oner", "position": 16, "played": 19, "won": 3, "drawn": 4, "lost": 12, "goalsFor": 14, "goalsAgainst": 30, "points": 13 }
@@ -1080,10 +1080,10 @@
                     { "team": "fulhaster", "position": 7, "played": 21, "won": 9, "drawn": 4, "lost": 8, "goalsFor": 36, "goalsAgainst": 24, "points": 31 },
                     { "team": "notes-valzine", "position": 8, "played": 21, "won": 9, "drawn": 4, "lost": 8, "goalsFor": 28, "goalsAgainst": 29, "points": 31 },
                     { "team": "tatines-david", "position": 9, "played": 21, "won": 8, "drawn": 4, "lost": 9, "goalsFor": 30, "goalsAgainst": 30, "points": 28 },
-                    { "team": "pulzerr", "position": 10, "played": 21, "won": 7, "drawn": 3, "lost": 11, "goalsFor": 27, "goalsAgainst": 30, "points": 24 },
+                    { "team": "occating-menchiote", "position": 10, "played": 21, "won": 8, "drawn": 3, "lost": 10, "goalsFor": 27, "goalsAgainst": 23, "points": 27 },
                     { "team": "nrucaste", "position": 11, "played": 21, "won": 8, "drawn": 1, "lost": 12, "goalsFor": 22, "goalsAgainst": 28, "points": 25 },
-                    { "team": "iteser-icer", "position": 12, "played": 21, "won": 6, "drawn": 5, "lost": 10, "goalsFor": 22, "goalsAgainst": 30, "points": 23 },
-                    { "team": "occating-menchiote", "position": 13, "played": 21, "won": 8, "drawn": 3, "lost": 10, "goalsFor": 27, "goalsAgainst": 23, "points": 27 },
+                    { "team": "pulzerr", "position": 12, "played": 21, "won": 7, "drawn": 3, "lost": 11, "goalsFor": 27, "goalsAgainst": 30, "points": 24 },
+                    { "team": "iteser-icer", "position": 13, "played": 21, "won": 6, "drawn": 5, "lost": 10, "goalsFor": 22, "goalsAgainst": 30, "points": 23 },
                     { "team": "domehampton", "position": 14, "played": 21, "won": 6, "drawn": 3, "lost": 12, "goalsFor": 22, "goalsAgainst": 31, "points": 21 },
                     { "team": "eldiadion", "position": 15, "played": 21, "won": 6, "drawn": 3, "lost": 12, "goalsFor": 22, "goalsAgainst": 31, "points": 21 },
                     { "team": "twine-oner", "position": 16, "played": 21, "won": 4, "drawn": 3, "lost": 14, "goalsFor": 15, "goalsAgainst": 31, "points": 15 }
@@ -1092,12 +1092,12 @@
                 {
                   "afterRound": 23,
                   "rows": [
-                    { "team": "hrilling-best", "position": 1, "played": 23, "won": 13, "drawn": 6, "lost": 4, "goalsFor": 37, "goalsAgainst": 20, "points": 45 },
-                    { "team": "acer-robert", "position": 2, "played": 23, "won": 14, "drawn": 3, "lost": 6, "goalsFor": 40, "goalsAgainst": 27, "points": 45 },
+                    { "team": "acer-robert", "position": 1, "played": 23, "won": 14, "drawn": 3, "lost": 6, "goalsFor": 40, "goalsAgainst": 27, "points": 45 },
+                    { "team": "hrilling-best", "position": 2, "played": 23, "won": 13, "drawn": 6, "lost": 4, "goalsFor": 37, "goalsAgainst": 20, "points": 45 },
                     { "team": "ben-derber", "position": 3, "played": 23, "won": 13, "drawn": 3, "lost": 7, "goalsFor": 37, "goalsAgainst": 31, "points": 42 },
                     { "team": "fulhaster", "position": 4, "played": 23, "won": 10, "drawn": 4, "lost": 9, "goalsFor": 38, "goalsAgainst": 26, "points": 34 },
-                    { "team": "mener-lying", "position": 5, "played": 23, "won": 10, "drawn": 4, "lost": 9, "goalsFor": 34, "goalsAgainst": 28, "points": 34 },
-                    { "team": "tatines-david", "position": 6, "played": 23, "won": 10, "drawn": 4, "lost": 9, "goalsFor": 35, "goalsAgainst": 31, "points": 34 },
+                    { "team": "tatines-david", "position": 5, "played": 23, "won": 10, "drawn": 4, "lost": 9, "goalsFor": 35, "goalsAgainst": 31, "points": 34 },
+                    { "team": "mener-lying", "position": 6, "played": 23, "won": 10, "drawn": 4, "lost": 9, "goalsFor": 34, "goalsAgainst": 28, "points": 34 },
                     { "team": "rab-pladineer", "position": 7, "played": 23, "won": 10, "drawn": 3, "lost": 10, "goalsFor": 26, "goalsAgainst": 23, "points": 33 },
                     { "team": "mize-mole", "position": 8, "played": 23, "won": 9, "drawn": 5, "lost": 9, "goalsFor": 32, "goalsAgainst": 27, "points": 32 },
                     { "team": "notes-valzine", "position": 9, "played": 23, "won": 9, "drawn": 5, "lost": 9, "goalsFor": 30, "goalsAgainst": 33, "points": 32 },
@@ -1117,8 +1117,8 @@
                     { "team": "hrilling-best", "position": 2, "played": 25, "won": 14, "drawn": 5, "lost": 6, "goalsFor": 40, "goalsAgainst": 23, "points": 47 },
                     { "team": "ben-derber", "position": 3, "played": 25, "won": 13, "drawn": 4, "lost": 8, "goalsFor": 39, "goalsAgainst": 34, "points": 43 },
                     { "team": "fulhaster", "position": 4, "played": 25, "won": 11, "drawn": 5, "lost": 9, "goalsFor": 41, "goalsAgainst": 26, "points": 38 },
-                    { "team": "mize-mole", "position": 5, "played": 25, "won": 11, "drawn": 3, "lost": 11, "goalsFor": 33, "goalsAgainst": 27, "points": 36 },
-                    { "team": "tatines-david", "position": 6, "played": 25, "won": 11, "drawn": 3, "lost": 11, "goalsFor": 37, "goalsAgainst": 33, "points": 36 },
+                    { "team": "tatines-david", "position": 5, "played": 25, "won": 11, "drawn": 3, "lost": 11, "goalsFor": 37, "goalsAgainst": 33, "points": 36 },
+                    { "team": "mize-mole", "position": 6, "played": 25, "won": 11, "drawn": 3, "lost": 11, "goalsFor": 33, "goalsAgainst": 27, "points": 36 },
                     { "team": "rab-pladineer", "position": 7, "played": 25, "won": 11, "drawn": 3, "lost": 11, "goalsFor": 29, "goalsAgainst": 25, "points": 36 },
                     { "team": "mener-lying", "position": 8, "played": 25, "won": 10, "drawn": 4, "lost": 11, "goalsFor": 35, "goalsAgainst": 32, "points": 34 },
                     { "team": "nrucaste", "position": 9, "played": 25, "won": 11, "drawn": 1, "lost": 13, "goalsFor": 31, "goalsAgainst": 33, "points": 34 },
@@ -1126,8 +1126,8 @@
                     { "team": "occating-menchiote", "position": 11, "played": 25, "won": 9, "drawn": 5, "lost": 11, "goalsFor": 31, "goalsAgainst": 28, "points": 32 },
                     { "team": "pulzerr", "position": 12, "played": 25, "won": 9, "drawn": 4, "lost": 12, "goalsFor": 34, "goalsAgainst": 36, "points": 31 },
                     { "team": "iteser-icer", "position": 13, "played": 25, "won": 7, "drawn": 7, "lost": 11, "goalsFor": 28, "goalsAgainst": 39, "points": 28 },
-                    { "team": "eldiadion", "position": 14, "played": 25, "won": 6, "drawn": 6, "lost": 13, "goalsFor": 26, "goalsAgainst": 37, "points": 24 },
-                    { "team": "domehampton", "position": 15, "played": 25, "won": 7, "drawn": 4, "lost": 14, "goalsFor": 27, "goalsAgainst": 48, "points": 25 },
+                    { "team": "domehampton", "position": 14, "played": 25, "won": 7, "drawn": 4, "lost": 14, "goalsFor": 27, "goalsAgainst": 48, "points": 25 },
+                    { "team": "eldiadion", "position": 15, "played": 25, "won": 6, "drawn": 6, "lost": 13, "goalsFor": 26, "goalsAgainst": 37, "points": 24 },
                     { "team": "twine-oner", "position": 16, "played": 25, "won": 5, "drawn": 5, "lost": 15, "goalsFor": 25, "goalsAgainst": 46, "points": 20 }
                   ]
                 },
@@ -1158,19 +1158,19 @@
                     { "team": "hrilling-best", "position": 1, "played": 30, "won": 18, "drawn": 8, "lost": 4, "goalsFor": 54, "goalsAgainst": 29, "points": 62 },
                     { "team": "acer-robert", "position": 2, "played": 30, "won": 16, "drawn": 9, "lost": 5, "goalsFor": 52, "goalsAgainst": 35, "points": 57 },
                     { "team": "ben-derber", "position": 3, "played": 30, "won": 15, "drawn": 5, "lost": 10, "goalsFor": 45, "goalsAgainst": 40, "points": 50 },
-                    { "team": "tatines-david", "position": 4, "played": 30, "won": 11, "drawn": 11, "lost": 8, "goalsFor": 44, "goalsAgainst": 37, "points": 44 },
-                    { "team": "mener-lying", "position": 5, "played": 30, "won": 11, "drawn": 10, "lost": 9, "goalsFor": 41, "goalsAgainst": 35, "points": 43 },
-                    { "team": "rab-pladineer", "position": 6, "played": 30, "won": 11, "drawn": 9, "lost": 10, "goalsFor": 33, "goalsAgainst": 31, "points": 42 },
-                    { "team": "mize-mole", "position": 7, "played": 30, "won": 10, "drawn": 10, "lost": 10, "goalsFor": 40, "goalsAgainst": 34, "points": 40 },
-                    { "team": "occating-menchiote", "position": 8, "played": 30, "won": 11, "drawn": 7, "lost": 12, "goalsFor": 35, "goalsAgainst": 30, "points": 40 },
-                    { "team": "notes-valzine", "position": 9, "played": 30, "won": 10, "drawn": 9, "lost": 11, "goalsFor": 38, "goalsAgainst": 44, "points": 39 },
-                    { "team": "pulzerr", "position": 10, "played": 30, "won": 8, "drawn": 12, "lost": 10, "goalsFor": 42, "goalsAgainst": 47, "points": 36 },
-                    { "team": "nrucaste", "position": 11, "played": 30, "won": 10, "drawn": 6, "lost": 14, "goalsFor": 32, "goalsAgainst": 40, "points": 36 },
-                    { "team": "iteser-icer", "position": 12, "played": 30, "won": 7, "drawn": 11, "lost": 12, "goalsFor": 30, "goalsAgainst": 41, "points": 32 },
-                    { "team": "eldiadion", "position": 13, "played": 30, "won": 8, "drawn": 7, "lost": 15, "goalsFor": 33, "goalsAgainst": 44, "points": 31 },
-                    { "team": "domehampton", "position": 14, "played": 30, "won": 6, "drawn": 9, "lost": 15, "goalsFor": 30, "goalsAgainst": 54, "points": 27 },
-                    { "team": "twine-oner", "position": 15, "played": 30, "won": 4, "drawn": 10, "lost": 16, "goalsFor": 26, "goalsAgainst": 51, "points": 22 },
-                    { "team": "fulhaster", "position": 16, "played": 30, "won": 13, "drawn": 9, "lost": 8, "goalsFor": 47, "goalsAgainst": 30, "points": 48 }
+                    { "team": "fulhaster", "position": 4, "played": 30, "won": 13, "drawn": 9, "lost": 8, "goalsFor": 47, "goalsAgainst": 30, "points": 48 },
+                    { "team": "tatines-david", "position": 5, "played": 30, "won": 11, "drawn": 11, "lost": 8, "goalsFor": 44, "goalsAgainst": 37, "points": 44 },
+                    { "team": "mener-lying", "position": 6, "played": 30, "won": 11, "drawn": 10, "lost": 9, "goalsFor": 41, "goalsAgainst": 35, "points": 43 },
+                    { "team": "rab-pladineer", "position": 7, "played": 30, "won": 11, "drawn": 9, "lost": 10, "goalsFor": 33, "goalsAgainst": 31, "points": 42 },
+                    { "team": "mize-mole", "position": 8, "played": 30, "won": 10, "drawn": 10, "lost": 10, "goalsFor": 40, "goalsAgainst": 34, "points": 40 },
+                    { "team": "occating-menchiote", "position": 9, "played": 30, "won": 11, "drawn": 7, "lost": 12, "goalsFor": 35, "goalsAgainst": 30, "points": 40 },
+                    { "team": "notes-valzine", "position": 10, "played": 30, "won": 10, "drawn": 9, "lost": 11, "goalsFor": 38, "goalsAgainst": 44, "points": 39 },
+                    { "team": "pulzerr", "position": 11, "played": 30, "won": 8, "drawn": 12, "lost": 10, "goalsFor": 42, "goalsAgainst": 47, "points": 36 },
+                    { "team": "nrucaste", "position": 12, "played": 30, "won": 10, "drawn": 6, "lost": 14, "goalsFor": 32, "goalsAgainst": 40, "points": 36 },
+                    { "team": "iteser-icer", "position": 13, "played": 30, "won": 7, "drawn": 11, "lost": 12, "goalsFor": 30, "goalsAgainst": 41, "points": 32 },
+                    { "team": "eldiadion", "position": 14, "played": 30, "won": 8, "drawn": 7, "lost": 15, "goalsFor": 33, "goalsAgainst": 44, "points": 31 },
+                    { "team": "domehampton", "position": 15, "played": 30, "won": 6, "drawn": 9, "lost": 15, "goalsFor": 30, "goalsAgainst": 54, "points": 27 },
+                    { "team": "twine-oner", "position": 16, "played": 30, "won": 4, "drawn": 10, "lost": 16, "goalsFor": 26, "goalsAgainst": 51, "points": 22 }
                   ]
                 }
               ]
@@ -1720,8 +1720,8 @@
                     { "team": "iteser-icer", "position": 12, "played": 30, "won": 7, "drawn": 14, "lost": 9, "goalsFor": 27, "goalsAgainst": 35, "points": 35 },
                     { "team": "cantone", "position": 13, "played": 30, "won": 9, "drawn": 7, "lost": 14, "goalsFor": 29, "goalsAgainst": 40, "points": 34 },
                     { "team": "pulzerr", "position": 14, "played": 30, "won": 9, "drawn": 7, "lost": 14, "goalsFor": 28, "goalsAgainst": 39, "points": 34 },
-                    { "team": "nrucaste", "position": 15, "played": 30, "won": 8, "drawn": 7, "lost": 15, "goalsFor": 31, "goalsAgainst": 43, "points": 31 },
-                    { "team": "occating-menchiote", "position": 16, "played": 30, "won": 8, "drawn": 7, "lost": 15, "goalsFor": 32, "goalsAgainst": 45, "points": 31 }
+                    { "team": "occating-menchiote", "position": 15, "played": 30, "won": 8, "drawn": 7, "lost": 15, "goalsFor": 32, "goalsAgainst": 45, "points": 31 },
+                    { "team": "nrucaste", "position": 16, "played": 30, "won": 8, "drawn": 7, "lost": 15, "goalsFor": 31, "goalsAgainst": 43, "points": 31 }
                   ]
                 }
               ]
@@ -2270,8 +2270,8 @@
                     { "team": "processing-probal", "position": 11, "played": 30, "won": 9, "drawn": 9, "lost": 12, "goalsFor": 31, "goalsAgainst": 40, "points": 36 },
                     { "team": "mize-mole", "position": 12, "played": 30, "won": 8, "drawn": 10, "lost": 12, "goalsFor": 33, "goalsAgainst": 34, "points": 34 },
                     { "team": "willandos", "position": 13, "played": 30, "won": 9, "drawn": 6, "lost": 15, "goalsFor": 27, "goalsAgainst": 42, "points": 33 },
-                    { "team": "domehampton", "position": 14, "played": 30, "won": 6, "drawn": 13, "lost": 11, "goalsFor": 26, "goalsAgainst": 35, "points": 31 },
-                    { "team": "tatines-david", "position": 15, "played": 30, "won": 9, "drawn": 4, "lost": 17, "goalsFor": 32, "goalsAgainst": 43, "points": 31 },
+                    { "team": "tatines-david", "position": 14, "played": 30, "won": 9, "drawn": 4, "lost": 17, "goalsFor": 32, "goalsAgainst": 43, "points": 31 },
+                    { "team": "domehampton", "position": 15, "played": 30, "won": 6, "drawn": 13, "lost": 11, "goalsFor": 26, "goalsAgainst": 35, "points": 31 },
                     { "team": "cantone", "position": 16, "played": 30, "won": 7, "drawn": 6, "lost": 17, "goalsFor": 28, "goalsAgainst": 46, "points": 27 }
                   ]
                 }
