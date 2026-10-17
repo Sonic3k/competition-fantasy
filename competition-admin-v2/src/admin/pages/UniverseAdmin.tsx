@@ -7,6 +7,7 @@ import { Badge, Button, Confirm, Dialog, ErrorBox, Field, Input, PageTitle, Sele
 import { listOrEmpty, numOrNull, readForm, strOrNull } from '@/lib/forms'
 import { slugify } from '@/lib/format'
 import { ColorsInput, colorsFromForm } from '../components/ColorsInput'
+import { NationFlag } from '@/components/NationFlag'
 import { SlotImage } from '../components/SlotImage'
 
 type Tab = 'nations' | 'stadiums' | 'teams' | 'competitions'
@@ -86,7 +87,7 @@ function NationsTab({ universeKey }: { universeKey: string }) {
         <tbody>
           {q.data?.map((n) => (
             <tr key={n.id}>
-              <td className="px-3 py-1.5"><span className="inline-flex items-center gap-2">{n.flagUrl && <img src={n.flagUrl} alt="" className="h-4 w-6 object-cover" />}<Link to={`/nations/${n.id}`} className="hover:underline">{n.name}</Link></span></td>
+              <td className="px-3 py-1.5"><span className="inline-flex items-center gap-2"><NationFlag flagUrl={n.flagUrl} colors={n.colors} size="sm" /><Link to={`/nations/${n.id}`} className="hover:underline">{n.name}</Link></span></td>
               <td className="px-3 py-1.5">{n.code}</td>
               <td className="px-3 py-1.5 font-mono text-xs text-ink-2">{n.key}</td>
               <td className="px-3 py-1.5"><span className="inline-flex gap-1">{[n.colors?.primary, n.colors?.secondary].filter(Boolean).map((c, i) => <span key={i} className="h-4 w-4 rounded-[2px] border border-rule" style={{ background: c as string }} />)}</span></td>

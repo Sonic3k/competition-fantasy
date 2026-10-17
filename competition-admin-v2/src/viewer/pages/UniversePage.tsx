@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router'
 import { useCompetitions, useNations, useTeams, useUniverse } from '@/api/hooks'
 import type { TeamDto } from '@/api/types'
 import { Badge, Empty, ErrorBox, PageTitle, Spinner, Tabs } from '@/components/ui'
-import { pickColor } from '@/lib/format'
+import { NationFlag } from '@/components/NationFlag'
 
 type Tab = 'competitions' | 'nations' | 'teams'
 
@@ -72,7 +72,7 @@ export function UniversePage() {
             {nations.data?.map((n) => (
               <li key={n.id} className="sheet">
                 <Link to={`/nations/${n.id}`} className="flex items-center gap-3 px-4 py-3 hover:bg-paper/60">
-                  {n.flagUrl ? <img src={n.flagUrl} alt="" className="h-6 w-9 rounded-[2px] object-cover" /> : <span className="h-6 w-9 rounded-[2px]" style={{ background: pickColor(n.colors) ?? 'var(--color-rule)' }} />}
+                  <NationFlag flagUrl={n.flagUrl} colors={n.colors} />
                   <span className="font-medium">{n.name}</span>
                   <span className="ml-auto text-xs text-ink-3">{n.code}</span>
                 </Link>

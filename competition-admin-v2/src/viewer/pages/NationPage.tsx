@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router'
 import { useNation, useNationTeams } from '@/api/hooks'
 import { Badge, ErrorBox, PageTitle, Spinner } from '@/components/ui'
-import { pickColor } from '@/lib/format'
+import { NationFlag } from '@/components/NationFlag'
 
 export function NationPage() {
   const id = Number(useParams().id)
@@ -17,7 +17,7 @@ export function NationPage() {
       <PageTitle
         title={
           <span className="inline-flex items-center gap-3">
-            {nation.flagUrl ? <img src={nation.flagUrl} alt="" className="h-8 w-12 rounded-[2px] object-cover" /> : <span className="h-8 w-12 rounded-[2px]" style={{ background: pickColor(nation.colors) ?? 'var(--color-rule)' }} />}
+            <NationFlag flagUrl={nation.flagUrl} colors={nation.colors} size="lg" />
             {nation.name}
             <span className="text-lg font-normal text-ink-3">{nation.code}</span>
           </span>

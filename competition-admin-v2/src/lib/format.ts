@@ -47,6 +47,12 @@ export function teamColor(t: TeamRef | undefined): string | null {
   return pickColor(t.colors) ?? pickColor(t.nationColors)
 }
 
+/** The colour that goes with the team colour: its shirt text colour, else secondary, else the nation's text colour. */
+export function teamAccent(t: TeamRef | undefined): string | null {
+  if (!t) return null
+  return t.colors?.home?.text ?? t.colors?.secondary ?? t.nationColors?.text ?? null
+}
+
 export function pickColor(c: Colors | null | undefined): string | null {
   if (!c) return null
   return c.home?.bg ?? c.primary ?? null

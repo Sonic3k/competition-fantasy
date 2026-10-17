@@ -1,7 +1,8 @@
 import { Link } from 'react-router'
 import type { TeamRef } from '@/api/types'
 import { cx } from './ui'
-import { teamColor, teamName } from '@/lib/format'
+import { teamAccent, teamColor, teamName } from '@/lib/format'
+import { swatchStyle } from '@/lib/color'
 
 /** A team's name with its colour swatch; the recurring identity device of the viewer. */
 export function TeamChip({ team, id, link = true, size = 'md', className, muted, bold }: { team?: TeamRef; id: number | null | undefined; link?: boolean; size?: 'sm' | 'md' | 'lg'; className?: string; muted?: boolean; bold?: boolean }) {
@@ -14,7 +15,7 @@ export function TeamChip({ team, id, link = true, size = 'md', className, muted,
       {team?.logoUrl ? (
         <img src={team.logoUrl} alt="" className={cx('shrink-0 rounded-sm object-contain', size === 'lg' ? 'h-6 w-6' : 'h-4 w-4')} />
       ) : (
-        <span className={cx('shrink-0 rounded-[1px]', swatch[size])} style={{ background: color ?? 'var(--color-rule)' }} aria-hidden />
+        <span className={cx('shrink-0 rounded-[1px]', swatch[size])} style={swatchStyle(color, teamAccent(team))} aria-hidden />
       )}
       <span className="truncate">{name}</span>
     </span>

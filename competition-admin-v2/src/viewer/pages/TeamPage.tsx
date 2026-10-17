@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router'
 import { useTeam } from '@/api/hooks'
 import { Badge, ErrorBox, Spinner } from '@/components/ui'
 import { isDark, pickColor, statusLabel } from '@/lib/format'
+import { contrast, isLight, swatchStyle } from '@/lib/color'
 
 export function TeamPage() {
   const id = Number(useParams().id)
@@ -12,12 +13,18 @@ export function TeamPage() {
   const latest = profiles[0]
   const color = pickColor(latest?.colors) ?? '#1b2a41'
   const text = latest?.colors?.home?.text ?? (isDark(color) ? '#ffffff' : '#1b2a41')
+  // a white or cream shirt: outline the band and give it a stripe in the shirt's text colour
+  const light = isLight(color)
+  const stripe = contrast(text, '#ffffff') >= 3 ? text : '#1b2a41'
   const titles = seasons.filter((s) => s.honours.includes('CHAMPION')).length
 
   return (
     <div>
-      <div className="mb-6 flex items-center gap-5 rounded-sm px-6 py-5" style={{ background: color, color: text }}>
-        {team.logoUrl ? <img src={team.logoUrl} alt="" className="h-16 w-16 object-contain" /> : <span className="h-16 w-3 rounded-[2px] bg-white/30" />}
+      <div
+        className="mb-6 flex items-center gap-5 rounded-sm px-6 py-5"
+        style={{ background: color, color: text, ...(light ? { boxShadow: `inset 0 0 0 1px rgba(27, 42, 65, 0.18), inset 8px 0 0 ${stripe}` } : {}) }}
+      >
+        {team.logoUrl ? <img src={team.logoUrl} alt="" className="h-16 w-16 object-contain" /> : <span className="h-16 w-3 rounded-[2px]" style={{ background: 'currentColor', opacity: 0.3 }} />}
         <div>
           <div className="text-sm opacity-80">
             {team.nationId ? <Link to={`/nations/${team.nationId}`} className="hover:underline">{team.nationName}</Link> : team.type === 'NATIONAL' ? 'National team' : 'Club'}
@@ -105,7 +112,7 @@ export function TeamPage() {
               <ul className="sheet divide-y divide-rule-soft text-sm">
                 {profiles.map((p) => (
                   <li key={p.id} className="flex items-center gap-3 px-3 py-2">
-                    <span className="h-4 w-4 rounded-[2px] border border-rule" style={{ background: pickColor(p.colors) ?? 'transparent' }} />
+                    <span className="h-4 w-4 rounded-[2px]" style={swatchStyle(pickColor(p.colors), p.colors?.home?.text ?? p.colors?.secondary)} />
                     <span className="tnum text-ink-2">{p.year}</span>
                     <span>{p.displayName ?? team.name}</span>
                     {p.sponsor && <span className="ml-auto text-xs text-ink-3">{p.sponsor}</span>}
